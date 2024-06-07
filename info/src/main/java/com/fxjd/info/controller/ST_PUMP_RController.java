@@ -13,7 +13,7 @@ public class ST_PUMP_RController {
     private ST_PUMP_RService st_pump_rService;
 
     @RequestMapping("/real/pump")
-    public void getWaterPumpRealData(String stcd) {
-        ST_PUMP_R stPumpR = st_pump_rService.getLatestBySTCD(stcd);
+    public ST_PUMP_R getWaterPumpRealData(String stcd, String eqpno) {
+        return st_pump_rService.getLatestBySTCD(stcd, eqpno);
     }
 }

@@ -13,7 +13,7 @@ public class ST_PUMP_RServiceImpl implements ST_PUMP_RService {
     private ST_PUMP_RMapper st_pump_rMapper;
 
     @Override
-    public ST_PUMP_R getLatestBySTCD(String stcd) {
-        return st_pump_rMapper.selectLatestBySTCD(stcd);
+    public ST_PUMP_R getLatestBySTCD(String stcd, String eqpno) {
+        return st_pump_rMapper.selectLatestBySTCD(stcd, eqpno);
     }
 }

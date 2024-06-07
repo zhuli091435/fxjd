@@ -1,118 +1,221 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_GATE_RMapper">
-  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_R">
-    <id column="ID" jdbcType="INTEGER" property="ID" />
-    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
-    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
-    <result column="EXKEY" jdbcType="NVARCHAR" property="EXKEY" />
-    <result column="EQPTP" jdbcType="NVARCHAR" property="EQPTP" />
-    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
-    <result column="GTOPNUM" jdbcType="DECIMAL" property="GTOPNUM" />
-    <result column="GTOPHGT" jdbcType="DECIMAL" property="GTOPHGT" />
-    <result column="GTQ" jdbcType="DECIMAL" property="GTQ" />
-    <result column="MSQMT" jdbcType="NVARCHAR" property="MSQMT" />
-    <result column="RunState" jdbcType="INTEGER" property="runState" />
-    <result column="Ua" jdbcType="DECIMAL" property="ua" />
-    <result column="Ub" jdbcType="DECIMAL" property="ub" />
-    <result column="Uc" jdbcType="DECIMAL" property="uc" />
-    <result column="Ia" jdbcType="DECIMAL" property="ia" />
-    <result column="Ib" jdbcType="DECIMAL" property="ib" />
-    <result column="Ic" jdbcType="DECIMAL" property="ic" />
-    <result column="ActivePower" jdbcType="DECIMAL" property="activePower" />
-    <result column="PowerFactor" jdbcType="DECIMAL" property="powerFactor" />
-    <result column="IsRemote" jdbcType="NVARCHAR" property="isRemote" />
-    <result column="Fault" jdbcType="NVARCHAR" property="fault" />
-    <result column="IsControlEle" jdbcType="NVARCHAR" property="isControlEle" />
-    <result column="TopState" jdbcType="NVARCHAR" property="topState" />
-    <result column="BottomState" jdbcType="NVARCHAR" property="bottomState" />
-    <result column="TopMax" jdbcType="NVARCHAR" property="topMax" />
-    <result column="BottomMax" jdbcType="NVARCHAR" property="bottomMax" />
-    <result column="OpUser" jdbcType="NVARCHAR" property="opUser" />
-    <result column="RUP" jdbcType="NVARCHAR" property="RUP" />
-    <result column="RDW" jdbcType="NVARCHAR" property="RDW" />
-    <result column="YUP" jdbcType="NVARCHAR" property="YUP" />
-    <result column="YDW" jdbcType="NVARCHAR" property="YDW" />
-    <result column="GUP" jdbcType="NVARCHAR" property="GUP" />
-    <result column="GDW" jdbcType="NVARCHAR" property="GDW" />
-    <result column="Overload" jdbcType="INTEGER" property="overload" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from ST_GATE_R
-    where ID = #{ID,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_R">
-    insert into ST_GATE_R (ID, STCD, TM, 
-      EXKEY, EQPTP, EQPNO, 
-      GTOPNUM, GTOPHGT, GTQ, 
-      MSQMT, RunState, Ua, 
-      Ub, Uc, Ia, Ib, 
-      Ic, ActivePower, PowerFactor, 
-      IsRemote, Fault, IsControlEle, 
-      TopState, BottomState, TopMax, 
-      BottomMax, OpUser, RUP, 
-      RDW, YUP, YDW, GUP, 
-      GDW, Overload)
-    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
-      #{EXKEY,jdbcType=NVARCHAR}, #{EQPTP,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, 
-      #{GTOPNUM,jdbcType=DECIMAL}, #{GTOPHGT,jdbcType=DECIMAL}, #{GTQ,jdbcType=DECIMAL}, 
-      #{MSQMT,jdbcType=NVARCHAR}, #{runState,jdbcType=INTEGER}, #{ua,jdbcType=DECIMAL}, 
-      #{ub,jdbcType=DECIMAL}, #{uc,jdbcType=DECIMAL}, #{ia,jdbcType=DECIMAL}, #{ib,jdbcType=DECIMAL}, 
-      #{ic,jdbcType=DECIMAL}, #{activePower,jdbcType=DECIMAL}, #{powerFactor,jdbcType=DECIMAL}, 
-      #{isRemote,jdbcType=NVARCHAR}, #{fault,jdbcType=NVARCHAR}, #{isControlEle,jdbcType=NVARCHAR}, 
-      #{topState,jdbcType=NVARCHAR}, #{bottomState,jdbcType=NVARCHAR}, #{topMax,jdbcType=NVARCHAR}, 
-      #{bottomMax,jdbcType=NVARCHAR}, #{opUser,jdbcType=NVARCHAR}, #{RUP,jdbcType=NVARCHAR}, 
-      #{RDW,jdbcType=NVARCHAR}, #{YUP,jdbcType=NVARCHAR}, #{YDW,jdbcType=NVARCHAR}, #{GUP,jdbcType=NVARCHAR}, 
-      #{GDW,jdbcType=NVARCHAR}, #{overload,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_R">
-    update ST_GATE_R
-    set STCD = #{STCD,jdbcType=NVARCHAR},
-      TM = #{TM,jdbcType=TIMESTAMP},
-      EXKEY = #{EXKEY,jdbcType=NVARCHAR},
-      EQPTP = #{EQPTP,jdbcType=NVARCHAR},
-      EQPNO = #{EQPNO,jdbcType=NVARCHAR},
-      GTOPNUM = #{GTOPNUM,jdbcType=DECIMAL},
-      GTOPHGT = #{GTOPHGT,jdbcType=DECIMAL},
-      GTQ = #{GTQ,jdbcType=DECIMAL},
-      MSQMT = #{MSQMT,jdbcType=NVARCHAR},
-      RunState = #{runState,jdbcType=INTEGER},
-      Ua = #{ua,jdbcType=DECIMAL},
-      Ub = #{ub,jdbcType=DECIMAL},
-      Uc = #{uc,jdbcType=DECIMAL},
-      Ia = #{ia,jdbcType=DECIMAL},
-      Ib = #{ib,jdbcType=DECIMAL},
-      Ic = #{ic,jdbcType=DECIMAL},
-      ActivePower = #{activePower,jdbcType=DECIMAL},
-      PowerFactor = #{powerFactor,jdbcType=DECIMAL},
-      IsRemote = #{isRemote,jdbcType=NVARCHAR},
-      Fault = #{fault,jdbcType=NVARCHAR},
-      IsControlEle = #{isControlEle,jdbcType=NVARCHAR},
-      TopState = #{topState,jdbcType=NVARCHAR},
-      BottomState = #{bottomState,jdbcType=NVARCHAR},
-      TopMax = #{topMax,jdbcType=NVARCHAR},
-      BottomMax = #{bottomMax,jdbcType=NVARCHAR},
-      OpUser = #{opUser,jdbcType=NVARCHAR},
-      RUP = #{RUP,jdbcType=NVARCHAR},
-      RDW = #{RDW,jdbcType=NVARCHAR},
-      YUP = #{YUP,jdbcType=NVARCHAR},
-      YDW = #{YDW,jdbcType=NVARCHAR},
-      GUP = #{GUP,jdbcType=NVARCHAR},
-      GDW = #{GDW,jdbcType=NVARCHAR},
-      Overload = #{overload,jdbcType=INTEGER}
-    where ID = #{ID,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ID, STCD, TM, EXKEY, EQPTP, EQPNO, GTOPNUM, GTOPHGT, GTQ, MSQMT, RunState, 
-    Ua, Ub, Uc, Ia, Ib, Ic, ActivePower, PowerFactor, IsRemote, Fault, IsControlEle, 
-    TopState, BottomState, TopMax, BottomMax, OpUser, RUP, RDW, YUP, YDW, GUP, GDW, Overload
-    from ST_GATE_R
-    where ID = #{ID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select ID, STCD, TM, EXKEY, EQPTP, EQPNO, GTOPNUM, GTOPHGT, GTQ, MSQMT, RunState, 
-    Ua, Ub, Uc, Ia, Ib, Ic, ActivePower, PowerFactor, IsRemote, Fault, IsControlEle, 
-    TopState, BottomState, TopMax, BottomMax, OpUser, RUP, RDW, YUP, YDW, GUP, GDW, Overload
-    from ST_GATE_R
-  </select>
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_R">
+        <id column="ID" jdbcType="INTEGER" property="ID"/>
+        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
+        <result column="EXKEY" jdbcType="NVARCHAR" property="EXKEY"/>
+        <result column="EQPTP" jdbcType="NVARCHAR" property="EQPTP"/>
+        <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
+        <result column="GTOPNUM" jdbcType="DECIMAL" property="GTOPNUM"/>
+        <result column="GTOPHGT" jdbcType="DECIMAL" property="GTOPHGT"/>
+        <result column="GTQ" jdbcType="DECIMAL" property="GTQ"/>
+        <result column="MSQMT" jdbcType="NVARCHAR" property="MSQMT"/>
+        <result column="RunState" jdbcType="INTEGER" property="runState"/>
+        <result column="Ua" jdbcType="DECIMAL" property="ua"/>
+        <result column="Ub" jdbcType="DECIMAL" property="ub"/>
+        <result column="Uc" jdbcType="DECIMAL" property="uc"/>
+        <result column="Ia" jdbcType="DECIMAL" property="ia"/>
+        <result column="Ib" jdbcType="DECIMAL" property="ib"/>
+        <result column="Ic" jdbcType="DECIMAL" property="ic"/>
+        <result column="ActivePower" jdbcType="DECIMAL" property="activePower"/>
+        <result column="PowerFactor" jdbcType="DECIMAL" property="powerFactor"/>
+        <result column="IsRemote" jdbcType="NVARCHAR" property="isRemote"/>
+        <result column="Fault" jdbcType="NVARCHAR" property="fault"/>
+        <result column="IsControlEle" jdbcType="NVARCHAR" property="isControlEle"/>
+        <result column="TopState" jdbcType="NVARCHAR" property="topState"/>
+        <result column="BottomState" jdbcType="NVARCHAR" property="bottomState"/>
+        <result column="TopMax" jdbcType="NVARCHAR" property="topMax"/>
+        <result column="BottomMax" jdbcType="NVARCHAR" property="bottomMax"/>
+        <result column="OpUser" jdbcType="NVARCHAR" property="opUser"/>
+        <result column="RUP" jdbcType="NVARCHAR" property="RUP"/>
+        <result column="RDW" jdbcType="NVARCHAR" property="RDW"/>
+        <result column="YUP" jdbcType="NVARCHAR" property="YUP"/>
+        <result column="YDW" jdbcType="NVARCHAR" property="YDW"/>
+        <result column="GUP" jdbcType="NVARCHAR" property="GUP"/>
+        <result column="GDW" jdbcType="NVARCHAR" property="GDW"/>
+        <result column="Overload" jdbcType="INTEGER" property="overload"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from ST_GATE_R
+        where ID = #{ID,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_R">
+        insert into ST_GATE_R (ID, STCD, TM,
+                               EXKEY, EQPTP, EQPNO,
+                               GTOPNUM, GTOPHGT, GTQ,
+                               MSQMT, RunState, Ua,
+                               Ub, Uc, Ia, Ib,
+                               Ic, ActivePower, PowerFactor,
+                               IsRemote, Fault, IsControlEle,
+                               TopState, BottomState, TopMax,
+                               BottomMax, OpUser, RUP,
+                               RDW, YUP, YDW, GUP,
+                               GDW, Overload)
+        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
+                #{EXKEY,jdbcType=NVARCHAR}, #{EQPTP,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR},
+                #{GTOPNUM,jdbcType=DECIMAL}, #{GTOPHGT,jdbcType=DECIMAL}, #{GTQ,jdbcType=DECIMAL},
+                #{MSQMT,jdbcType=NVARCHAR}, #{runState,jdbcType=INTEGER}, #{ua,jdbcType=DECIMAL},
+                #{ub,jdbcType=DECIMAL}, #{uc,jdbcType=DECIMAL}, #{ia,jdbcType=DECIMAL}, #{ib,jdbcType=DECIMAL},
+                #{ic,jdbcType=DECIMAL}, #{activePower,jdbcType=DECIMAL}, #{powerFactor,jdbcType=DECIMAL},
+                #{isRemote,jdbcType=NVARCHAR}, #{fault,jdbcType=NVARCHAR}, #{isControlEle,jdbcType=NVARCHAR},
+                #{topState,jdbcType=NVARCHAR}, #{bottomState,jdbcType=NVARCHAR}, #{topMax,jdbcType=NVARCHAR},
+                #{bottomMax,jdbcType=NVARCHAR}, #{opUser,jdbcType=NVARCHAR}, #{RUP,jdbcType=NVARCHAR},
+                #{RDW,jdbcType=NVARCHAR}, #{YUP,jdbcType=NVARCHAR}, #{YDW,jdbcType=NVARCHAR}, #{GUP,jdbcType=NVARCHAR},
+                #{GDW,jdbcType=NVARCHAR}, #{overload,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_R">
+        update ST_GATE_R
+        set STCD         = #{STCD,jdbcType=NVARCHAR},
+            TM           = #{TM,jdbcType=TIMESTAMP},
+            EXKEY        = #{EXKEY,jdbcType=NVARCHAR},
+            EQPTP        = #{EQPTP,jdbcType=NVARCHAR},
+            EQPNO        = #{EQPNO,jdbcType=NVARCHAR},
+            GTOPNUM      = #{GTOPNUM,jdbcType=DECIMAL},
+            GTOPHGT      = #{GTOPHGT,jdbcType=DECIMAL},
+            GTQ          = #{GTQ,jdbcType=DECIMAL},
+            MSQMT        = #{MSQMT,jdbcType=NVARCHAR},
+            RunState     = #{runState,jdbcType=INTEGER},
+            Ua           = #{ua,jdbcType=DECIMAL},
+            Ub           = #{ub,jdbcType=DECIMAL},
+            Uc           = #{uc,jdbcType=DECIMAL},
+            Ia           = #{ia,jdbcType=DECIMAL},
+            Ib           = #{ib,jdbcType=DECIMAL},
+            Ic           = #{ic,jdbcType=DECIMAL},
+            ActivePower  = #{activePower,jdbcType=DECIMAL},
+            PowerFactor  = #{powerFactor,jdbcType=DECIMAL},
+            IsRemote     = #{isRemote,jdbcType=NVARCHAR},
+            Fault        = #{fault,jdbcType=NVARCHAR},
+            IsControlEle = #{isControlEle,jdbcType=NVARCHAR},
+            TopState     = #{topState,jdbcType=NVARCHAR},
+            BottomState  = #{bottomState,jdbcType=NVARCHAR},
+            TopMax       = #{topMax,jdbcType=NVARCHAR},
+            BottomMax    = #{bottomMax,jdbcType=NVARCHAR},
+            OpUser       = #{opUser,jdbcType=NVARCHAR},
+            RUP          = #{RUP,jdbcType=NVARCHAR},
+            RDW          = #{RDW,jdbcType=NVARCHAR},
+            YUP          = #{YUP,jdbcType=NVARCHAR},
+            YDW          = #{YDW,jdbcType=NVARCHAR},
+            GUP          = #{GUP,jdbcType=NVARCHAR},
+            GDW          = #{GDW,jdbcType=NVARCHAR},
+            Overload     = #{overload,jdbcType=INTEGER}
+        where ID = #{ID,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select ID,
+               STCD,
+               TM,
+               EXKEY,
+               EQPTP,
+               EQPNO,
+               GTOPNUM,
+               GTOPHGT,
+               GTQ,
+               MSQMT,
+               RunState,
+               Ua,
+               Ub,
+               Uc,
+               Ia,
+               Ib,
+               Ic,
+               ActivePower,
+               PowerFactor,
+               IsRemote,
+               Fault,
+               IsControlEle,
+               TopState,
+               BottomState,
+               TopMax,
+               BottomMax,
+               OpUser,
+               RUP,
+               RDW,
+               YUP,
+               YDW,
+               GUP,
+               GDW,
+               Overload
+        from ST_GATE_R
+        where ID = #{ID,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select ID,
+               STCD,
+               TM,
+               EXKEY,
+               EQPTP,
+               EQPNO,
+               GTOPNUM,
+               GTOPHGT,
+               GTQ,
+               MSQMT,
+               RunState,
+               Ua,
+               Ub,
+               Uc,
+               Ia,
+               Ib,
+               Ic,
+               ActivePower,
+               PowerFactor,
+               IsRemote,
+               Fault,
+               IsControlEle,
+               TopState,
+               BottomState,
+               TopMax,
+               BottomMax,
+               OpUser,
+               RUP,
+               RDW,
+               YUP,
+               YDW,
+               GUP,
+               GDW,
+               Overload
+        from ST_GATE_R
+    </select>
+
+    <select id="selectLatestBySTCD" resultMap="BaseResultMap">
+        select top 1 ID, STCD,
+               TM,
+               EXKEY,
+               EQPTP,
+               EQPNO,
+               GTOPNUM,
+               GTOPHGT,
+               GTQ,
+               MSQMT,
+               RunState,
+               Ua,
+               Ub,
+               Uc,
+               Ia,
+               Ib,
+               Ic,
+               ActivePower,
+               PowerFactor,
+               IsRemote,
+               Fault,
+               IsControlEle,
+               TopState,
+               BottomState,
+               TopMax,
+               BottomMax,
+               OpUser,
+               RUP,
+               RDW,
+               YUP,
+               YDW,
+               GUP,
+               GDW,
+               Overload
+        from ST_GATE_R
+        where STCD = #{stcd}
+          and EQPNO = #{eqpno}
+        order by TM desc
+    </select>
 </mapper>
