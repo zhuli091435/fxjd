@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.NavigationMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.Navigation">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="Ico" jdbcType="NVARCHAR" property="ico" />
+    <result column="ParentID" jdbcType="INTEGER" property="parentID" />
+    <result column="Url" jdbcType="NVARCHAR" property="url" />
+    <result column="Permissions" jdbcType="NVARCHAR" property="permissions" />
+    <result column="Sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Navigation
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.Navigation">
+    insert into Navigation (ID, Name, Ico, 
+      ParentID, Url, Permissions, 
+      Sort)
+    values (#{ID,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{ico,jdbcType=NVARCHAR}, 
+      #{parentID,jdbcType=INTEGER}, #{url,jdbcType=NVARCHAR}, #{permissions,jdbcType=NVARCHAR}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.Navigation">
+    update Navigation
+    set Name = #{name,jdbcType=NVARCHAR},
+      Ico = #{ico,jdbcType=NVARCHAR},
+      ParentID = #{parentID,jdbcType=INTEGER},
+      Url = #{url,jdbcType=NVARCHAR},
+      Permissions = #{permissions,jdbcType=NVARCHAR},
+      Sort = #{sort,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, Name, Ico, ParentID, Url, Permissions, Sort
+    from Navigation
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, Name, Ico, ParentID, Url, Permissions, Sort
+    from Navigation
+  </select>
+</mapper>

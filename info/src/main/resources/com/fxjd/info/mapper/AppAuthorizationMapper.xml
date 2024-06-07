@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.AppAuthorizationMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.AppAuthorization">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="UserID" jdbcType="INTEGER" property="userID" />
+    <result column="UserName" jdbcType="NVARCHAR" property="userName" />
+    <result column="Time" jdbcType="TIMESTAMP" property="time" />
+    <result column="Mac" jdbcType="NVARCHAR" property="mac" />
+    <result column="Brand" jdbcType="NVARCHAR" property="brand" />
+    <result column="State" jdbcType="NVARCHAR" property="state" />
+    <result column="Admin" jdbcType="NVARCHAR" property="admin" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from AppAuthorization
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.AppAuthorization">
+    insert into AppAuthorization (ID, UserID, UserName, 
+      Time, Mac, Brand, 
+      State, Admin)
+    values (#{ID,jdbcType=INTEGER}, #{userID,jdbcType=INTEGER}, #{userName,jdbcType=NVARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{mac,jdbcType=NVARCHAR}, #{brand,jdbcType=NVARCHAR}, 
+      #{state,jdbcType=NVARCHAR}, #{admin,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.AppAuthorization">
+    update AppAuthorization
+    set UserID = #{userID,jdbcType=INTEGER},
+      UserName = #{userName,jdbcType=NVARCHAR},
+      Time = #{time,jdbcType=TIMESTAMP},
+      Mac = #{mac,jdbcType=NVARCHAR},
+      Brand = #{brand,jdbcType=NVARCHAR},
+      State = #{state,jdbcType=NVARCHAR},
+      Admin = #{admin,jdbcType=NVARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, UserID, UserName, Time, Mac, Brand, State, Admin
+    from AppAuthorization
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, UserID, UserName, Time, Mac, Brand, State, Admin
+    from AppAuthorization
+  </select>
+</mapper>

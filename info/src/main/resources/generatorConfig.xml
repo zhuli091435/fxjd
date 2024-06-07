@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--
+        targetRuntime有两个值：
+            MyBatis3Simple：生成的是基础版，只有基本的增删改查。
+            MyBatis3：生成的是增强版，除了基本的增删改查之外还有复杂的增删改查。
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+        <!--防止生成重复代码-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <commentGenerator>
+            <!--是否去掉生成日期-->
+            <property name="suppressDate" value="true"/>
+            <!--是否去除注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--连接数据库信息-->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://192.168.0.104:1433;databaseName=FXJDPT;encrypt=false"
+                        userId="miaofu"
+                        password="miaofu">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 生成pojo包名和位置 -->
+        <javaModelGenerator targetPackage="com.fxjd.info.pojo" targetProject="src/main/java">
+            <!--是否开启子包-->
+            <property name="enableSubPackages" value="true"/>
+            <!--是否去除字段名的前后空白-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成SQL映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.fxjd.info.mapper" targetProject="src/main/resources">
+            <!--是否开启子包-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成Mapper接口的包名和位置 -->
+        <javaClientGenerator
+                type="xmlMapper"
+                targetPackage="com.fxjd.info.mapper"
+                targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="Alarm" domainObjectName="Alarm">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="AlarmLine" domainObjectName="AlarmLine">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="AppAuthorization" domainObjectName="AppAuthorization">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="Broadcast" domainObjectName="Broadcast">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="BroadcastFile" domainObjectName="BroadcastFile">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="BroadcastTaskRecord" domainObjectName="BroadcastTaskRecord">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="BroadcastTaskTemplete" domainObjectName="BroadcastTaskTemplete">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="CameraEquipment" domainObjectName="CameraEquipment">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="CtrlDetails" domainObjectName="CtrlDetails">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="CtrlOrder" domainObjectName="CtrlOrder">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="CtrlRecord" domainObjectName="CtrlRecord">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="DepartmentInfo_B" domainObjectName="DepartmentInfo_B">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="LoginRecord" domainObjectName="LoginRecord">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="MItem" domainObjectName="MItem">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="Navigation" domainObjectName="Navigation">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="Role" domainObjectName="Role">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="RoleNavigation" domainObjectName="RoleNavigation">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_GATE_B" domainObjectName="ST_GATE_B">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_GATE_R" domainObjectName="ST_GATE_R">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_PPTN_R" domainObjectName="ST_PPTN_R">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_PUMP_B" domainObjectName="ST_PUMP_B">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_PUMP_R" domainObjectName="ST_PUMP_R">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_RTD_R" domainObjectName="ST_RTD_R">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_STBPRP_B" domainObjectName="ST_STBPRP_B">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="ST_WAS_R" domainObjectName="ST_WAS_R">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="User_B" domainObjectName="User_B">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table tableName="WarnLog" domainObjectName="WarnLog">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.BroadcastFileMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.BroadcastFile">
+    <id column="BroadcastFileID" jdbcType="INTEGER" property="broadcastFileID" />
+    <result column="RealFileName" jdbcType="NVARCHAR" property="realFileName" />
+    <result column="FilePath" jdbcType="NVARCHAR" property="filePath" />
+    <result column="FullFilePath" jdbcType="NVARCHAR" property="fullFilePath" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="FileSize" jdbcType="NVARCHAR" property="fileSize" />
+    <result column="UserID" jdbcType="INTEGER" property="userID" />
+    <result column="FileType" jdbcType="NVARCHAR" property="fileType" />
+    <result column="CustomFileName" jdbcType="NVARCHAR" property="customFileName" />
+    <result column="State" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BroadcastFile
+    where BroadcastFileID = #{broadcastFileID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.BroadcastFile">
+    insert into BroadcastFile (BroadcastFileID, RealFileName, FilePath, 
+      FullFilePath, CreateTime, FileSize, 
+      UserID, FileType, CustomFileName, 
+      State)
+    values (#{broadcastFileID,jdbcType=INTEGER}, #{realFileName,jdbcType=NVARCHAR}, #{filePath,jdbcType=NVARCHAR}, 
+      #{fullFilePath,jdbcType=NVARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{fileSize,jdbcType=NVARCHAR}, 
+      #{userID,jdbcType=INTEGER}, #{fileType,jdbcType=NVARCHAR}, #{customFileName,jdbcType=NVARCHAR}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.BroadcastFile">
+    update BroadcastFile
+    set RealFileName = #{realFileName,jdbcType=NVARCHAR},
+      FilePath = #{filePath,jdbcType=NVARCHAR},
+      FullFilePath = #{fullFilePath,jdbcType=NVARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      FileSize = #{fileSize,jdbcType=NVARCHAR},
+      UserID = #{userID,jdbcType=INTEGER},
+      FileType = #{fileType,jdbcType=NVARCHAR},
+      CustomFileName = #{customFileName,jdbcType=NVARCHAR},
+      State = #{state,jdbcType=INTEGER}
+    where BroadcastFileID = #{broadcastFileID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select BroadcastFileID, RealFileName, FilePath, FullFilePath, CreateTime, FileSize, 
+    UserID, FileType, CustomFileName, State
+    from BroadcastFile
+    where BroadcastFileID = #{broadcastFileID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select BroadcastFileID, RealFileName, FilePath, FullFilePath, CreateTime, FileSize, 
+    UserID, FileType, CustomFileName, State
+    from BroadcastFile
+  </select>
+</mapper>

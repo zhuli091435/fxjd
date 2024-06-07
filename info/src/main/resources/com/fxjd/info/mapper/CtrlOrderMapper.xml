@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.CtrlOrderMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.CtrlOrder">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="Time" jdbcType="TIMESTAMP" property="time" />
+    <result column="UserID" jdbcType="NVARCHAR" property="userID" />
+    <result column="StationID" jdbcType="NVARCHAR" property="stationID" />
+    <result column="State" jdbcType="NVARCHAR" property="state" />
+    <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
+    <result column="CtrlRecordID" jdbcType="INTEGER" property="ctrlRecordID" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from CtrlOrder
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder">
+    insert into CtrlOrder (ID, Time, UserID, 
+      StationID, State, DeviceID, 
+      CtrlRecordID)
+    values (#{ID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR}, 
+      #{stationID,jdbcType=NVARCHAR}, #{state,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR}, 
+      #{ctrlRecordID,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlOrder">
+    update CtrlOrder
+    set Time = #{time,jdbcType=TIMESTAMP},
+      UserID = #{userID,jdbcType=NVARCHAR},
+      StationID = #{stationID,jdbcType=NVARCHAR},
+      State = #{state,jdbcType=NVARCHAR},
+      DeviceID = #{deviceID,jdbcType=NVARCHAR},
+      CtrlRecordID = #{ctrlRecordID,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, Time, UserID, StationID, State, DeviceID, CtrlRecordID
+    from CtrlOrder
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, Time, UserID, StationID, State, DeviceID, CtrlRecordID
+    from CtrlOrder
+  </select>
+</mapper>

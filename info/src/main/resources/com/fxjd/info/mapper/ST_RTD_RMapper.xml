@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_RTD_RMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_RTD_R">
+    <result column="ItemID" jdbcType="NVARCHAR" property="itemID" />
+    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="Value" jdbcType="DECIMAL" property="value" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="Type" jdbcType="NVARCHAR" property="type" />
+    <result column="Unit" jdbcType="NVARCHAR" property="unit" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_RTD_R">
+    insert into ST_RTD_R (ItemID, TM, Name, 
+      Value, STCD, Type, 
+      Unit)
+    values (#{itemID,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, #{name,jdbcType=NVARCHAR}, 
+      #{value,jdbcType=DECIMAL}, #{STCD,jdbcType=NVARCHAR}, #{type,jdbcType=NVARCHAR}, 
+      #{unit,jdbcType=NVARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ItemID, TM, Name, Value, STCD, Type, Unit
+    from ST_RTD_R
+  </select>
+</mapper>

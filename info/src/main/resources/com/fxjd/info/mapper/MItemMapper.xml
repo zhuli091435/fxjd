@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.MItemMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.MItem">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="ItemID" jdbcType="NVARCHAR" property="itemID" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="Type" jdbcType="NVARCHAR" property="type" />
+    <result column="TableName" jdbcType="NVARCHAR" property="tableName" />
+    <result column="UpdateHead" jdbcType="NVARCHAR" property="updateHead" />
+    <result column="Unit" jdbcType="NVARCHAR" property="unit" />
+    <result column="ItemType" jdbcType="NVARCHAR" property="itemType" />
+    <result column="STTP" jdbcType="NVARCHAR" property="STTP" />
+    <result column="Method" jdbcType="NVARCHAR" property="method" />
+    <result column="Sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MItem
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.MItem">
+    insert into MItem (ID, ItemID, Name, 
+      Type, TableName, UpdateHead, 
+      Unit, ItemType, STTP, 
+      Method, Sort)
+    values (#{ID,jdbcType=INTEGER}, #{itemID,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{type,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, #{updateHead,jdbcType=NVARCHAR}, 
+      #{unit,jdbcType=NVARCHAR}, #{itemType,jdbcType=NVARCHAR}, #{STTP,jdbcType=NVARCHAR}, 
+      #{method,jdbcType=NVARCHAR}, #{sort,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.MItem">
+    update MItem
+    set ItemID = #{itemID,jdbcType=NVARCHAR},
+      Name = #{name,jdbcType=NVARCHAR},
+      Type = #{type,jdbcType=NVARCHAR},
+      TableName = #{tableName,jdbcType=NVARCHAR},
+      UpdateHead = #{updateHead,jdbcType=NVARCHAR},
+      Unit = #{unit,jdbcType=NVARCHAR},
+      ItemType = #{itemType,jdbcType=NVARCHAR},
+      STTP = #{STTP,jdbcType=NVARCHAR},
+      Method = #{method,jdbcType=NVARCHAR},
+      Sort = #{sort,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, ItemID, Name, Type, TableName, UpdateHead, Unit, ItemType, STTP, Method, 
+    Sort
+    from MItem
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, ItemID, Name, Type, TableName, UpdateHead, Unit, ItemType, STTP, Method, 
+    Sort
+    from MItem
+  </select>
+</mapper>

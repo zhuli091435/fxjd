@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.LoginRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.LoginRecord">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="UserID" jdbcType="INTEGER" property="userID" />
+    <result column="UserName" jdbcType="NVARCHAR" property="userName" />
+    <result column="Time" jdbcType="TIMESTAMP" property="time" />
+    <result column="IP" jdbcType="NVARCHAR" property="IP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from LoginRecord
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.LoginRecord">
+    insert into LoginRecord (ID, UserID, UserName, 
+      Time, IP)
+    values (#{ID,jdbcType=INTEGER}, #{userID,jdbcType=INTEGER}, #{userName,jdbcType=NVARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{IP,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.LoginRecord">
+    update LoginRecord
+    set UserID = #{userID,jdbcType=INTEGER},
+      UserName = #{userName,jdbcType=NVARCHAR},
+      Time = #{time,jdbcType=TIMESTAMP},
+      IP = #{IP,jdbcType=NVARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, UserID, UserName, Time, IP
+    from LoginRecord
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, UserID, UserName, Time, IP
+    from LoginRecord
+  </select>
+</mapper>

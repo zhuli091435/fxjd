@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_PUMP_RMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_R">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
+    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="FALUT" jdbcType="NVARCHAR" property="FALUT" />
+    <result column="STATUS" jdbcType="INTEGER" property="STATUS" />
+    <result column="AUTO" jdbcType="NVARCHAR" property="AUTO" />
+    <result column="Ua" jdbcType="DECIMAL" property="ua" />
+    <result column="Ub" jdbcType="DECIMAL" property="ub" />
+    <result column="Uc" jdbcType="DECIMAL" property="uc" />
+    <result column="Uab" jdbcType="DECIMAL" property="uab" />
+    <result column="Ubc" jdbcType="DECIMAL" property="ubc" />
+    <result column="Uca" jdbcType="DECIMAL" property="uca" />
+    <result column="Ia" jdbcType="DECIMAL" property="ia" />
+    <result column="Ib" jdbcType="DECIMAL" property="ib" />
+    <result column="Ic" jdbcType="DECIMAL" property="ic" />
+    <result column="ActivePower" jdbcType="DECIMAL" property="activePower" />
+    <result column="ReactivePower" jdbcType="DECIMAL" property="reactivePower" />
+    <result column="PowerFactor" jdbcType="DECIMAL" property="powerFactor" />
+    <result column="IsRemote" jdbcType="NVARCHAR" property="isRemote" />
+    <result column="IsControlEle" jdbcType="NVARCHAR" property="isControlEle" />
+    <result column="OpUser" jdbcType="NVARCHAR" property="opUser" />
+    <result column="Flow" jdbcType="DECIMAL" property="flow" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ST_PUMP_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    insert into ST_PUMP_R (ID, STCD, TM, 
+      EQPNO, FALUT, STATUS, 
+      AUTO, Ua, Ub, Uc, 
+      Uab, Ubc, Uca, Ia, 
+      Ib, Ic, ActivePower, 
+      ReactivePower, PowerFactor, IsRemote, 
+      IsControlEle, OpUser, Flow
+      )
+    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
+      #{EQPNO,jdbcType=NVARCHAR}, #{FALUT,jdbcType=NVARCHAR}, #{STATUS,jdbcType=INTEGER}, 
+      #{AUTO,jdbcType=NVARCHAR}, #{ua,jdbcType=DECIMAL}, #{ub,jdbcType=DECIMAL}, #{uc,jdbcType=DECIMAL}, 
+      #{uab,jdbcType=DECIMAL}, #{ubc,jdbcType=DECIMAL}, #{uca,jdbcType=DECIMAL}, #{ia,jdbcType=DECIMAL}, 
+      #{ib,jdbcType=DECIMAL}, #{ic,jdbcType=DECIMAL}, #{activePower,jdbcType=DECIMAL}, 
+      #{reactivePower,jdbcType=DECIMAL}, #{powerFactor,jdbcType=DECIMAL}, #{isRemote,jdbcType=NVARCHAR}, 
+      #{isControlEle,jdbcType=NVARCHAR}, #{opUser,jdbcType=NVARCHAR}, #{flow,jdbcType=DECIMAL}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    update ST_PUMP_R
+    set STCD = #{STCD,jdbcType=NVARCHAR},
+      TM = #{TM,jdbcType=TIMESTAMP},
+      EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      FALUT = #{FALUT,jdbcType=NVARCHAR},
+      STATUS = #{STATUS,jdbcType=INTEGER},
+      AUTO = #{AUTO,jdbcType=NVARCHAR},
+      Ua = #{ua,jdbcType=DECIMAL},
+      Ub = #{ub,jdbcType=DECIMAL},
+      Uc = #{uc,jdbcType=DECIMAL},
+      Uab = #{uab,jdbcType=DECIMAL},
+      Ubc = #{ubc,jdbcType=DECIMAL},
+      Uca = #{uca,jdbcType=DECIMAL},
+      Ia = #{ia,jdbcType=DECIMAL},
+      Ib = #{ib,jdbcType=DECIMAL},
+      Ic = #{ic,jdbcType=DECIMAL},
+      ActivePower = #{activePower,jdbcType=DECIMAL},
+      ReactivePower = #{reactivePower,jdbcType=DECIMAL},
+      PowerFactor = #{powerFactor,jdbcType=DECIMAL},
+      IsRemote = #{isRemote,jdbcType=NVARCHAR},
+      IsControlEle = #{isControlEle,jdbcType=NVARCHAR},
+      OpUser = #{opUser,jdbcType=NVARCHAR},
+      Flow = #{flow,jdbcType=DECIMAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, STCD, TM, EQPNO, FALUT, STATUS, AUTO, Ua, Ub, Uc, Uab, Ubc, Uca, Ia, Ib, 
+    Ic, ActivePower, ReactivePower, PowerFactor, IsRemote, IsControlEle, OpUser, Flow
+    from ST_PUMP_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, STCD, TM, EQPNO, FALUT, STATUS, AUTO, Ua, Ub, Uc, Uab, Ubc, Uca, Ia, Ib, 
+    Ic, ActivePower, ReactivePower, PowerFactor, IsRemote, IsControlEle, OpUser, Flow
+    from ST_PUMP_R
+  </select>
+</mapper>

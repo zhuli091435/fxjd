@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.AlarmMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.Alarm">
+    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <id column="ItemID" jdbcType="NVARCHAR" property="itemID" />
+    <result column="Time" jdbcType="TIMESTAMP" property="time" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="Value" jdbcType="DECIMAL" property="value" />
+    <result column="Type" jdbcType="NVARCHAR" property="type" />
+    <result column="Memo" jdbcType="NVARCHAR" property="memo" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from Alarm
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.Alarm">
+    insert into Alarm (STCD, ItemID, Time, 
+      Name, Value, Type, 
+      Memo)
+    values (#{STCD,jdbcType=NVARCHAR}, #{itemID,jdbcType=NVARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=NVARCHAR}, #{value,jdbcType=DECIMAL}, #{type,jdbcType=NVARCHAR}, 
+      #{memo,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.Alarm">
+    update Alarm
+    set Time = #{time,jdbcType=TIMESTAMP},
+      Name = #{name,jdbcType=NVARCHAR},
+      Value = #{value,jdbcType=DECIMAL},
+      Type = #{type,jdbcType=NVARCHAR},
+      Memo = #{memo,jdbcType=NVARCHAR}
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select STCD, ItemID, Time, Name, Value, Type, Memo
+    from Alarm
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select STCD, ItemID, Time, Name, Value, Type, Memo
+    from Alarm
+  </select>
+</mapper>

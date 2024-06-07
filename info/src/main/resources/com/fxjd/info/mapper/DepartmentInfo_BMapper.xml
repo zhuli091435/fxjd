@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.DepartmentInfo_BMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.DepartmentInfo_B">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from DepartmentInfo_B
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.DepartmentInfo_B">
+    insert into DepartmentInfo_B (ID, Name)
+    values (#{ID,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.DepartmentInfo_B">
+    update DepartmentInfo_B
+    set Name = #{name,jdbcType=NVARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, Name
+    from DepartmentInfo_B
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, Name
+    from DepartmentInfo_B
+  </select>
+</mapper>

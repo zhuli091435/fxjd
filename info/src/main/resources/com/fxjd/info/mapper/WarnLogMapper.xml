@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.WarnLogMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.WarnLog">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="ItemID" jdbcType="NVARCHAR" property="itemID" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="WarnTime" jdbcType="TIMESTAMP" property="warnTime" />
+    <result column="FreeTime" jdbcType="TIMESTAMP" property="freeTime" />
+    <result column="WarnState" jdbcType="NVARCHAR" property="warnState" />
+    <result column="Value" jdbcType="DECIMAL" property="value" />
+    <result column="WarnType" jdbcType="NVARCHAR" property="warnType" />
+    <result column="Type" jdbcType="NVARCHAR" property="type" />
+    <result column="Memo" jdbcType="NVARCHAR" property="memo" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from WarnLog
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.WarnLog">
+    insert into WarnLog (ID, STCD, ItemID, 
+      Name, WarnTime, FreeTime, 
+      WarnState, Value, WarnType, 
+      Type, Memo)
+    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{itemID,jdbcType=NVARCHAR}, 
+      #{name,jdbcType=NVARCHAR}, #{warnTime,jdbcType=TIMESTAMP}, #{freeTime,jdbcType=TIMESTAMP}, 
+      #{warnState,jdbcType=NVARCHAR}, #{value,jdbcType=DECIMAL}, #{warnType,jdbcType=NVARCHAR}, 
+      #{type,jdbcType=NVARCHAR}, #{memo,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.WarnLog">
+    update WarnLog
+    set STCD = #{STCD,jdbcType=NVARCHAR},
+      ItemID = #{itemID,jdbcType=NVARCHAR},
+      Name = #{name,jdbcType=NVARCHAR},
+      WarnTime = #{warnTime,jdbcType=TIMESTAMP},
+      FreeTime = #{freeTime,jdbcType=TIMESTAMP},
+      WarnState = #{warnState,jdbcType=NVARCHAR},
+      Value = #{value,jdbcType=DECIMAL},
+      WarnType = #{warnType,jdbcType=NVARCHAR},
+      Type = #{type,jdbcType=NVARCHAR},
+      Memo = #{memo,jdbcType=NVARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, STCD, ItemID, Name, WarnTime, FreeTime, WarnState, Value, WarnType, Type, 
+    Memo
+    from WarnLog
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, STCD, ItemID, Name, WarnTime, FreeTime, WarnState, Value, WarnType, Type, 
+    Memo
+    from WarnLog
+  </select>
+</mapper>

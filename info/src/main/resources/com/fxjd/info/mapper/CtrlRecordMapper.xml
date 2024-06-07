@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.CtrlRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.CtrlRecord">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="StationID" jdbcType="NVARCHAR" property="stationID" />
+    <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
+    <result column="Time" jdbcType="TIMESTAMP" property="time" />
+    <result column="StartState" jdbcType="NVARCHAR" property="startState" />
+    <result column="EndState" jdbcType="NVARCHAR" property="endState" />
+    <result column="Operator" jdbcType="NVARCHAR" property="operator" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from CtrlRecord
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord">
+    insert into CtrlRecord (ID, StationID, DeviceID, 
+      Time, StartState, EndState, 
+      Operator)
+    values (#{ID,jdbcType=INTEGER}, #{stationID,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{startState,jdbcType=NVARCHAR}, #{endState,jdbcType=NVARCHAR}, 
+      #{operator,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlRecord">
+    update CtrlRecord
+    set StationID = #{stationID,jdbcType=NVARCHAR},
+      DeviceID = #{deviceID,jdbcType=NVARCHAR},
+      Time = #{time,jdbcType=TIMESTAMP},
+      StartState = #{startState,jdbcType=NVARCHAR},
+      EndState = #{endState,jdbcType=NVARCHAR},
+      Operator = #{operator,jdbcType=NVARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, StationID, DeviceID, Time, StartState, EndState, Operator
+    from CtrlRecord
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, StationID, DeviceID, Time, StartState, EndState, Operator
+    from CtrlRecord
+  </select>
+</mapper>

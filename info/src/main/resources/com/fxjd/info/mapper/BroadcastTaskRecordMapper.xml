@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.BroadcastTaskRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.BroadcastTaskRecord">
+    <id column="TaskRecordID" jdbcType="INTEGER" property="taskRecordID" />
+    <result column="TaskName" jdbcType="NVARCHAR" property="taskName" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UserID" jdbcType="INTEGER" property="userID" />
+    <result column="Method" jdbcType="NVARCHAR" property="method" />
+    <result column="PlayTime" jdbcType="TIMESTAMP" property="playTime" />
+    <result column="State" jdbcType="NVARCHAR" property="state" />
+    <result column="Text" jdbcType="NVARCHAR" property="text" />
+    <result column="BroadcastFileIDs" jdbcType="NVARCHAR" property="broadcastFileIDs" />
+    <result column="BroadcastEndpoints" jdbcType="NVARCHAR" property="broadcastEndpoints" />
+    <result column="HashKey" jdbcType="NVARCHAR" property="hashKey" />
+    <result column="play_mode" jdbcType="INTEGER" property="play_mode" />
+    <result column="play_volume" jdbcType="INTEGER" property="play_volume" />
+    <result column="play_second" jdbcType="INTEGER" property="play_second" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BroadcastTaskRecord
+    where TaskRecordID = #{taskRecordID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.BroadcastTaskRecord">
+    insert into BroadcastTaskRecord (TaskRecordID, TaskName, CreateTime, 
+      UserID, Method, PlayTime, 
+      State, Text, BroadcastFileIDs, 
+      BroadcastEndpoints, HashKey, play_mode, 
+      play_volume, play_second)
+    values (#{taskRecordID,jdbcType=INTEGER}, #{taskName,jdbcType=NVARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{userID,jdbcType=INTEGER}, #{method,jdbcType=NVARCHAR}, #{playTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=NVARCHAR}, #{text,jdbcType=NVARCHAR}, #{broadcastFileIDs,jdbcType=NVARCHAR}, 
+      #{broadcastEndpoints,jdbcType=NVARCHAR}, #{hashKey,jdbcType=NVARCHAR}, #{play_mode,jdbcType=INTEGER}, 
+      #{play_volume,jdbcType=INTEGER}, #{play_second,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.BroadcastTaskRecord">
+    update BroadcastTaskRecord
+    set TaskName = #{taskName,jdbcType=NVARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      UserID = #{userID,jdbcType=INTEGER},
+      Method = #{method,jdbcType=NVARCHAR},
+      PlayTime = #{playTime,jdbcType=TIMESTAMP},
+      State = #{state,jdbcType=NVARCHAR},
+      Text = #{text,jdbcType=NVARCHAR},
+      BroadcastFileIDs = #{broadcastFileIDs,jdbcType=NVARCHAR},
+      BroadcastEndpoints = #{broadcastEndpoints,jdbcType=NVARCHAR},
+      HashKey = #{hashKey,jdbcType=NVARCHAR},
+      play_mode = #{play_mode,jdbcType=INTEGER},
+      play_volume = #{play_volume,jdbcType=INTEGER},
+      play_second = #{play_second,jdbcType=INTEGER}
+    where TaskRecordID = #{taskRecordID,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select TaskRecordID, TaskName, CreateTime, UserID, Method, PlayTime, State, Text, 
+    BroadcastFileIDs, BroadcastEndpoints, HashKey, play_mode, play_volume, play_second
+    from BroadcastTaskRecord
+    where TaskRecordID = #{taskRecordID,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select TaskRecordID, TaskName, CreateTime, UserID, Method, PlayTime, State, Text, 
+    BroadcastFileIDs, BroadcastEndpoints, HashKey, play_mode, play_volume, play_second
+    from BroadcastTaskRecord
+  </select>
+</mapper>

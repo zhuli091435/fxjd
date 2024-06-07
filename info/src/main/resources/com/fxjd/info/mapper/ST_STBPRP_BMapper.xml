@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_STBPRP_BMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_STBPRP_B">
+    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="STNM" jdbcType="NVARCHAR" property="STNM" />
+    <result column="RVNM" jdbcType="NVARCHAR" property="RVNM" />
+    <result column="HNNM" jdbcType="NVARCHAR" property="HNNM" />
+    <result column="BSNM" jdbcType="NVARCHAR" property="BSNM" />
+    <result column="LGTD" jdbcType="DECIMAL" property="LGTD" />
+    <result column="LTTD" jdbcType="DECIMAL" property="LTTD" />
+    <result column="STLC" jdbcType="NVARCHAR" property="STLC" />
+    <result column="ADDVCD" jdbcType="NVARCHAR" property="ADDVCD" />
+    <result column="DTMNM" jdbcType="NVARCHAR" property="DTMNM" />
+    <result column="DTMEL" jdbcType="DECIMAL" property="DTMEL" />
+    <result column="DTPR" jdbcType="DECIMAL" property="DTPR" />
+    <result column="STTP" jdbcType="NVARCHAR" property="STTP" />
+    <result column="FRGRD" jdbcType="NVARCHAR" property="FRGRD" />
+    <result column="ESSTYM" jdbcType="TIMESTAMP" property="ESSTYM" />
+    <result column="BGFRYM" jdbcType="TIMESTAMP" property="BGFRYM" />
+    <result column="ATCUNIT" jdbcType="NVARCHAR" property="ATCUNIT" />
+    <result column="ADMAUTH" jdbcType="NVARCHAR" property="ADMAUTH" />
+    <result column="LOCALITY" jdbcType="NVARCHAR" property="LOCALITY" />
+    <result column="STBK" jdbcType="NVARCHAR" property="STBK" />
+    <result column="STAZT" jdbcType="DECIMAL" property="STAZT" />
+    <result column="DSTRVM" jdbcType="DECIMAL" property="DSTRVM" />
+    <result column="DRNA" jdbcType="DECIMAL" property="DRNA" />
+    <result column="PHCD" jdbcType="NVARCHAR" property="PHCD" />
+    <result column="USFL" jdbcType="NVARCHAR" property="USFL" />
+    <result column="COMMENTS" jdbcType="NVARCHAR" property="COMMENTS" />
+    <result column="MODITIME" jdbcType="TIMESTAMP" property="MODITIME" />
+    <result column="BDLGTD" jdbcType="DECIMAL" property="BDLGTD" />
+    <result column="BDLTTD" jdbcType="DECIMAL" property="BDLTTD" />
+    <result column="GDLGTD" jdbcType="DECIMAL" property="GDLGTD" />
+    <result column="GDLTTD" jdbcType="DECIMAL" property="GDLTTD" />
+    <result column="ElementTP" jdbcType="NVARCHAR" property="elementTP" />
+    <result column="STICO" jdbcType="NVARCHAR" property="STICO" />
+    <result column="RelationSTCD" jdbcType="NVARCHAR" property="relationSTCD" />
+    <result column="MapZoom" jdbcType="INTEGER" property="mapZoom" />
+    <result column="Sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ST_STBPRP_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
+    insert into ST_STBPRP_B (STCD, STNM, RVNM, 
+      HNNM, BSNM, LGTD, 
+      LTTD, STLC, ADDVCD, 
+      DTMNM, DTMEL, DTPR, 
+      STTP, FRGRD, ESSTYM, 
+      BGFRYM, ATCUNIT, ADMAUTH, 
+      LOCALITY, STBK, STAZT, 
+      DSTRVM, DRNA, PHCD, 
+      USFL, COMMENTS, MODITIME, 
+      BDLGTD, BDLTTD, GDLGTD, 
+      GDLTTD, ElementTP, STICO, 
+      RelationSTCD, MapZoom, Sort
+      )
+    values (#{STCD,jdbcType=NVARCHAR}, #{STNM,jdbcType=NVARCHAR}, #{RVNM,jdbcType=NVARCHAR}, 
+      #{HNNM,jdbcType=NVARCHAR}, #{BSNM,jdbcType=NVARCHAR}, #{LGTD,jdbcType=DECIMAL}, 
+      #{LTTD,jdbcType=DECIMAL}, #{STLC,jdbcType=NVARCHAR}, #{ADDVCD,jdbcType=NVARCHAR}, 
+      #{DTMNM,jdbcType=NVARCHAR}, #{DTMEL,jdbcType=DECIMAL}, #{DTPR,jdbcType=DECIMAL}, 
+      #{STTP,jdbcType=NVARCHAR}, #{FRGRD,jdbcType=NVARCHAR}, #{ESSTYM,jdbcType=TIMESTAMP}, 
+      #{BGFRYM,jdbcType=TIMESTAMP}, #{ATCUNIT,jdbcType=NVARCHAR}, #{ADMAUTH,jdbcType=NVARCHAR}, 
+      #{LOCALITY,jdbcType=NVARCHAR}, #{STBK,jdbcType=NVARCHAR}, #{STAZT,jdbcType=DECIMAL}, 
+      #{DSTRVM,jdbcType=DECIMAL}, #{DRNA,jdbcType=DECIMAL}, #{PHCD,jdbcType=NVARCHAR}, 
+      #{USFL,jdbcType=NVARCHAR}, #{COMMENTS,jdbcType=NVARCHAR}, #{MODITIME,jdbcType=TIMESTAMP}, 
+      #{BDLGTD,jdbcType=DECIMAL}, #{BDLTTD,jdbcType=DECIMAL}, #{GDLGTD,jdbcType=DECIMAL}, 
+      #{GDLTTD,jdbcType=DECIMAL}, #{elementTP,jdbcType=NVARCHAR}, #{STICO,jdbcType=NVARCHAR}, 
+      #{relationSTCD,jdbcType=NVARCHAR}, #{mapZoom,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
+    update ST_STBPRP_B
+    set STNM = #{STNM,jdbcType=NVARCHAR},
+      RVNM = #{RVNM,jdbcType=NVARCHAR},
+      HNNM = #{HNNM,jdbcType=NVARCHAR},
+      BSNM = #{BSNM,jdbcType=NVARCHAR},
+      LGTD = #{LGTD,jdbcType=DECIMAL},
+      LTTD = #{LTTD,jdbcType=DECIMAL},
+      STLC = #{STLC,jdbcType=NVARCHAR},
+      ADDVCD = #{ADDVCD,jdbcType=NVARCHAR},
+      DTMNM = #{DTMNM,jdbcType=NVARCHAR},
+      DTMEL = #{DTMEL,jdbcType=DECIMAL},
+      DTPR = #{DTPR,jdbcType=DECIMAL},
+      STTP = #{STTP,jdbcType=NVARCHAR},
+      FRGRD = #{FRGRD,jdbcType=NVARCHAR},
+      ESSTYM = #{ESSTYM,jdbcType=TIMESTAMP},
+      BGFRYM = #{BGFRYM,jdbcType=TIMESTAMP},
+      ATCUNIT = #{ATCUNIT,jdbcType=NVARCHAR},
+      ADMAUTH = #{ADMAUTH,jdbcType=NVARCHAR},
+      LOCALITY = #{LOCALITY,jdbcType=NVARCHAR},
+      STBK = #{STBK,jdbcType=NVARCHAR},
+      STAZT = #{STAZT,jdbcType=DECIMAL},
+      DSTRVM = #{DSTRVM,jdbcType=DECIMAL},
+      DRNA = #{DRNA,jdbcType=DECIMAL},
+      PHCD = #{PHCD,jdbcType=NVARCHAR},
+      USFL = #{USFL,jdbcType=NVARCHAR},
+      COMMENTS = #{COMMENTS,jdbcType=NVARCHAR},
+      MODITIME = #{MODITIME,jdbcType=TIMESTAMP},
+      BDLGTD = #{BDLGTD,jdbcType=DECIMAL},
+      BDLTTD = #{BDLTTD,jdbcType=DECIMAL},
+      GDLGTD = #{GDLGTD,jdbcType=DECIMAL},
+      GDLTTD = #{GDLTTD,jdbcType=DECIMAL},
+      ElementTP = #{elementTP,jdbcType=NVARCHAR},
+      STICO = #{STICO,jdbcType=NVARCHAR},
+      RelationSTCD = #{relationSTCD,jdbcType=NVARCHAR},
+      MapZoom = #{mapZoom,jdbcType=INTEGER},
+      Sort = #{sort,jdbcType=INTEGER}
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select STCD, STNM, RVNM, HNNM, BSNM, LGTD, LTTD, STLC, ADDVCD, DTMNM, DTMEL, DTPR, 
+    STTP, FRGRD, ESSTYM, BGFRYM, ATCUNIT, ADMAUTH, LOCALITY, STBK, STAZT, DSTRVM, DRNA, 
+    PHCD, USFL, COMMENTS, MODITIME, BDLGTD, BDLTTD, GDLGTD, GDLTTD, ElementTP, STICO, 
+    RelationSTCD, MapZoom, Sort
+    from ST_STBPRP_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select STCD, STNM, RVNM, HNNM, BSNM, LGTD, LTTD, STLC, ADDVCD, DTMNM, DTMEL, DTPR, 
+    STTP, FRGRD, ESSTYM, BGFRYM, ATCUNIT, ADMAUTH, LOCALITY, STBK, STAZT, DSTRVM, DRNA, 
+    PHCD, USFL, COMMENTS, MODITIME, BDLGTD, BDLTTD, GDLGTD, GDLTTD, ElementTP, STICO, 
+    RelationSTCD, MapZoom, Sort
+    from ST_STBPRP_B
+  </select>
+</mapper>

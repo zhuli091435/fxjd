@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    password: miaofu
+    username: miaofu
+    url: jdbc:sqlserver://192.168.0.104:1433;databaseName=FXJDPT;encrypt=false
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+server:
+  port: 8080
