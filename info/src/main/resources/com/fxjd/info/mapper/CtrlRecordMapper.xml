@@ -14,7 +14,7 @@
     delete from CtrlRecord
     where ID = #{ID,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord">
+  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord" useGeneratedKeys="true" keyProperty="ID">
     insert into CtrlRecord (ID, StationID, DeviceID, 
       Time, StartState, EndState, 
       Operator)

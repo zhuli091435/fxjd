@@ -1,6 +1,7 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.CtrlDetails;
+
 import java.util.List;
 
 public interface CtrlDetailsMapper {
@@ -13,4 +14,6 @@ public interface CtrlDetailsMapper {
     List<CtrlDetails> selectAll();
 
     int updateByPrimaryKey(CtrlDetails row);
+
+    List<CtrlDetails> selectByCtrlRecordID(Integer ctrlRecordID);
 }

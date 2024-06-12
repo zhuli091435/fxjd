@@ -33,4 +33,9 @@
     select ID, CtrlRecordID, Time, Record
     from CtrlDetails
   </select>
+  <select id="selectByCtrlRecordID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, CtrlRecordID, Time, Record
+    from CtrlDetails
+    where CtrlRecordID = #{ctrlRecordID}
+  </select>
 </mapper>
