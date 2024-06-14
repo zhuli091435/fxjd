@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_H_GATE_RMapper">
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_H_GATE_R">
+        <result column="ID" jdbcType="INTEGER" property="ID"/>
+        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
+        <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
+        <result column="RemoteStatus" jdbcType="INTEGER" property="remoteStatus"/>
+        <result column="MainPumpFault" jdbcType="INTEGER" property="mainPumpFault"/>
+        <result column="BackupPumpFault" jdbcType="INTEGER" property="backupPumpFault"/>
+        <result column="MainPumpRun" jdbcType="INTEGER" property="mainPumpRun"/>
+        <result column="BackupPumpRun" jdbcType="INTEGER" property="backupPumpRun"/>
+        <result column="Fault" jdbcType="INTEGER" property="fault"/>
+        <result column="FullOpen" jdbcType="INTEGER" property="fullOpen"/>
+        <result column="FullClose" jdbcType="INTEGER" property="fullClose"/>
+        <result column="ChuanXiao" jdbcType="INTEGER" property="chuanXiao"/>
+        <result column="TuoXiao" jdbcType="INTEGER" property="tuoXiao"/>
+        <result column="LeftOpenValve" jdbcType="INTEGER" property="leftOpenValve"/>
+        <result column="LeftCloseValve" jdbcType="INTEGER" property="leftCloseValve"/>
+        <result column="RightOpenValve" jdbcType="INTEGER" property="rightOpenValve"/>
+        <result column="RightCloseValve" jdbcType="INTEGER" property="rightCloseValve"/>
+        <result column="LeftChuanXiaoValve" jdbcType="INTEGER" property="leftChuanXiaoValve"/>
+        <result column="LeftTuoXiaoValve" jdbcType="INTEGER" property="leftTuoXiaoValve"/>
+        <result column="RightChuanXiaoValve" jdbcType="INTEGER" property="rightChuanXiaoValve"/>
+        <result column="RightTuoXiaoValve" jdbcType="INTEGER" property="rightTuoXiaoValve"/>
+        <result column="LeftOpening" jdbcType="DECIMAL" property="leftOpening"/>
+        <result column="RightOpening" jdbcType="DECIMAL" property="rightOpening"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_H_GATE_R">
+        insert into ST_H_GATE_R (ID, STCD, TM,
+                                 EQPNO, RemoteStatus, MainPumpFault,
+                                 BackupPumpFault, MainPumpRun, BackupPumpRun,
+                                 Fault, FullOpen, FullClose,
+                                 ChuanXiao, TuoXiao, LeftOpenValve,
+                                 LeftCloseValve, RightOpenValve, RightCloseValve,
+                                 LeftChuanXiaoValve, LeftTuoXiaoValve, RightChuanXiaoValve,
+                                 RightTuoXiaoValve, LeftOpening, RightOpening)
+        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
+                #{EQPNO,jdbcType=NVARCHAR}, #{remoteStatus,jdbcType=INTEGER}, #{mainPumpFault,jdbcType=INTEGER},
+                #{backupPumpFault,jdbcType=INTEGER}, #{mainPumpRun,jdbcType=INTEGER}, #{backupPumpRun,jdbcType=INTEGER},
+                #{fault,jdbcType=INTEGER}, #{fullOpen,jdbcType=INTEGER}, #{fullClose,jdbcType=INTEGER},
+                #{chuanXiao,jdbcType=INTEGER}, #{tuoXiao,jdbcType=INTEGER}, #{leftOpenValve,jdbcType=INTEGER},
+                #{leftCloseValve,jdbcType=INTEGER}, #{rightOpenValve,jdbcType=INTEGER},
+                #{rightCloseValve,jdbcType=INTEGER},
+                #{leftChuanXiaoValve,jdbcType=INTEGER}, #{leftTuoXiaoValve,jdbcType=INTEGER},
+                #{rightChuanXiaoValve,jdbcType=INTEGER},
+                #{rightTuoXiaoValve,jdbcType=INTEGER}, #{leftOpening,jdbcType=DECIMAL},
+                #{rightOpening,jdbcType=DECIMAL})
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select ID,
+               STCD,
+               TM,
+               EQPNO,
+               RemoteStatus,
+               MainPumpFault,
+               BackupPumpFault,
+               MainPumpRun,
+               BackupPumpRun,
+               Fault,
+               FullOpen,
+               FullClose,
+               ChuanXiao,
+               TuoXiao,
+               LeftOpenValve,
+               LeftCloseValve,
+               RightOpenValve,
+               RightCloseValve,
+               LeftChuanXiaoValve,
+               LeftTuoXiaoValve,
+               RightChuanXiaoValve,
+               RightTuoXiaoValve,
+               LeftOpening,
+               RightOpening
+        from ST_H_GATE_R
+    </select>
+
+    <select id="selectLatestBySTCD" resultMap="BaseResultMap">
+        select top 1 ID, STCD,
+               TM,
+               EQPNO,
+               RemoteStatus,
+               MainPumpFault,
+               BackupPumpFault,
+               MainPumpRun,
+               BackupPumpRun,
+               Fault,
+               FullOpen,
+               FullClose,
+               ChuanXiao,
+               TuoXiao,
+               LeftOpenValve,
+               LeftCloseValve,
+               RightOpenValve,
+               RightCloseValve,
+               LeftChuanXiaoValve,
+               LeftTuoXiaoValve,
+               RightChuanXiaoValve,
+               RightTuoXiaoValve,
+               LeftOpening,
+               RightOpening
+        from ST_H_GATE_R
+        where STCD = #{stcd}
+          and EQPNO = #{eqpno}
+        order by TM desc
+    </select>
+
+</mapper>

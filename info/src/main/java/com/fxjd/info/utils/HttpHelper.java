@@ -124,8 +124,10 @@ public class HttpHelper {
             httpPost.setEntity(new StringEntity(jsonBody, ContentType.APPLICATION_JSON));
 
             //5.设置请求头
-            for (String head : headParams.keySet()) {
-                httpPost.addHeader(head, headParams.get(head));
+            if (headParams != null) {
+                for (String head : headParams.keySet()) {
+                    httpPost.addHeader(head, headParams.get(head));
+                }
             }
 
             response = httpClient.execute(httpPost);

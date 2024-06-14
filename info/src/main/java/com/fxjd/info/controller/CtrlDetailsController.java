@@ -7,12 +7,13 @@ import com.fxjd.info.service.CtrlRecordService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 
-@Controller
-public class CtrlDetailsController {
+@RestController
+public class CtrlDetailsController extends ParentController {
     @Resource
     private CtrlDetailsService ctrlDetailsService;
 

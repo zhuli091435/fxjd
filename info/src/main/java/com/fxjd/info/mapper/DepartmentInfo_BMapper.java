@@ -1,8 +1,10 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.DepartmentInfo_B;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface DepartmentInfo_BMapper {
     int deleteByPrimaryKey(Integer ID);
 

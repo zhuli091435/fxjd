@@ -49,85 +49,98 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="Alarm" domainObjectName="Alarm">
+        <!--        <table tableName="Alarm" domainObjectName="Alarm">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="AlarmLine" domainObjectName="AlarmLine">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="AppAuthorization" domainObjectName="AppAuthorization">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="Broadcast" domainObjectName="Broadcast">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="BroadcastFile" domainObjectName="BroadcastFile">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="BroadcastTaskRecord" domainObjectName="BroadcastTaskRecord">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="BroadcastTaskTemplete" domainObjectName="BroadcastTaskTemplete">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="CameraEquipment" domainObjectName="CameraEquipment">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="CtrlDetails" domainObjectName="CtrlDetails">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="CtrlOrder" domainObjectName="CtrlOrder">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="CtrlRecord" domainObjectName="CtrlRecord">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="DepartmentInfo_B" domainObjectName="DepartmentInfo_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="LoginRecord" domainObjectName="LoginRecord">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="MItem" domainObjectName="MItem">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="Navigation" domainObjectName="Navigation">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="Role" domainObjectName="Role">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="RoleNavigation" domainObjectName="RoleNavigation">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_GATE_B" domainObjectName="ST_GATE_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_GATE_R" domainObjectName="ST_GATE_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_PPTN_R" domainObjectName="ST_PPTN_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_PUMP_B" domainObjectName="ST_PUMP_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_PUMP_R" domainObjectName="ST_PUMP_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_RTD_R" domainObjectName="ST_RTD_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_STBPRP_B" domainObjectName="ST_STBPRP_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_WAS_R" domainObjectName="ST_WAS_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="User_B" domainObjectName="User_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="WarnLog" domainObjectName="WarnLog">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_RAIN_B" domainObjectName="ST_RAIN_B">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="ST_RAIN_R" domainObjectName="ST_RAIN_R">-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--        </table>-->
+
+        <table tableName="ST_H_GATE_B" domainObjectName="ST_H_GATE_B">
             <property name="useActualColumnNames" value="true"/>
         </table>
-        <table tableName="AlarmLine" domainObjectName="AlarmLine">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="AppAuthorization" domainObjectName="AppAuthorization">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="Broadcast" domainObjectName="Broadcast">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="BroadcastFile" domainObjectName="BroadcastFile">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="BroadcastTaskRecord" domainObjectName="BroadcastTaskRecord">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="BroadcastTaskTemplete" domainObjectName="BroadcastTaskTemplete">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="CameraEquipment" domainObjectName="CameraEquipment">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="CtrlDetails" domainObjectName="CtrlDetails">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="CtrlOrder" domainObjectName="CtrlOrder">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="CtrlRecord" domainObjectName="CtrlRecord">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="DepartmentInfo_B" domainObjectName="DepartmentInfo_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="LoginRecord" domainObjectName="LoginRecord">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="MItem" domainObjectName="MItem">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="Navigation" domainObjectName="Navigation">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="Role" domainObjectName="Role">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="RoleNavigation" domainObjectName="RoleNavigation">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_GATE_B" domainObjectName="ST_GATE_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_GATE_R" domainObjectName="ST_GATE_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_PPTN_R" domainObjectName="ST_PPTN_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_PUMP_B" domainObjectName="ST_PUMP_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_PUMP_R" domainObjectName="ST_PUMP_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_RTD_R" domainObjectName="ST_RTD_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_STBPRP_B" domainObjectName="ST_STBPRP_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_WAS_R" domainObjectName="ST_WAS_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="User_B" domainObjectName="User_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="WarnLog" domainObjectName="WarnLog">
+        <table tableName="ST_H_GATE_R" domainObjectName="ST_H_GATE_R">
             <property name="useActualColumnNames" value="true"/>
         </table>
     </context>

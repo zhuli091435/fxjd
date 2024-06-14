@@ -2,8 +2,10 @@ package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.ST_GATE_B;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ST_GATE_BMapper {
     int deleteByPrimaryKey(@Param("STCD") String STCD, @Param("EQPNO") String EQPNO);
 
@@ -14,4 +16,6 @@ public interface ST_GATE_BMapper {
     List<ST_GATE_B> selectAll();
 
     int updateByPrimaryKey(ST_GATE_B row);
+
+    List<ST_GATE_B> selectBySTCD(String stcd);
 }

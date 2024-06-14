@@ -1,9 +1,10 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.CtrlDetails;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface CtrlDetailsMapper {
     int deleteByPrimaryKey(Integer ID);
 

@@ -3,15 +3,20 @@ package com.fxjd.info.controller;
 import com.fxjd.info.pojo.CtrlRecord;
 import com.fxjd.info.service.CtrlRecordService;
 import jakarta.annotation.Resource;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@Controller
+@RestController
 public class CtrlRecordController {
 
     @Resource

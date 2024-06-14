@@ -1,8 +1,10 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.Role;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer ID);
 

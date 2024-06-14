@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_GATE_BMapper">
-  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_B">
-    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
-    <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
-    <result column="Name" jdbcType="NVARCHAR" property="name" />
-    <result column="GateType" jdbcType="NVARCHAR" property="gateType" />
-    <result column="GateRemark" jdbcType="NVARCHAR" property="gateRemark" />
-    <result column="CameraID" jdbcType="INTEGER" property="cameraID" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from ST_GATE_B
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_B">
-    insert into ST_GATE_B (STCD, EQPNO, Name, 
-      GateType, GateRemark, CameraID
-      )
-    values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
-      #{gateType,jdbcType=NVARCHAR}, #{gateRemark,jdbcType=NVARCHAR}, #{cameraID,jdbcType=INTEGER}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_B">
-    update ST_GATE_B
-    set Name = #{name,jdbcType=NVARCHAR},
-      GateType = #{gateType,jdbcType=NVARCHAR},
-      GateRemark = #{gateRemark,jdbcType=NVARCHAR},
-      CameraID = #{cameraID,jdbcType=INTEGER}
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select STCD, EQPNO, Name, GateType, GateRemark, CameraID
-    from ST_GATE_B
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select STCD, EQPNO, Name, GateType, GateRemark, CameraID
-    from ST_GATE_B
-  </select>
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_B">
+        <id column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
+        <result column="Name" jdbcType="NVARCHAR" property="name"/>
+        <result column="GateType" jdbcType="NVARCHAR" property="gateType"/>
+        <result column="GateRemark" jdbcType="NVARCHAR" property="gateRemark"/>
+        <result column="CameraID" jdbcType="INTEGER" property="cameraID"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from ST_GATE_B
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+        insert into ST_GATE_B (STCD, EQPNO, Name,
+                               GateType, GateRemark, CameraID)
+        values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR},
+                #{gateType,jdbcType=NVARCHAR}, #{gateRemark,jdbcType=NVARCHAR}, #{cameraID,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+        update ST_GATE_B
+        set Name       = #{name,jdbcType=NVARCHAR},
+            GateType   = #{gateType,jdbcType=NVARCHAR},
+            GateRemark = #{gateRemark,jdbcType=NVARCHAR},
+            CameraID   = #{cameraID,jdbcType=INTEGER}
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
+        from ST_GATE_B
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
+        from ST_GATE_B
+    </select>
+
+    <select id="selectBySTCD" resultMap="BaseResultMap">
+        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
+        from ST_GATE_B
+        where STCD = #{STCD}
+    </select>
+
 </mapper>

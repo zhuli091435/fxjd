@@ -15,21 +15,20 @@
     where ID = #{ID,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord" useGeneratedKeys="true" keyProperty="ID">
-    insert into CtrlRecord (ID, StationID, DeviceID, 
-      Time, StartState, EndState, 
-      Operator)
-    values (#{ID,jdbcType=INTEGER}, #{stationID,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR}, 
-      #{time,jdbcType=TIMESTAMP}, #{startState,jdbcType=NVARCHAR}, #{endState,jdbcType=NVARCHAR}, 
-      #{operator,jdbcType=NVARCHAR})
+      insert into CtrlRecord (StationID, DeviceID,
+                              Time, StartState, EndState, Operator)
+      values (#{stationID,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR},
+              #{time,jdbcType=TIMESTAMP}, #{startState,jdbcType=NVARCHAR}, #{endState,jdbcType=NVARCHAR},
+              #{operator,jdbcType=NVARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlRecord">
     update CtrlRecord
-    set StationID = #{stationID,jdbcType=NVARCHAR},
-      DeviceID = #{deviceID,jdbcType=NVARCHAR},
-      Time = #{time,jdbcType=TIMESTAMP},
-      StartState = #{startState,jdbcType=NVARCHAR},
-      EndState = #{endState,jdbcType=NVARCHAR},
-      Operator = #{operator,jdbcType=NVARCHAR}
+    set StationID  = #{stationID,jdbcType=NVARCHAR},
+        DeviceID   = #{deviceID,jdbcType=NVARCHAR},
+        Time       = #{time,jdbcType=TIMESTAMP},
+        StartState = #{startState,jdbcType=NVARCHAR},
+        EndState   = #{endState,jdbcType=NVARCHAR},
+        Operator   = #{operator,jdbcType=NVARCHAR}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

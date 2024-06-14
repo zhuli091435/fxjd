@@ -1,8 +1,10 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.ST_PPTN_R;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface ST_PPTN_RMapper {
     int deleteByPrimaryKey(Integer ID);
 

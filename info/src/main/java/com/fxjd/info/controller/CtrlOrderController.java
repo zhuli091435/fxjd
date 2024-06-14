@@ -14,16 +14,20 @@ import com.fxjd.info.utils.HttpHelper;
 import com.fxjd.info.vo.ReqResult;
 import com.fxjd.info.vo.SendOrder;
 import jakarta.annotation.Resource;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
-public class CtrlOrderController {
+@RestController
+public class CtrlOrderController extends ParentController {
     @Resource
     private CtrlOrderService ctrlOrderService;
 
@@ -72,7 +76,7 @@ public class CtrlOrderController {
                 default:
                     break;
             }
-            ctrlDetails.setCtrlRecordID(ctrlOrder.getID());
+            ctrlDetails.setCtrlRecordID(ctrlOrder.getCtrlRecordID());
             ctrlDetails.setTime(new Date());
             ctrlDetails.setRecord(content + "已写入，请等待...");
 
@@ -115,7 +119,7 @@ public class CtrlOrderController {
                     ctrlDetails.setTime(new Date());
                     ctrlDetailsService.add(ctrlDetails);
                     stringObjectHashMap.put("code", 1);
-                    stringObjectHashMap.put("message", ex.getMessage());
+                    stringObjectHashMap.put("message", content + "指令写入失败！," + ex.getMessage());
                 }
             } else {
                 ctrlDetails.setRecord(content + "指令写入失败！");
@@ -130,4 +134,5 @@ public class CtrlOrderController {
         }
         return stringObjectHashMap;
     }
+
 }

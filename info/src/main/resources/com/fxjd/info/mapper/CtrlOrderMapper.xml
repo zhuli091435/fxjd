@@ -15,12 +15,19 @@
     where ID = #{ID,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder">
-    insert into CtrlOrder (ID, Time, UserID, 
-      StationID, State, DeviceID, 
-      CtrlRecordID)
-    values (#{ID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR}, 
-      #{stationID,jdbcType=NVARCHAR}, #{state,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR}, 
-      #{ctrlRecordID,jdbcType=INTEGER})
+      insert into CtrlOrder
+      (Time,
+       UserID,
+       StationID,
+       State,
+       DeviceID,
+       CtrlRecordID)
+      values (#{time,jdbcType=TIMESTAMP},
+              #{userID,jdbcType=NVARCHAR},
+              #{stationID,jdbcType=NVARCHAR},
+              #{state,jdbcType=NVARCHAR},
+              #{deviceID,jdbcType=NVARCHAR},
+              #{ctrlRecordID,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlOrder">
     update CtrlOrder

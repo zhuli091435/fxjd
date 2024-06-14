@@ -1,52 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_PUMP_BMapper">
-  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_B">
-    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
-    <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
-    <result column="Name" jdbcType="NVARCHAR" property="name" />
-    <result column="Type" jdbcType="NVARCHAR" property="type" />
-    <result column="Direction" jdbcType="NVARCHAR" property="direction" />
-    <result column="Power" jdbcType="DECIMAL" property="power" />
-    <result column="Flow" jdbcType="DECIMAL" property="flow" />
-    <result column="Memo" jdbcType="NVARCHAR" property="memo" />
-    <result column="RunTime" jdbcType="NVARCHAR" property="runTime" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from ST_PUMP_B
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
-    insert into ST_PUMP_B (STCD, EQPNO, Name, 
-      Type, Direction, Power, 
-      Flow, Memo, RunTime
-      )
-    values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
-      #{type,jdbcType=NVARCHAR}, #{direction,jdbcType=NVARCHAR}, #{power,jdbcType=DECIMAL}, 
-      #{flow,jdbcType=DECIMAL}, #{memo,jdbcType=NVARCHAR}, #{runTime,jdbcType=NVARCHAR}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
-    update ST_PUMP_B
-    set Name = #{name,jdbcType=NVARCHAR},
-      Type = #{type,jdbcType=NVARCHAR},
-      Direction = #{direction,jdbcType=NVARCHAR},
-      Power = #{power,jdbcType=DECIMAL},
-      Flow = #{flow,jdbcType=DECIMAL},
-      Memo = #{memo,jdbcType=NVARCHAR},
-      RunTime = #{runTime,jdbcType=NVARCHAR}
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select STCD, EQPNO, Name, Type, Direction, Power, Flow, Memo, RunTime
-    from ST_PUMP_B
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select STCD, EQPNO, Name, Type, Direction, Power, Flow, Memo, RunTime
-    from ST_PUMP_B
-  </select>
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_B">
+        <id column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
+        <result column="Name" jdbcType="NVARCHAR" property="name"/>
+        <result column="Type" jdbcType="NVARCHAR" property="type"/>
+        <result column="Direction" jdbcType="NVARCHAR" property="direction"/>
+        <result column="Power" jdbcType="DECIMAL" property="power"/>
+        <result column="Flow" jdbcType="DECIMAL" property="flow"/>
+        <result column="Memo" jdbcType="NVARCHAR" property="memo"/>
+        <result column="RunTime" jdbcType="NVARCHAR" property="runTime"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from ST_PUMP_B
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+        insert into ST_PUMP_B (STCD, EQPNO, Name,
+                               Type, Direction, Power,
+                               Flow, Memo, RunTime)
+        values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR},
+                #{type,jdbcType=NVARCHAR}, #{direction,jdbcType=NVARCHAR}, #{power,jdbcType=DECIMAL},
+                #{flow,jdbcType=DECIMAL}, #{memo,jdbcType=NVARCHAR}, #{runTime,jdbcType=NVARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+        update ST_PUMP_B
+        set Name      = #{name,jdbcType=NVARCHAR},
+            Type      = #{type,jdbcType=NVARCHAR},
+            Direction = #{direction,jdbcType=NVARCHAR},
+            Power     = #{power,jdbcType=DECIMAL},
+            Flow      = #{flow,jdbcType=DECIMAL},
+            Memo      = #{memo,jdbcType=NVARCHAR},
+            RunTime   = #{runTime,jdbcType=NVARCHAR}
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select STCD,
+               EQPNO,
+               Name,
+               Type,
+               Direction,
+               Power,
+               Flow,
+               Memo,
+               RunTime
+        from ST_PUMP_B
+        where STCD = #{STCD,jdbcType=NVARCHAR}
+          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select STCD,
+               EQPNO,
+               Name,
+               Type,
+               Direction,
+               Power,
+               Flow,
+               Memo,
+               RunTime
+        from ST_PUMP_B
+    </select>
+
+    <select id="selectBySTCD" resultMap="BaseResultMap">
+        select STCD,
+               EQPNO,
+               Name,
+               Type,
+               Direction,
+               Power,
+               Flow,
+               Memo,
+               RunTime
+        from ST_PUMP_B
+        where STCD = #{stcd}
+    </select>
+
 </mapper>

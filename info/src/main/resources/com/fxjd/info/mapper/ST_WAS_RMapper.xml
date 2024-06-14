@@ -49,4 +49,20 @@
     select ID, STCD, TM, UPZ, DWZ, TGTZ, SWCHRCD, SUPWPTN, SDWWPTN, MSQMT
     from ST_WAS_R
   </select>
+
+  <select id="selectLatestBySTCD" resultMap="BaseResultMap">
+      select top 1 ID, STCD,
+             TM,
+             UPZ,
+             DWZ,
+             TGTZ,
+             SWCHRCD,
+             SUPWPTN,
+             SDWWPTN,
+             MSQMT
+      from ST_WAS_R
+      where STCD = #{STCD}
+      order by TM desc
+  </select>
+
 </mapper>

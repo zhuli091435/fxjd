@@ -1,8 +1,10 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.User_B;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface User_BMapper {
     int deleteByPrimaryKey(Integer userID);
 
