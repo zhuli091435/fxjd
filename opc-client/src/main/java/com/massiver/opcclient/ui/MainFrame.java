@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
                     //记录读取数据时间
                     Date date = new Date();
                     String dateFormat = simpleDateFormat.format(date);
-                    if (true || date.getMinutes() % 5 == 0) {
+                    if (date.getMinutes() % 5 == 0) {
                         //获取所有标记
                         List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read")).toList();
                         //按照设备进行分组，分组读取数据
