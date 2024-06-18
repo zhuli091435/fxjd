@@ -22,7 +22,7 @@
 
         <!--连接数据库信息-->
         <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-                        connectionURL="jdbc:sqlserver://192.168.0.104:1433;databaseName=FXJDOPC;encrypt=false"
+                        connectionURL="jdbc:sqlserver://192.168.0.104:1433;databaseName=FXJDPT;encrypt=false"
                         userId="miaofu"
                         password="miaofu">
             <property name="nullCatalogMeansCurrent" value="true"/>

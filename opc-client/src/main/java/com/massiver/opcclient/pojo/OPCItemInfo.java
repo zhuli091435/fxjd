@@ -1,25 +1,31 @@
 package com.massiver.opcclient.pojo;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 public class OPCItemInfo {
     private Integer ID;
 
-    private String channel;
+    private String channelName;
 
-    private String device;
+    private String deviceName;
 
-    private String sign;
+    private String signName;
+
+    private String signType;
 
     private String stationID;
 
-    private String element;
+    private String deviceID;
 
-    private Date time;
+    private BigDecimal factor;
 
-    private String enable;
+    private String tableName;
 
-    private Integer figure;
+    private String columnName;
+
+    private Integer enable;
+
+    private Object value;
 
     public Integer getID() {
         return ID;
@@ -29,28 +35,36 @@ public class OPCItemInfo {
         this.ID = ID;
     }
 
-    public String getChannel() {
-        return channel;
+    public String getChannelName() {
+        return channelName;
     }
 
-    public void setChannel(String channel) {
-        this.channel = channel == null ? null : channel.trim();
+    public void setChannelName(String channelName) {
+        this.channelName = channelName == null ? null : channelName.trim();
     }
 
-    public String getDevice() {
-        return device;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setDevice(String device) {
-        this.device = device == null ? null : device.trim();
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName == null ? null : deviceName.trim();
     }
 
-    public String getSign() {
-        return sign;
+    public String getSignName() {
+        return signName;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign == null ? null : sign.trim();
+    public void setSignName(String signName) {
+        this.signName = signName == null ? null : signName.trim();
+    }
+
+    public String getSignType() {
+        return signType;
+    }
+
+    public void setSignType(String signType) {
+        this.signType = signType == null ? null : signType.trim();
     }
 
     public String getStationID() {
@@ -61,35 +75,51 @@ public class OPCItemInfo {
         this.stationID = stationID == null ? null : stationID.trim();
     }
 
-    public String getElement() {
-        return element;
+    public String getDeviceID() {
+        return deviceID;
     }
 
-    public void setElement(String element) {
-        this.element = element == null ? null : element.trim();
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID == null ? null : deviceID.trim();
     }
 
-    public Date getTime() {
-        return time;
+    public BigDecimal getFactor() {
+        return factor;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setFactor(BigDecimal factor) {
+        this.factor = factor;
     }
 
-    public String getEnable() {
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName == null ? null : tableName.trim();
+    }
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName == null ? null : columnName.trim();
+    }
+
+    public Integer getEnable() {
         return enable;
     }
 
-    public void setEnable(String enable) {
-        this.enable = enable == null ? null : enable.trim();
+    public void setEnable(Integer enable) {
+        this.enable = enable;
     }
 
-    public Integer getFigure() {
-        return figure;
+    public Object getValue() {
+        return value;
     }
 
-    public void setFigure(Integer figure) {
-        this.figure = figure;
+    public void setValue(Object value) {
+        this.value = value;
     }
 }
