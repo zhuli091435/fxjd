@@ -4,6 +4,8 @@
 
 package com.massiver.opcclient.ui;
 
+import javax.swing.table.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.massiver.opcclient.App;
@@ -15,6 +17,7 @@ import com.massiver.opcclient.service.impl.OPCItemInfoServiceImpl;
 import com.massiver.opcclient.utils.ExceptionUtil;
 import com.massiver.opcclient.utils.OPCUAUtils;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
+import org.eclipse.milo.opcua.sdk.client.api.UaClient;
 import org.eclipse.milo.opcua.stack.core.Identifiers;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
@@ -30,6 +33,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,6 +41,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.swing.*;
 
 /**
@@ -53,28 +58,79 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         initComponents();
+        initTable();
         startGetData();
+    }
+
+    private void initTable() {
+
+        try {
+            List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read")).toList();
+
+            DefaultTableModel model = (DefaultTableModel) this.tableData.getModel();
+
+            Vector dataVector = model.getDataVector();
+            dataVector.removeAllElements();
+            int index = 0;
+            for (OPCItemInfo opcItemInfo : opcItemInfoList) {
+                Vector<Object> objects = new Vector<>();
+                objects.add(++index);
+                objects.add(opcItemInfo.getChannelName());
+                objects.add(opcItemInfo.getDeviceName());
+                objects.add(opcItemInfo.getSignName());
+                objects.add("");
+                objects.add("");
+                objects.add(opcItemInfo.getTableName());
+                objects.add(opcItemInfo.getColumnName());
+                model.addRow(objects);
+            }
+        } catch (Exception e) {
+            //throw new RuntimeException(e);
+        }
+    }
+
+    private void reFreshTable(OPCItemInfo opcItemInfo, String dateFormat) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) this.tableData.getModel();
+        int rowCount = defaultTableModel.getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            String channelName = (String) defaultTableModel.getValueAt(i, 1);
+            String deviceName = (String) defaultTableModel.getValueAt(i, 2);
+            String signName = (String) defaultTableModel.getValueAt(i, 3);
+            if (channelName.equals(opcItemInfo.getChannelName()) && deviceName.equals(opcItemInfo.getDeviceName()) && signName.equals(opcItemInfo.getSignName())) {
+                defaultTableModel.setValueAt(dateFormat, i, 4);
+                defaultTableModel.setValueAt(opcItemInfo.getValue() == null ? "" : opcItemInfo.getValue().toString(), i, 5);
+                break;
+            }
+        }
     }
 
     //通过OPC获取最新的数据
     private void startGetData() {
         //初始化指令
         Thread startGetDataThread = new Thread(() -> {
+            OpcUaClient client = null;
             while (true) {
-                OpcUaClient client = null;
                 try {
-                    //创建OPCUA客户端
-                    client = OPCUAUtils.createClient();
+                    if (client == null) {
+                        logger.info("开始创建OpcUaClient");
+                        //创建OPCUA客户端
+                        client = OPCUAUtils.createClient();
+                        logger.info("完成创建OpcUaClient");
+                    }
+
                     //记录读取数据时间
                     Date date = new Date();
                     String dateFormat = simpleDateFormat.format(date);
-                    if (date.getMinutes() % 5 == 0) {
+                    if (true || date.getMinutes() % 5 == 0) {
                         //获取所有标记
                         List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read")).toList();
                         //按照设备进行分组，分组读取数据
                         Map<String, List<OPCItemInfo>> opcItemInfoMap = opcItemInfoList.stream().collect(Collectors.groupingBy(OPCItemInfo::getDeviceName));
+
                         //连接OPC服务器
-                        client.connect().get();
+                        logger.info("开始连接OPC服务器");
+                        UaClient uaClient = client.connect().get();
+                        logger.info("完成连接OPC服务器");
 
                         for (String device : opcItemInfoMap.keySet()) {
 
@@ -89,10 +145,9 @@ public class MainFrame extends JFrame {
                             List<DataValue> dataValues = readData(client, nodeIdList).get();
                             logger.info("结束读取数据");
 
-                            for (DataValue dataValue : dataValues) {
-                                for (int i = 0; i < opcItemInfos.size(); i++) {
-                                    opcItemInfos.get(i).setValue(dataValue.getValue().getValue());
-                                }
+                            for (int i = 0; i < opcItemInfos.size(); i++) {
+                                opcItemInfos.get(i).setValue(dataValues.get(i).getValue().getValue());
+
                             }
                             Map<String, List<OPCItemInfo>> opcItemInfoValueMap = opcItemInfos.stream().collect(Collectors.groupingBy(OPCItemInfo::getDeviceID));
                             for (String deviceID : opcItemInfoValueMap.keySet()) {
@@ -150,6 +205,7 @@ public class MainFrame extends JFrame {
                 valueStr += "'" + opcItemInfoValue.getValue() + "', ";
             }
 
+            reFreshTable(opcItemInfoValue, dateFormat);
         }
         String[] paramsArr = new String[6];
         paramsArr[0] = opcItemInfoValues.get(0).getTableName();
@@ -161,6 +217,7 @@ public class MainFrame extends JFrame {
         String sql = MessageFormat.format("insert into {0} (STCD, TM, EQPNO, {1}) values ({2}, {3}, {4}, {5})", paramsArr);
         logger.info(sql);
         int res = dynamicService.executeSQL(sql);
+
 
     }
 
@@ -257,16 +314,37 @@ public class MainFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        scrollPaneData = new JScrollPane();
+        tableData = new JTable();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
+
+        //======== scrollPaneData ========
+        {
+
+            //---- tableData ----
+            tableData.setModel(new DefaultTableModel(
+                    new Object[][]{
+                            {null, null, null, "", "", null, "", ""},
+                            {null, null, null, null, null, null, null, null},
+                    },
+                    new String[]{
+                            "\u5e8f\u53f7", "\u901a\u9053\u540d\u79f0", "\u8bbe\u5907\u540d\u79f0", "\u6807\u8bb0\u540d\u79f0", "\u8bfb\u53d6\u65f6\u95f4", "\u6570\u503c", "\u8868\u540d\u79f0", "\u5217\u540d\u79f0"
+                    }
+            ));
+            scrollPaneData.setViewportView(tableData);
+        }
+        contentPane.add(scrollPaneData, BorderLayout.CENTER);
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    private JScrollPane scrollPaneData;
+    private JTable tableData;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
