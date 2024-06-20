@@ -76,9 +76,9 @@
         <!--        <table tableName="CtrlDetails" domainObjectName="CtrlDetails">-->
         <!--            <property name="useActualColumnNames" value="true"/>-->
         <!--        </table>-->
-        <!--        <table tableName="CtrlOrder" domainObjectName="CtrlOrder">-->
-        <!--            <property name="useActualColumnNames" value="true"/>-->
-        <!--        </table>-->
+                <table tableName="CtrlOrder" domainObjectName="CtrlOrder">
+                    <property name="useActualColumnNames" value="true"/>
+                </table>
         <!--        <table tableName="CtrlRecord" domainObjectName="CtrlRecord">-->
         <!--            <property name="useActualColumnNames" value="true"/>-->
         <!--        </table>-->

@@ -14,4 +14,10 @@ public class OPCItemInfoServiceImpl implements OPCItemInfoService {
         OPCItemInfoMapper opcItemInfoMapper = SqlSessionUtil.openSession().getMapper(OPCItemInfoMapper.class);
         return opcItemInfoMapper.selectAll();
     }
+
+    @Override
+    public List<OPCItemInfo> getByStationIDAndDeviceID(String stationID, String deviceID, String columnName) {
+        OPCItemInfoMapper opcItemInfoMapper = SqlSessionUtil.openSession().getMapper(OPCItemInfoMapper.class);
+        return opcItemInfoMapper.selectByStationIDAndDeviceID(stationID, deviceID, columnName);
+    }
 }

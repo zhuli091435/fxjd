@@ -1,11 +1,17 @@
-package com.fxjd.info.pojo;
+package com.massiver.opcclient.pojo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class CtrlOrder {
+    public final static String OPEN_GATE = "1065";
+    public final static String CLOSE_GATE = "1066";
+    public final static String STOP_GATE = "1067";
     private Integer ID;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     private String userID;

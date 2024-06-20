@@ -6,7 +6,8 @@
     <result column="Time" jdbcType="TIMESTAMP" property="time" />
     <result column="UserID" jdbcType="NVARCHAR" property="userID" />
     <result column="StationID" jdbcType="NVARCHAR" property="stationID" />
-    <result column="State" jdbcType="NVARCHAR" property="state" />
+    <result column="OrderCode" jdbcType="NVARCHAR" property="orderCode" />
+    <result column="OrderParam" jdbcType="DECIMAL" property="orderParam" />
     <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
     <result column="CtrlRecordID" jdbcType="INTEGER" property="ctrlRecordID" />
   </resultMap>
@@ -15,37 +16,31 @@
     where ID = #{ID,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder">
-      insert into CtrlOrder
-      (Time,
-       UserID,
-       StationID,
-       State,
-       DeviceID,
-       CtrlRecordID)
-      values (#{time,jdbcType=TIMESTAMP},
-              #{userID,jdbcType=NVARCHAR},
-              #{stationID,jdbcType=NVARCHAR},
-              #{state,jdbcType=NVARCHAR},
-              #{deviceID,jdbcType=NVARCHAR},
-              #{ctrlRecordID,jdbcType=INTEGER})
+    insert into CtrlOrder (ID, Time, UserID, 
+      StationID, OrderCode, OrderParam, 
+      DeviceID, CtrlRecordID)
+    values (#{ID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR}, 
+      #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=DECIMAL}, 
+      #{deviceID,jdbcType=NVARCHAR}, #{ctrlRecordID,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlOrder">
     update CtrlOrder
     set Time = #{time,jdbcType=TIMESTAMP},
       UserID = #{userID,jdbcType=NVARCHAR},
       StationID = #{stationID,jdbcType=NVARCHAR},
-      State = #{state,jdbcType=NVARCHAR},
+      OrderCode = #{orderCode,jdbcType=NVARCHAR},
+      OrderParam = #{orderParam,jdbcType=DECIMAL},
       DeviceID = #{deviceID,jdbcType=NVARCHAR},
       CtrlRecordID = #{ctrlRecordID,jdbcType=INTEGER}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ID, Time, UserID, StationID, State, DeviceID, CtrlRecordID
+    select ID, Time, UserID, StationID, OrderCode, OrderParam, DeviceID, CtrlRecordID
     from CtrlOrder
     where ID = #{ID,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select ID, Time, UserID, StationID, State, DeviceID, CtrlRecordID
+    select ID, Time, UserID, StationID, OrderCode, OrderParam, DeviceID, CtrlRecordID
     from CtrlOrder
   </select>
 </mapper>

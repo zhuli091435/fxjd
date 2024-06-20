@@ -12,6 +12,8 @@ public class ST_H_GATE_R {
 
     private String EQPNO;
 
+    private Integer mode;
+
     private Integer remoteStatus;
 
     private Integer mainPumpFault;
@@ -82,6 +84,14 @@ public class ST_H_GATE_R {
 
     public void setEQPNO(String EQPNO) {
         this.EQPNO = EQPNO == null ? null : EQPNO.trim();
+    }
+
+    public Integer getMode() {
+        return mode;
+    }
+
+    public void setMode(Integer mode) {
+        this.mode = mode;
     }
 
     public Integer getRemoteStatus() {

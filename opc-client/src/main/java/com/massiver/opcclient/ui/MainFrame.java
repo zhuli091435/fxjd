@@ -6,9 +6,12 @@ package com.massiver.opcclient.ui;
 
 import javax.swing.table.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.massiver.opcclient.App;
+import com.massiver.opcclient.pojo.CtrlOrder;
 import com.massiver.opcclient.pojo.OPCItemInfo;
 import com.massiver.opcclient.service.DynamicService;
 import com.massiver.opcclient.service.OPCItemInfoService;
@@ -16,11 +19,17 @@ import com.massiver.opcclient.service.impl.DynamicServiceImpl;
 import com.massiver.opcclient.service.impl.OPCItemInfoServiceImpl;
 import com.massiver.opcclient.utils.ExceptionUtil;
 import com.massiver.opcclient.utils.OPCUAUtils;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
 import org.eclipse.milo.opcua.sdk.client.api.UaClient;
 import org.eclipse.milo.opcua.stack.core.Identifiers;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
+import org.eclipse.milo.opcua.stack.core.types.builtin.StatusCode;
+import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.ServerState;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
 import org.slf4j.Logger;
@@ -29,6 +38,8 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
@@ -51,15 +62,19 @@ public class MainFrame extends JFrame {
 
     int PORT = 8060;
     static Logger logger = LoggerFactory.getLogger(MainFrame.class);
+    ObjectMapper objectMapper = new ObjectMapper();
     OPCItemInfoService opcItemInfoService = new OPCItemInfoServiceImpl();
     DynamicService dynamicService = new DynamicServiceImpl();
-
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    OpcUaClient clientControl = null;
 
     public MainFrame() {
         initComponents();
         initTable();
-        startGetData();
+        startListenOrder();
+        //startGetData();
+
     }
 
     private void initTable() {
@@ -227,89 +242,100 @@ public class MainFrame extends JFrame {
 
     private void startListenOrder() {
 
-        Thread serverThread = new Thread(() -> {
+        try {
+            clientControl = OPCUAUtils.createClient();
+        } catch (Exception e) {
+            logger.error("startListenOrder OpcUaClient创建失败");
+        }
 
-            // 监听指定的端口
-            ServerSocket serverSocket = null;
-            try {
-                //开始监听
-                serverSocket = new ServerSocket(PORT);
-                logger.info("在端口" + PORT + "启动监听成功！");
-                while (true) {
-                    //等待设备连接
-                    Socket socket = serverSocket.accept();
-                    //设备连接服务器成功
-                    logger.info("客户端" + socket.getRemoteSocketAddress() + "连接成功");
-
-                    //开启新线程处理设备数据的接收发送
-                    handleClient(socket);
-                }
-            } catch (Exception e) {
-                logger.error("在端口" + PORT + "启动监听失败，" + ExceptionUtil.getStackTrace(e));
-                //关闭ServerSocket
-                if (serverSocket != null) {
-                    try {
-                        serverSocket.close();
-                    } catch (IOException ex) {
-                        //throw new RuntimeException(ex);
-                    }
-                }
-            }
-        });
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
+            server.createContext("/control", exchange -> {
+                handelRequest(exchange);
+            });
+            server.setExecutor(null); // creates a default executor
+            server.start();
+            logger.info("端口" + PORT + "监听成功");
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+            logger.error("端口" + PORT + "监听失败");
+        }
 
 
-        serverThread.setDaemon(true);
-        serverThread.start();
     }
 
-    private void handleClient(Socket socket) {
-        Thread thread = new Thread(() -> {
-            // 建立好连接后，从socket中获取输入流，并建立缓冲区进行读取
-            InputStream inputStream = null;
+    private void handelRequest(HttpExchange exchange) {
+
+        //
+        if (clientControl == null) {
             try {
-                //主动发送数据给设备
-                //sendMessage("F1030000000000000C6161F2", socket);
-                //获取输入流
-                inputStream = socket.getInputStream();
-                byte[] bytes = new byte[1024];
-                int len;
-                while ((len = inputStream.read(bytes)) != -1) {
-                    try {
-
-                        byte[] dataBytes = Arrays.copyOf(bytes, len);
-
-                        handleMsg(dataBytes, socket);
-
-                    } catch (Exception ex) {
-                        logger.error("handleMsg发生错误，" + ExceptionUtil.getStackTrace(ex));
-                    }
-                }
-
-                inputStream.close();
-                socket.close();
-                logger.info("客户端" + socket.getRemoteSocketAddress() + "下线");
+                clientControl = OPCUAUtils.createClient();
             } catch (Exception e) {
-                logger.error("读取异常" + e.getMessage());
-                try {
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
-                    socket.close();
-                } catch (Exception ex) {
-                    //logToTextArea(ex.getMessage());
-                }
+                logger.error("handelRequest OpcUaClient创建失败");
             }
-        });
-        thread.setDaemon(true);
-        thread.start();
-    }
+        }
 
-    private void handleMsg(byte[] dataBytes, Socket socket) throws Exception {
-        String jsonString = new String(dataBytes, StandardCharsets.UTF_8);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            byte[] bytes = exchange.getRequestBody().readAllBytes();
+            String jsonInput = new String(bytes, StandardCharsets.UTF_8);
 
-        ObjectMapper mapper = new ObjectMapper();
-        //CtrlOrder ctrlOrder = mapper.readValue(jsonString, CtrlOrder.class);
+            CtrlOrder ctrlOrder = objectMapper.readValue(jsonInput, CtrlOrder.class);
 
+
+            List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getByStationIDAndDeviceID(ctrlOrder.getStationID(), ctrlOrder.getDeviceID(), ctrlOrder.getOrderCode());
+
+            if (opcItemInfoList.size() > 0) {
+
+                clientControl.connect().get();
+
+                List<NodeId> nodeIds = ImmutableList.of(new NodeId(2, opcItemInfoList.get(0).getChannelName() + "." + opcItemInfoList.get(0).getDeviceName() + "." + opcItemInfoList.get(0).getSignName()));
+
+                Variant v = new Variant(1);
+                // don't write status or timestamps
+                DataValue dv = new DataValue(v, null, null);
+
+                // write asynchronously....
+                CompletableFuture<List<StatusCode>> f =
+                        clientControl.writeValues(nodeIds, ImmutableList.of(dv));
+
+                // ...but block for the results so we write in order
+                List<StatusCode> statusCodes = f.get();
+                StatusCode status = statusCodes.get(0);
+
+                if (status.isGood()) {
+                    //logger.info("Wrote '{}' to nodeId={}", v, nodeIds.get(0));
+                    resultMap.put("code", 0);
+                    resultMap.put("message", "指令下发成功");
+                } else {
+                    resultMap.put("code", 1);
+                    resultMap.put("message", "指令下发失败");
+                }
+
+                clientControl.disconnect().get();
+
+            } else {
+                resultMap.put("code", 1);
+                resultMap.put("message", "控制指令未配置");
+            }
+        } catch (Exception e) {
+            //throw new RuntimeException(e);
+            resultMap.put("code", 1);
+            resultMap.put("message", "控制失败，" + e.getMessage());
+        }
+
+        try {
+            exchange.getResponseHeaders().set("Content-Type", "application/json;charset=UTF-8");
+            String response = objectMapper.writeValueAsString(resultMap);
+            byte[] bytesResponse = response.getBytes();
+            exchange.sendResponseHeaders(200, bytesResponse.length);
+            OutputStream os = exchange.getResponseBody();
+            os.write(bytesResponse);
+            os.close();
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+            logger.error("响应异常" + e.getMessage());
+        }
     }
 
     private void initComponents() {
