@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
         initComponents();
         initTable();
         startListenOrder();
-        //startGetData();
+        startGetData();
 
     }
 
