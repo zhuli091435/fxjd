@@ -39,9 +39,99 @@
     <result column="MapZoom" jdbcType="INTEGER" property="mapZoom" />
     <result column="Sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    STCD, STNM, RVNM, HNNM, BSNM, LGTD, LTTD, STLC, ADDVCD, DTMNM, DTMEL, DTPR, STTP, 
+    FRGRD, ESSTYM, BGFRYM, ATCUNIT, ADMAUTH, LOCALITY, STBK, STAZT, DSTRVM, DRNA, PHCD, 
+    USFL, COMMENTS, MODITIME, BDLGTD, BDLTTD, GDLGTD, GDLTTD, ElementTP, STICO, RelationSTCD, 
+    MapZoom, Sort
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_STBPRP_BExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_STBPRP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_STBPRP_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from ST_STBPRP_B
     where STCD = #{STCD,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_STBPRP_BExample">
+    delete from ST_STBPRP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
     insert into ST_STBPRP_B (STCD, STNM, RVNM, 
@@ -71,6 +161,504 @@
       #{relationSTCD,jdbcType=NVARCHAR}, #{mapZoom,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}
       )
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
+    insert into ST_STBPRP_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="STNM != null">
+        STNM,
+      </if>
+      <if test="RVNM != null">
+        RVNM,
+      </if>
+      <if test="HNNM != null">
+        HNNM,
+      </if>
+      <if test="BSNM != null">
+        BSNM,
+      </if>
+      <if test="LGTD != null">
+        LGTD,
+      </if>
+      <if test="LTTD != null">
+        LTTD,
+      </if>
+      <if test="STLC != null">
+        STLC,
+      </if>
+      <if test="ADDVCD != null">
+        ADDVCD,
+      </if>
+      <if test="DTMNM != null">
+        DTMNM,
+      </if>
+      <if test="DTMEL != null">
+        DTMEL,
+      </if>
+      <if test="DTPR != null">
+        DTPR,
+      </if>
+      <if test="STTP != null">
+        STTP,
+      </if>
+      <if test="FRGRD != null">
+        FRGRD,
+      </if>
+      <if test="ESSTYM != null">
+        ESSTYM,
+      </if>
+      <if test="BGFRYM != null">
+        BGFRYM,
+      </if>
+      <if test="ATCUNIT != null">
+        ATCUNIT,
+      </if>
+      <if test="ADMAUTH != null">
+        ADMAUTH,
+      </if>
+      <if test="LOCALITY != null">
+        LOCALITY,
+      </if>
+      <if test="STBK != null">
+        STBK,
+      </if>
+      <if test="STAZT != null">
+        STAZT,
+      </if>
+      <if test="DSTRVM != null">
+        DSTRVM,
+      </if>
+      <if test="DRNA != null">
+        DRNA,
+      </if>
+      <if test="PHCD != null">
+        PHCD,
+      </if>
+      <if test="USFL != null">
+        USFL,
+      </if>
+      <if test="COMMENTS != null">
+        COMMENTS,
+      </if>
+      <if test="MODITIME != null">
+        MODITIME,
+      </if>
+      <if test="BDLGTD != null">
+        BDLGTD,
+      </if>
+      <if test="BDLTTD != null">
+        BDLTTD,
+      </if>
+      <if test="GDLGTD != null">
+        GDLGTD,
+      </if>
+      <if test="GDLTTD != null">
+        GDLTTD,
+      </if>
+      <if test="elementTP != null">
+        ElementTP,
+      </if>
+      <if test="STICO != null">
+        STICO,
+      </if>
+      <if test="relationSTCD != null">
+        RelationSTCD,
+      </if>
+      <if test="mapZoom != null">
+        MapZoom,
+      </if>
+      <if test="sort != null">
+        Sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="STNM != null">
+        #{STNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="RVNM != null">
+        #{RVNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="HNNM != null">
+        #{HNNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="BSNM != null">
+        #{BSNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="LGTD != null">
+        #{LGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="LTTD != null">
+        #{LTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="STLC != null">
+        #{STLC,jdbcType=NVARCHAR},
+      </if>
+      <if test="ADDVCD != null">
+        #{ADDVCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="DTMNM != null">
+        #{DTMNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="DTMEL != null">
+        #{DTMEL,jdbcType=DECIMAL},
+      </if>
+      <if test="DTPR != null">
+        #{DTPR,jdbcType=DECIMAL},
+      </if>
+      <if test="STTP != null">
+        #{STTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="FRGRD != null">
+        #{FRGRD,jdbcType=NVARCHAR},
+      </if>
+      <if test="ESSTYM != null">
+        #{ESSTYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="BGFRYM != null">
+        #{BGFRYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ATCUNIT != null">
+        #{ATCUNIT,jdbcType=NVARCHAR},
+      </if>
+      <if test="ADMAUTH != null">
+        #{ADMAUTH,jdbcType=NVARCHAR},
+      </if>
+      <if test="LOCALITY != null">
+        #{LOCALITY,jdbcType=NVARCHAR},
+      </if>
+      <if test="STBK != null">
+        #{STBK,jdbcType=NVARCHAR},
+      </if>
+      <if test="STAZT != null">
+        #{STAZT,jdbcType=DECIMAL},
+      </if>
+      <if test="DSTRVM != null">
+        #{DSTRVM,jdbcType=DECIMAL},
+      </if>
+      <if test="DRNA != null">
+        #{DRNA,jdbcType=DECIMAL},
+      </if>
+      <if test="PHCD != null">
+        #{PHCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="USFL != null">
+        #{USFL,jdbcType=NVARCHAR},
+      </if>
+      <if test="COMMENTS != null">
+        #{COMMENTS,jdbcType=NVARCHAR},
+      </if>
+      <if test="MODITIME != null">
+        #{MODITIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="BDLGTD != null">
+        #{BDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="BDLTTD != null">
+        #{BDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="GDLGTD != null">
+        #{GDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="GDLTTD != null">
+        #{GDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="elementTP != null">
+        #{elementTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="STICO != null">
+        #{STICO,jdbcType=NVARCHAR},
+      </if>
+      <if test="relationSTCD != null">
+        #{relationSTCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="mapZoom != null">
+        #{mapZoom,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_STBPRP_BExample" resultType="java.lang.Long">
+    select count(*) from ST_STBPRP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_STBPRP_B
+    <set>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.STNM != null">
+        STNM = #{row.STNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.RVNM != null">
+        RVNM = #{row.RVNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.HNNM != null">
+        HNNM = #{row.HNNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.BSNM != null">
+        BSNM = #{row.BSNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.LGTD != null">
+        LGTD = #{row.LGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.LTTD != null">
+        LTTD = #{row.LTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.STLC != null">
+        STLC = #{row.STLC,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.ADDVCD != null">
+        ADDVCD = #{row.ADDVCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.DTMNM != null">
+        DTMNM = #{row.DTMNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.DTMEL != null">
+        DTMEL = #{row.DTMEL,jdbcType=DECIMAL},
+      </if>
+      <if test="row.DTPR != null">
+        DTPR = #{row.DTPR,jdbcType=DECIMAL},
+      </if>
+      <if test="row.STTP != null">
+        STTP = #{row.STTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.FRGRD != null">
+        FRGRD = #{row.FRGRD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.ESSTYM != null">
+        ESSTYM = #{row.ESSTYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.BGFRYM != null">
+        BGFRYM = #{row.BGFRYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.ATCUNIT != null">
+        ATCUNIT = #{row.ATCUNIT,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.ADMAUTH != null">
+        ADMAUTH = #{row.ADMAUTH,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.LOCALITY != null">
+        LOCALITY = #{row.LOCALITY,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.STBK != null">
+        STBK = #{row.STBK,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.STAZT != null">
+        STAZT = #{row.STAZT,jdbcType=DECIMAL},
+      </if>
+      <if test="row.DSTRVM != null">
+        DSTRVM = #{row.DSTRVM,jdbcType=DECIMAL},
+      </if>
+      <if test="row.DRNA != null">
+        DRNA = #{row.DRNA,jdbcType=DECIMAL},
+      </if>
+      <if test="row.PHCD != null">
+        PHCD = #{row.PHCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.USFL != null">
+        USFL = #{row.USFL,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.COMMENTS != null">
+        COMMENTS = #{row.COMMENTS,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.MODITIME != null">
+        MODITIME = #{row.MODITIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.BDLGTD != null">
+        BDLGTD = #{row.BDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.BDLTTD != null">
+        BDLTTD = #{row.BDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.GDLGTD != null">
+        GDLGTD = #{row.GDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.GDLTTD != null">
+        GDLTTD = #{row.GDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="row.elementTP != null">
+        ElementTP = #{row.elementTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.STICO != null">
+        STICO = #{row.STICO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.relationSTCD != null">
+        RelationSTCD = #{row.relationSTCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.mapZoom != null">
+        MapZoom = #{row.mapZoom,jdbcType=INTEGER},
+      </if>
+      <if test="row.sort != null">
+        Sort = #{row.sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_STBPRP_B
+    set STCD = #{row.STCD,jdbcType=NVARCHAR},
+      STNM = #{row.STNM,jdbcType=NVARCHAR},
+      RVNM = #{row.RVNM,jdbcType=NVARCHAR},
+      HNNM = #{row.HNNM,jdbcType=NVARCHAR},
+      BSNM = #{row.BSNM,jdbcType=NVARCHAR},
+      LGTD = #{row.LGTD,jdbcType=DECIMAL},
+      LTTD = #{row.LTTD,jdbcType=DECIMAL},
+      STLC = #{row.STLC,jdbcType=NVARCHAR},
+      ADDVCD = #{row.ADDVCD,jdbcType=NVARCHAR},
+      DTMNM = #{row.DTMNM,jdbcType=NVARCHAR},
+      DTMEL = #{row.DTMEL,jdbcType=DECIMAL},
+      DTPR = #{row.DTPR,jdbcType=DECIMAL},
+      STTP = #{row.STTP,jdbcType=NVARCHAR},
+      FRGRD = #{row.FRGRD,jdbcType=NVARCHAR},
+      ESSTYM = #{row.ESSTYM,jdbcType=TIMESTAMP},
+      BGFRYM = #{row.BGFRYM,jdbcType=TIMESTAMP},
+      ATCUNIT = #{row.ATCUNIT,jdbcType=NVARCHAR},
+      ADMAUTH = #{row.ADMAUTH,jdbcType=NVARCHAR},
+      LOCALITY = #{row.LOCALITY,jdbcType=NVARCHAR},
+      STBK = #{row.STBK,jdbcType=NVARCHAR},
+      STAZT = #{row.STAZT,jdbcType=DECIMAL},
+      DSTRVM = #{row.DSTRVM,jdbcType=DECIMAL},
+      DRNA = #{row.DRNA,jdbcType=DECIMAL},
+      PHCD = #{row.PHCD,jdbcType=NVARCHAR},
+      USFL = #{row.USFL,jdbcType=NVARCHAR},
+      COMMENTS = #{row.COMMENTS,jdbcType=NVARCHAR},
+      MODITIME = #{row.MODITIME,jdbcType=TIMESTAMP},
+      BDLGTD = #{row.BDLGTD,jdbcType=DECIMAL},
+      BDLTTD = #{row.BDLTTD,jdbcType=DECIMAL},
+      GDLGTD = #{row.GDLGTD,jdbcType=DECIMAL},
+      GDLTTD = #{row.GDLTTD,jdbcType=DECIMAL},
+      ElementTP = #{row.elementTP,jdbcType=NVARCHAR},
+      STICO = #{row.STICO,jdbcType=NVARCHAR},
+      RelationSTCD = #{row.relationSTCD,jdbcType=NVARCHAR},
+      MapZoom = #{row.mapZoom,jdbcType=INTEGER},
+      Sort = #{row.sort,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
+    update ST_STBPRP_B
+    <set>
+      <if test="STNM != null">
+        STNM = #{STNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="RVNM != null">
+        RVNM = #{RVNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="HNNM != null">
+        HNNM = #{HNNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="BSNM != null">
+        BSNM = #{BSNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="LGTD != null">
+        LGTD = #{LGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="LTTD != null">
+        LTTD = #{LTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="STLC != null">
+        STLC = #{STLC,jdbcType=NVARCHAR},
+      </if>
+      <if test="ADDVCD != null">
+        ADDVCD = #{ADDVCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="DTMNM != null">
+        DTMNM = #{DTMNM,jdbcType=NVARCHAR},
+      </if>
+      <if test="DTMEL != null">
+        DTMEL = #{DTMEL,jdbcType=DECIMAL},
+      </if>
+      <if test="DTPR != null">
+        DTPR = #{DTPR,jdbcType=DECIMAL},
+      </if>
+      <if test="STTP != null">
+        STTP = #{STTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="FRGRD != null">
+        FRGRD = #{FRGRD,jdbcType=NVARCHAR},
+      </if>
+      <if test="ESSTYM != null">
+        ESSTYM = #{ESSTYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="BGFRYM != null">
+        BGFRYM = #{BGFRYM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ATCUNIT != null">
+        ATCUNIT = #{ATCUNIT,jdbcType=NVARCHAR},
+      </if>
+      <if test="ADMAUTH != null">
+        ADMAUTH = #{ADMAUTH,jdbcType=NVARCHAR},
+      </if>
+      <if test="LOCALITY != null">
+        LOCALITY = #{LOCALITY,jdbcType=NVARCHAR},
+      </if>
+      <if test="STBK != null">
+        STBK = #{STBK,jdbcType=NVARCHAR},
+      </if>
+      <if test="STAZT != null">
+        STAZT = #{STAZT,jdbcType=DECIMAL},
+      </if>
+      <if test="DSTRVM != null">
+        DSTRVM = #{DSTRVM,jdbcType=DECIMAL},
+      </if>
+      <if test="DRNA != null">
+        DRNA = #{DRNA,jdbcType=DECIMAL},
+      </if>
+      <if test="PHCD != null">
+        PHCD = #{PHCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="USFL != null">
+        USFL = #{USFL,jdbcType=NVARCHAR},
+      </if>
+      <if test="COMMENTS != null">
+        COMMENTS = #{COMMENTS,jdbcType=NVARCHAR},
+      </if>
+      <if test="MODITIME != null">
+        MODITIME = #{MODITIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="BDLGTD != null">
+        BDLGTD = #{BDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="BDLTTD != null">
+        BDLTTD = #{BDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="GDLGTD != null">
+        GDLGTD = #{GDLGTD,jdbcType=DECIMAL},
+      </if>
+      <if test="GDLTTD != null">
+        GDLTTD = #{GDLTTD,jdbcType=DECIMAL},
+      </if>
+      <if test="elementTP != null">
+        ElementTP = #{elementTP,jdbcType=NVARCHAR},
+      </if>
+      <if test="STICO != null">
+        STICO = #{STICO,jdbcType=NVARCHAR},
+      </if>
+      <if test="relationSTCD != null">
+        RelationSTCD = #{relationSTCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="mapZoom != null">
+        MapZoom = #{mapZoom,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        Sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_STBPRP_B">
     update ST_STBPRP_B
     set STNM = #{STNM,jdbcType=NVARCHAR},
@@ -110,19 +698,4 @@
       Sort = #{sort,jdbcType=INTEGER}
     where STCD = #{STCD,jdbcType=NVARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select STCD, STNM, RVNM, HNNM, BSNM, LGTD, LTTD, STLC, ADDVCD, DTMNM, DTMEL, DTPR, 
-    STTP, FRGRD, ESSTYM, BGFRYM, ATCUNIT, ADMAUTH, LOCALITY, STBK, STAZT, DSTRVM, DRNA, 
-    PHCD, USFL, COMMENTS, MODITIME, BDLGTD, BDLTTD, GDLGTD, GDLTTD, ElementTP, STICO, 
-    RelationSTCD, MapZoom, Sort
-    from ST_STBPRP_B
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select STCD, STNM, RVNM, HNNM, BSNM, LGTD, LTTD, STLC, ADDVCD, DTMNM, DTMEL, DTPR, 
-    STTP, FRGRD, ESSTYM, BGFRYM, ATCUNIT, ADMAUTH, LOCALITY, STBK, STAZT, DSTRVM, DRNA, 
-    PHCD, USFL, COMMENTS, MODITIME, BDLGTD, BDLTTD, GDLGTD, GDLTTD, ElementTP, STICO, 
-    RelationSTCD, MapZoom, Sort
-    from ST_STBPRP_B
-  </select>
 </mapper>

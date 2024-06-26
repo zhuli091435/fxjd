@@ -10,10 +10,98 @@
     <result column="Type" jdbcType="NVARCHAR" property="type" />
     <result column="Memo" jdbcType="NVARCHAR" property="memo" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="map">
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    STCD, ItemID, Time, Name, Value, Type, Memo
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.AlarmExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Alarm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.fxjd.info.pojo.AlarmKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Alarm
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.fxjd.info.pojo.AlarmKey">
     delete from Alarm
     where STCD = #{STCD,jdbcType=NVARCHAR}
       and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.AlarmExample">
+    delete from Alarm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.Alarm">
     insert into Alarm (STCD, ItemID, Time, 
@@ -23,6 +111,125 @@
       #{name,jdbcType=NVARCHAR}, #{value,jdbcType=DECIMAL}, #{type,jdbcType=NVARCHAR}, 
       #{memo,jdbcType=NVARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.Alarm">
+    insert into Alarm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="itemID != null">
+        ItemID,
+      </if>
+      <if test="time != null">
+        Time,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="value != null">
+        Value,
+      </if>
+      <if test="type != null">
+        Type,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="itemID != null">
+        #{itemID,jdbcType=NVARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.AlarmExample" resultType="java.lang.Long">
+    select count(*) from Alarm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Alarm
+    <set>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.itemID != null">
+        ItemID = #{row.itemID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.time != null">
+        Time = #{row.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.name != null">
+        Name = #{row.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.value != null">
+        Value = #{row.value,jdbcType=DECIMAL},
+      </if>
+      <if test="row.type != null">
+        Type = #{row.type,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.memo != null">
+        Memo = #{row.memo,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Alarm
+    set STCD = #{row.STCD,jdbcType=NVARCHAR},
+      ItemID = #{row.itemID,jdbcType=NVARCHAR},
+      Time = #{row.time,jdbcType=TIMESTAMP},
+      Name = #{row.name,jdbcType=NVARCHAR},
+      Value = #{row.value,jdbcType=DECIMAL},
+      Type = #{row.type,jdbcType=NVARCHAR},
+      Memo = #{row.memo,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.Alarm">
+    update Alarm
+    <set>
+      <if test="time != null">
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null">
+        Value = #{value,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        Type = #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and ItemID = #{itemID,jdbcType=NVARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.Alarm">
     update Alarm
     set Time = #{time,jdbcType=TIMESTAMP},
@@ -33,14 +240,4 @@
     where STCD = #{STCD,jdbcType=NVARCHAR}
       and ItemID = #{itemID,jdbcType=NVARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select STCD, ItemID, Time, Name, Value, Type, Memo
-    from Alarm
-    where STCD = #{STCD,jdbcType=NVARCHAR}
-      and ItemID = #{itemID,jdbcType=NVARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select STCD, ItemID, Time, Name, Value, Type, Memo
-    from Alarm
-  </select>
 </mapper>

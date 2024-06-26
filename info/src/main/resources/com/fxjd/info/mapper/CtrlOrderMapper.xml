@@ -11,9 +11,96 @@
     <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
     <result column="CtrlRecordID" jdbcType="INTEGER" property="ctrlRecordID" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, Time, UserID, StationID, OrderCode, OrderParam, DeviceID, CtrlRecordID
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.CtrlOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CtrlOrder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CtrlOrder
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from CtrlOrder
     where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.CtrlOrderExample">
+    delete from CtrlOrder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder">
     insert into CtrlOrder (ID, Time, UserID, 
@@ -23,6 +110,140 @@
       #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=DECIMAL}, 
       #{deviceID,jdbcType=NVARCHAR}, #{ctrlRecordID,jdbcType=INTEGER})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlOrder">
+    insert into CtrlOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="time != null">
+        Time,
+      </if>
+      <if test="userID != null">
+        UserID,
+      </if>
+      <if test="stationID != null">
+        StationID,
+      </if>
+      <if test="orderCode != null">
+        OrderCode,
+      </if>
+      <if test="orderParam != null">
+        OrderParam,
+      </if>
+      <if test="deviceID != null">
+        DeviceID,
+      </if>
+      <if test="ctrlRecordID != null">
+        CtrlRecordID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userID != null">
+        #{userID,jdbcType=NVARCHAR},
+      </if>
+      <if test="stationID != null">
+        #{stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="orderParam != null">
+        #{orderParam,jdbcType=DECIMAL},
+      </if>
+      <if test="deviceID != null">
+        #{deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="ctrlRecordID != null">
+        #{ctrlRecordID,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.CtrlOrderExample" resultType="java.lang.Long">
+    select count(*) from CtrlOrder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CtrlOrder
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.time != null">
+        Time = #{row.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.userID != null">
+        UserID = #{row.userID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.stationID != null">
+        StationID = #{row.stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.orderCode != null">
+        OrderCode = #{row.orderCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.orderParam != null">
+        OrderParam = #{row.orderParam,jdbcType=DECIMAL},
+      </if>
+      <if test="row.deviceID != null">
+        DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.ctrlRecordID != null">
+        CtrlRecordID = #{row.ctrlRecordID,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CtrlOrder
+    set ID = #{row.ID,jdbcType=INTEGER},
+      Time = #{row.time,jdbcType=TIMESTAMP},
+      UserID = #{row.userID,jdbcType=NVARCHAR},
+      StationID = #{row.stationID,jdbcType=NVARCHAR},
+      OrderCode = #{row.orderCode,jdbcType=NVARCHAR},
+      OrderParam = #{row.orderParam,jdbcType=DECIMAL},
+      DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
+      CtrlRecordID = #{row.ctrlRecordID,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.CtrlOrder">
+    update CtrlOrder
+    <set>
+      <if test="time != null">
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userID != null">
+        UserID = #{userID,jdbcType=NVARCHAR},
+      </if>
+      <if test="stationID != null">
+        StationID = #{stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="orderCode != null">
+        OrderCode = #{orderCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="orderParam != null">
+        OrderParam = #{orderParam,jdbcType=DECIMAL},
+      </if>
+      <if test="deviceID != null">
+        DeviceID = #{deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="ctrlRecordID != null">
+        CtrlRecordID = #{ctrlRecordID,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.CtrlOrder">
     update CtrlOrder
     set Time = #{time,jdbcType=TIMESTAMP},
@@ -34,13 +255,4 @@
       CtrlRecordID = #{ctrlRecordID,jdbcType=INTEGER}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ID, Time, UserID, StationID, OrderCode, OrderParam, DeviceID, CtrlRecordID
-    from CtrlOrder
-    where ID = #{ID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select ID, Time, UserID, StationID, OrderCode, OrderParam, DeviceID, CtrlRecordID
-    from CtrlOrder
-  </select>
 </mapper>

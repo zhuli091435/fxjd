@@ -1,18 +1,30 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.Navigation;
-import org.apache.ibatis.annotations.Mapper;
-
+import com.fxjd.info.pojo.NavigationExample;
 import java.util.List;
-@Mapper
+import org.apache.ibatis.annotations.Param;
+
 public interface NavigationMapper {
+    long countByExample(NavigationExample example);
+
+    int deleteByExample(NavigationExample example);
+
     int deleteByPrimaryKey(Integer ID);
 
     int insert(Navigation row);
 
+    int insertSelective(Navigation row);
+
+    List<Navigation> selectByExample(NavigationExample example);
+
     Navigation selectByPrimaryKey(Integer ID);
 
-    List<Navigation> selectAll();
+    int updateByExampleSelective(@Param("row") Navigation row, @Param("example") NavigationExample example);
+
+    int updateByExample(@Param("row") Navigation row, @Param("example") NavigationExample example);
+
+    int updateByPrimaryKeySelective(Navigation row);
 
     int updateByPrimaryKey(Navigation row);
 }

@@ -45,7 +45,7 @@ public class CtrlOrderController extends ParentController {
 
             CtrlDetails ctrlDetails = new CtrlDetails();
             String content = "";
-            switch (ctrlOrder.getState()) {
+            switch (ctrlOrder.getOrderCode()) {
                 case "1064":
                     content = "上升指令";
                     break;
@@ -91,8 +91,8 @@ public class CtrlOrderController extends ParentController {
                 sendOrder.setDeviceID(ctrlOrder.getDeviceID());
                 sendOrder.setTime(simpleDateFormat.format(new Date()));
                 sendOrder.setUserID(ctrlOrder.getUserID());
-                sendOrder.setState(ctrlOrder.getState());
-                sendOrder.setGTOPHGT(Double.parseDouble(ctrlOrder.getState()));
+                sendOrder.setOrderCode(ctrlOrder.getOrderCode());
+                sendOrder.setOrderParam(ctrlOrder.getOrderParam());
                 sendOrder.setCtrlRecordID(ctrlOrder.getCtrlRecordID());
                 sendOrder.setIsExecute(0);
 

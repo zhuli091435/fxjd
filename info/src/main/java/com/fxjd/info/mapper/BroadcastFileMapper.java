@@ -1,18 +1,30 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.BroadcastFile;
-import org.apache.ibatis.annotations.Mapper;
-
+import com.fxjd.info.pojo.BroadcastFileExample;
 import java.util.List;
-@Mapper
+import org.apache.ibatis.annotations.Param;
+
 public interface BroadcastFileMapper {
+    long countByExample(BroadcastFileExample example);
+
+    int deleteByExample(BroadcastFileExample example);
+
     int deleteByPrimaryKey(Integer broadcastFileID);
 
     int insert(BroadcastFile row);
 
+    int insertSelective(BroadcastFile row);
+
+    List<BroadcastFile> selectByExample(BroadcastFileExample example);
+
     BroadcastFile selectByPrimaryKey(Integer broadcastFileID);
 
-    List<BroadcastFile> selectAll();
+    int updateByExampleSelective(@Param("row") BroadcastFile row, @Param("example") BroadcastFileExample example);
+
+    int updateByExample(@Param("row") BroadcastFile row, @Param("example") BroadcastFileExample example);
+
+    int updateByPrimaryKeySelective(BroadcastFile row);
 
     int updateByPrimaryKey(BroadcastFile row);
 }

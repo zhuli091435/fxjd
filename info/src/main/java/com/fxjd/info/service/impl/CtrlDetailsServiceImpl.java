@@ -3,6 +3,7 @@ package com.fxjd.info.service.impl;
 import com.fxjd.info.mapper.CtrlDetailsMapper;
 import com.fxjd.info.mapper.CtrlOrderMapper;
 import com.fxjd.info.pojo.CtrlDetails;
+import com.fxjd.info.pojo.CtrlDetailsExample;
 import com.fxjd.info.service.CtrlDetailsService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class CtrlDetailsServiceImpl implements CtrlDetailsService {
 
     @Override
     public List<CtrlDetails> getByCtrlRecordID(Integer ctrlRecordID) {
-        return ctrlDetailsMapper.selectByCtrlRecordID(ctrlRecordID);
+        CtrlDetailsExample ctrlDetailsExample=new CtrlDetailsExample();
+        ctrlDetailsExample.createCriteria().andCtrlRecordIDEqualTo(ctrlRecordID);
+        return ctrlDetailsMapper.selectByExample(ctrlDetailsExample);
     }
 }

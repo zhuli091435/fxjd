@@ -1,154 +1,474 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_RAIN_RMapper">
-    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_RAIN_R">
-        <id column="ID" jdbcType="INTEGER" property="ID"/>
-        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
-        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
-        <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
-        <result column="RainIntensity" jdbcType="DECIMAL" property="rainIntensity"/>
-        <result column="LightRainMode" jdbcType="INTEGER" property="lightRainMode"/>
-        <result column="ModerateRainMode" jdbcType="INTEGER" property="moderateRainMode"/>
-        <result column="HeavyRainMode" jdbcType="INTEGER" property="heavyRainMode"/>
-        <result column="RainstormMode" jdbcType="INTEGER" property="rainstormMode"/>
-        <result column="WaterPumpStatus1" jdbcType="DECIMAL" property="waterPumpStatus1"/>
-        <result column="WaterPumpStatus2" jdbcType="DECIMAL" property="waterPumpStatus2"/>
-        <result column="WaterPumpStatus3" jdbcType="DECIMAL" property="waterPumpStatus3"/>
-        <result column="PipelineFlow1" jdbcType="DECIMAL" property="pipelineFlow1"/>
-        <result column="PipelineFlow2" jdbcType="DECIMAL" property="pipelineFlow2"/>
-        <result column="PipelineFlow3" jdbcType="DECIMAL" property="pipelineFlow3"/>
-        <result column="PipelinePressure1" jdbcType="DECIMAL" property="pipelinePressure1"/>
-        <result column="PipelinePressure2" jdbcType="DECIMAL" property="pipelinePressure2"/>
-        <result column="PipelinePressure3" jdbcType="DECIMAL" property="pipelinePressure3"/>
-        <result column="AdjustingValveOpening1" jdbcType="DECIMAL" property="adjustingValveOpening1"/>
-        <result column="AdjustingValveOpening2" jdbcType="DECIMAL" property="adjustingValveOpening2"/>
-        <result column="AdjustingValveOpening3" jdbcType="DECIMAL" property="adjustingValveOpening3"/>
-    </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete
-        from ST_RAIN_R
-        where ID = #{ID,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
-        insert into ST_RAIN_R (ID, STCD, TM,
-                               EQPNO, RainIntensity, LightRainMode,
-                               ModerateRainMode, HeavyRainMode, RainstormMode,
-                               WaterPumpStatus1, WaterPumpStatus2, WaterPumpStatus3,
-                               PipelineFlow1, PipelineFlow2, PipelineFlow3,
-                               PipelinePressure1, PipelinePressure2, PipelinePressure3,
-                               AdjustingValveOpening1, AdjustingValveOpening2,
-                               AdjustingValveOpening3)
-        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
-                #{EQPNO,jdbcType=NVARCHAR}, #{rainIntensity,jdbcType=DECIMAL}, #{lightRainMode,jdbcType=INTEGER},
-                #{moderateRainMode,jdbcType=INTEGER}, #{heavyRainMode,jdbcType=INTEGER},
-                #{rainstormMode,jdbcType=INTEGER},
-                #{waterPumpStatus1,jdbcType=DECIMAL}, #{waterPumpStatus2,jdbcType=DECIMAL},
-                #{waterPumpStatus3,jdbcType=DECIMAL},
-                #{pipelineFlow1,jdbcType=DECIMAL}, #{pipelineFlow2,jdbcType=DECIMAL}, #{pipelineFlow3,jdbcType=DECIMAL},
-                #{pipelinePressure1,jdbcType=DECIMAL}, #{pipelinePressure2,jdbcType=DECIMAL},
-                #{pipelinePressure3,jdbcType=DECIMAL},
-                #{adjustingValveOpening1,jdbcType=DECIMAL}, #{adjustingValveOpening2,jdbcType=DECIMAL},
-                #{adjustingValveOpening3,jdbcType=DECIMAL})
-    </insert>
-    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
-        update ST_RAIN_R
-        set STCD                   = #{STCD,jdbcType=NVARCHAR},
-            TM                     = #{TM,jdbcType=TIMESTAMP},
-            EQPNO                  = #{EQPNO,jdbcType=NVARCHAR},
-            RainIntensity          = #{rainIntensity,jdbcType=DECIMAL},
-            LightRainMode          = #{lightRainMode,jdbcType=INTEGER},
-            ModerateRainMode       = #{moderateRainMode,jdbcType=INTEGER},
-            HeavyRainMode          = #{heavyRainMode,jdbcType=INTEGER},
-            RainstormMode          = #{rainstormMode,jdbcType=INTEGER},
-            WaterPumpStatus1       = #{waterPumpStatus1,jdbcType=DECIMAL},
-            WaterPumpStatus2       = #{waterPumpStatus2,jdbcType=DECIMAL},
-            WaterPumpStatus3       = #{waterPumpStatus3,jdbcType=DECIMAL},
-            PipelineFlow1          = #{pipelineFlow1,jdbcType=DECIMAL},
-            PipelineFlow2          = #{pipelineFlow2,jdbcType=DECIMAL},
-            PipelineFlow3          = #{pipelineFlow3,jdbcType=DECIMAL},
-            PipelinePressure1      = #{pipelinePressure1,jdbcType=DECIMAL},
-            PipelinePressure2      = #{pipelinePressure2,jdbcType=DECIMAL},
-            PipelinePressure3      = #{pipelinePressure3,jdbcType=DECIMAL},
-            AdjustingValveOpening1 = #{adjustingValveOpening1,jdbcType=DECIMAL},
-            AdjustingValveOpening2 = #{adjustingValveOpening2,jdbcType=DECIMAL},
-            AdjustingValveOpening3 = #{adjustingValveOpening3,jdbcType=DECIMAL}
-        where ID = #{ID,jdbcType=INTEGER}
-    </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select ID,
-               STCD,
-               TM,
-               EQPNO,
-               RainIntensity,
-               LightRainMode,
-               ModerateRainMode,
-               HeavyRainMode,
-               RainstormMode,
-               WaterPumpStatus1,
-               WaterPumpStatus2,
-               WaterPumpStatus3,
-               PipelineFlow1,
-               PipelineFlow2,
-               PipelineFlow3,
-               PipelinePressure1,
-               PipelinePressure2,
-               PipelinePressure3,
-               AdjustingValveOpening1,
-               AdjustingValveOpening2,
-               AdjustingValveOpening3
-        from ST_RAIN_R
-        where ID = #{ID,jdbcType=INTEGER}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select ID,
-               STCD,
-               TM,
-               EQPNO,
-               RainIntensity,
-               LightRainMode,
-               ModerateRainMode,
-               HeavyRainMode,
-               RainstormMode,
-               WaterPumpStatus1,
-               WaterPumpStatus2,
-               WaterPumpStatus3,
-               PipelineFlow1,
-               PipelineFlow2,
-               PipelineFlow3,
-               PipelinePressure1,
-               PipelinePressure2,
-               PipelinePressure3,
-               AdjustingValveOpening1,
-               AdjustingValveOpening2,
-               AdjustingValveOpening3
-        from ST_RAIN_R
-    </select>
-    <select id="getLatestBySTCDAndEQPNO" resultMap="BaseResultMap">
-        select top 1 ID, STCD,
-               TM,
-               EQPNO,
-               RainIntensity,
-               LightRainMode,
-               ModerateRainMode,
-               HeavyRainMode,
-               RainstormMode,
-               WaterPumpStatus1,
-               WaterPumpStatus2,
-               WaterPumpStatus3,
-               PipelineFlow1,
-               PipelineFlow2,
-               PipelineFlow3,
-               PipelinePressure1,
-               PipelinePressure2,
-               PipelinePressure3,
-               AdjustingValveOpening1,
-               AdjustingValveOpening2,
-               AdjustingValveOpening3
-        from ST_RAIN_R
-        where STCD = #{stcd}
-          and EQPNO = #{eqpno}
-        order by TM desc
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_RAIN_R">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
+    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="RainIntensity" jdbcType="DECIMAL" property="rainIntensity" />
+    <result column="LightRainMode" jdbcType="INTEGER" property="lightRainMode" />
+    <result column="ModerateRainMode" jdbcType="INTEGER" property="moderateRainMode" />
+    <result column="HeavyRainMode" jdbcType="INTEGER" property="heavyRainMode" />
+    <result column="RainstormMode" jdbcType="INTEGER" property="rainstormMode" />
+    <result column="WaterPumpStatus1" jdbcType="DECIMAL" property="waterPumpStatus1" />
+    <result column="WaterPumpStatus2" jdbcType="DECIMAL" property="waterPumpStatus2" />
+    <result column="WaterPumpStatus3" jdbcType="DECIMAL" property="waterPumpStatus3" />
+    <result column="PipelineFlow1" jdbcType="DECIMAL" property="pipelineFlow1" />
+    <result column="PipelineFlow2" jdbcType="DECIMAL" property="pipelineFlow2" />
+    <result column="PipelineFlow3" jdbcType="DECIMAL" property="pipelineFlow3" />
+    <result column="PipelinePressure1" jdbcType="DECIMAL" property="pipelinePressure1" />
+    <result column="PipelinePressure2" jdbcType="DECIMAL" property="pipelinePressure2" />
+    <result column="PipelinePressure3" jdbcType="DECIMAL" property="pipelinePressure3" />
+    <result column="AdjustingValveOpening1" jdbcType="DECIMAL" property="adjustingValveOpening1" />
+    <result column="AdjustingValveOpening2" jdbcType="DECIMAL" property="adjustingValveOpening2" />
+    <result column="AdjustingValveOpening3" jdbcType="DECIMAL" property="adjustingValveOpening3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, STCD, TM, EQPNO, RainIntensity, LightRainMode, ModerateRainMode, HeavyRainMode, 
+    RainstormMode, WaterPumpStatus1, WaterPumpStatus2, WaterPumpStatus3, PipelineFlow1, 
+    PipelineFlow2, PipelineFlow3, PipelinePressure1, PipelinePressure2, PipelinePressure3, 
+    AdjustingValveOpening1, AdjustingValveOpening2, AdjustingValveOpening3
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_RAIN_RExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_RAIN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_RAIN_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ST_RAIN_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_RAIN_RExample">
+    delete from ST_RAIN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
+    insert into ST_RAIN_R (ID, STCD, TM, 
+      EQPNO, RainIntensity, LightRainMode, 
+      ModerateRainMode, HeavyRainMode, RainstormMode, 
+      WaterPumpStatus1, WaterPumpStatus2, WaterPumpStatus3, 
+      PipelineFlow1, PipelineFlow2, PipelineFlow3, 
+      PipelinePressure1, PipelinePressure2, PipelinePressure3, 
+      AdjustingValveOpening1, AdjustingValveOpening2, 
+      AdjustingValveOpening3)
+    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
+      #{EQPNO,jdbcType=NVARCHAR}, #{rainIntensity,jdbcType=DECIMAL}, #{lightRainMode,jdbcType=INTEGER}, 
+      #{moderateRainMode,jdbcType=INTEGER}, #{heavyRainMode,jdbcType=INTEGER}, #{rainstormMode,jdbcType=INTEGER}, 
+      #{waterPumpStatus1,jdbcType=DECIMAL}, #{waterPumpStatus2,jdbcType=DECIMAL}, #{waterPumpStatus3,jdbcType=DECIMAL}, 
+      #{pipelineFlow1,jdbcType=DECIMAL}, #{pipelineFlow2,jdbcType=DECIMAL}, #{pipelineFlow3,jdbcType=DECIMAL}, 
+      #{pipelinePressure1,jdbcType=DECIMAL}, #{pipelinePressure2,jdbcType=DECIMAL}, #{pipelinePressure3,jdbcType=DECIMAL}, 
+      #{adjustingValveOpening1,jdbcType=DECIMAL}, #{adjustingValveOpening2,jdbcType=DECIMAL}, 
+      #{adjustingValveOpening3,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
+    insert into ST_RAIN_R
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="TM != null">
+        TM,
+      </if>
+      <if test="EQPNO != null">
+        EQPNO,
+      </if>
+      <if test="rainIntensity != null">
+        RainIntensity,
+      </if>
+      <if test="lightRainMode != null">
+        LightRainMode,
+      </if>
+      <if test="moderateRainMode != null">
+        ModerateRainMode,
+      </if>
+      <if test="heavyRainMode != null">
+        HeavyRainMode,
+      </if>
+      <if test="rainstormMode != null">
+        RainstormMode,
+      </if>
+      <if test="waterPumpStatus1 != null">
+        WaterPumpStatus1,
+      </if>
+      <if test="waterPumpStatus2 != null">
+        WaterPumpStatus2,
+      </if>
+      <if test="waterPumpStatus3 != null">
+        WaterPumpStatus3,
+      </if>
+      <if test="pipelineFlow1 != null">
+        PipelineFlow1,
+      </if>
+      <if test="pipelineFlow2 != null">
+        PipelineFlow2,
+      </if>
+      <if test="pipelineFlow3 != null">
+        PipelineFlow3,
+      </if>
+      <if test="pipelinePressure1 != null">
+        PipelinePressure1,
+      </if>
+      <if test="pipelinePressure2 != null">
+        PipelinePressure2,
+      </if>
+      <if test="pipelinePressure3 != null">
+        PipelinePressure3,
+      </if>
+      <if test="adjustingValveOpening1 != null">
+        AdjustingValveOpening1,
+      </if>
+      <if test="adjustingValveOpening2 != null">
+        AdjustingValveOpening2,
+      </if>
+      <if test="adjustingValveOpening3 != null">
+        AdjustingValveOpening3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="rainIntensity != null">
+        #{rainIntensity,jdbcType=DECIMAL},
+      </if>
+      <if test="lightRainMode != null">
+        #{lightRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="moderateRainMode != null">
+        #{moderateRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="heavyRainMode != null">
+        #{heavyRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="rainstormMode != null">
+        #{rainstormMode,jdbcType=INTEGER},
+      </if>
+      <if test="waterPumpStatus1 != null">
+        #{waterPumpStatus1,jdbcType=DECIMAL},
+      </if>
+      <if test="waterPumpStatus2 != null">
+        #{waterPumpStatus2,jdbcType=DECIMAL},
+      </if>
+      <if test="waterPumpStatus3 != null">
+        #{waterPumpStatus3,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow1 != null">
+        #{pipelineFlow1,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow2 != null">
+        #{pipelineFlow2,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow3 != null">
+        #{pipelineFlow3,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure1 != null">
+        #{pipelinePressure1,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure2 != null">
+        #{pipelinePressure2,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure3 != null">
+        #{pipelinePressure3,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening1 != null">
+        #{adjustingValveOpening1,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening2 != null">
+        #{adjustingValveOpening2,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening3 != null">
+        #{adjustingValveOpening3,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_RAIN_RExample" resultType="java.lang.Long">
+    select count(*) from ST_RAIN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_RAIN_R
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.TM != null">
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.EQPNO != null">
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.rainIntensity != null">
+        RainIntensity = #{row.rainIntensity,jdbcType=DECIMAL},
+      </if>
+      <if test="row.lightRainMode != null">
+        LightRainMode = #{row.lightRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="row.moderateRainMode != null">
+        ModerateRainMode = #{row.moderateRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="row.heavyRainMode != null">
+        HeavyRainMode = #{row.heavyRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="row.rainstormMode != null">
+        RainstormMode = #{row.rainstormMode,jdbcType=INTEGER},
+      </if>
+      <if test="row.waterPumpStatus1 != null">
+        WaterPumpStatus1 = #{row.waterPumpStatus1,jdbcType=DECIMAL},
+      </if>
+      <if test="row.waterPumpStatus2 != null">
+        WaterPumpStatus2 = #{row.waterPumpStatus2,jdbcType=DECIMAL},
+      </if>
+      <if test="row.waterPumpStatus3 != null">
+        WaterPumpStatus3 = #{row.waterPumpStatus3,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelineFlow1 != null">
+        PipelineFlow1 = #{row.pipelineFlow1,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelineFlow2 != null">
+        PipelineFlow2 = #{row.pipelineFlow2,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelineFlow3 != null">
+        PipelineFlow3 = #{row.pipelineFlow3,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelinePressure1 != null">
+        PipelinePressure1 = #{row.pipelinePressure1,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelinePressure2 != null">
+        PipelinePressure2 = #{row.pipelinePressure2,jdbcType=DECIMAL},
+      </if>
+      <if test="row.pipelinePressure3 != null">
+        PipelinePressure3 = #{row.pipelinePressure3,jdbcType=DECIMAL},
+      </if>
+      <if test="row.adjustingValveOpening1 != null">
+        AdjustingValveOpening1 = #{row.adjustingValveOpening1,jdbcType=DECIMAL},
+      </if>
+      <if test="row.adjustingValveOpening2 != null">
+        AdjustingValveOpening2 = #{row.adjustingValveOpening2,jdbcType=DECIMAL},
+      </if>
+      <if test="row.adjustingValveOpening3 != null">
+        AdjustingValveOpening3 = #{row.adjustingValveOpening3,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_RAIN_R
+    set ID = #{row.ID,jdbcType=INTEGER},
+      STCD = #{row.STCD,jdbcType=NVARCHAR},
+      TM = #{row.TM,jdbcType=TIMESTAMP},
+      EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      RainIntensity = #{row.rainIntensity,jdbcType=DECIMAL},
+      LightRainMode = #{row.lightRainMode,jdbcType=INTEGER},
+      ModerateRainMode = #{row.moderateRainMode,jdbcType=INTEGER},
+      HeavyRainMode = #{row.heavyRainMode,jdbcType=INTEGER},
+      RainstormMode = #{row.rainstormMode,jdbcType=INTEGER},
+      WaterPumpStatus1 = #{row.waterPumpStatus1,jdbcType=DECIMAL},
+      WaterPumpStatus2 = #{row.waterPumpStatus2,jdbcType=DECIMAL},
+      WaterPumpStatus3 = #{row.waterPumpStatus3,jdbcType=DECIMAL},
+      PipelineFlow1 = #{row.pipelineFlow1,jdbcType=DECIMAL},
+      PipelineFlow2 = #{row.pipelineFlow2,jdbcType=DECIMAL},
+      PipelineFlow3 = #{row.pipelineFlow3,jdbcType=DECIMAL},
+      PipelinePressure1 = #{row.pipelinePressure1,jdbcType=DECIMAL},
+      PipelinePressure2 = #{row.pipelinePressure2,jdbcType=DECIMAL},
+      PipelinePressure3 = #{row.pipelinePressure3,jdbcType=DECIMAL},
+      AdjustingValveOpening1 = #{row.adjustingValveOpening1,jdbcType=DECIMAL},
+      AdjustingValveOpening2 = #{row.adjustingValveOpening2,jdbcType=DECIMAL},
+      AdjustingValveOpening3 = #{row.adjustingValveOpening3,jdbcType=DECIMAL}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
+    update ST_RAIN_R
+    <set>
+      <if test="STCD != null">
+        STCD = #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        TM = #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="rainIntensity != null">
+        RainIntensity = #{rainIntensity,jdbcType=DECIMAL},
+      </if>
+      <if test="lightRainMode != null">
+        LightRainMode = #{lightRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="moderateRainMode != null">
+        ModerateRainMode = #{moderateRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="heavyRainMode != null">
+        HeavyRainMode = #{heavyRainMode,jdbcType=INTEGER},
+      </if>
+      <if test="rainstormMode != null">
+        RainstormMode = #{rainstormMode,jdbcType=INTEGER},
+      </if>
+      <if test="waterPumpStatus1 != null">
+        WaterPumpStatus1 = #{waterPumpStatus1,jdbcType=DECIMAL},
+      </if>
+      <if test="waterPumpStatus2 != null">
+        WaterPumpStatus2 = #{waterPumpStatus2,jdbcType=DECIMAL},
+      </if>
+      <if test="waterPumpStatus3 != null">
+        WaterPumpStatus3 = #{waterPumpStatus3,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow1 != null">
+        PipelineFlow1 = #{pipelineFlow1,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow2 != null">
+        PipelineFlow2 = #{pipelineFlow2,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelineFlow3 != null">
+        PipelineFlow3 = #{pipelineFlow3,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure1 != null">
+        PipelinePressure1 = #{pipelinePressure1,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure2 != null">
+        PipelinePressure2 = #{pipelinePressure2,jdbcType=DECIMAL},
+      </if>
+      <if test="pipelinePressure3 != null">
+        PipelinePressure3 = #{pipelinePressure3,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening1 != null">
+        AdjustingValveOpening1 = #{adjustingValveOpening1,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening2 != null">
+        AdjustingValveOpening2 = #{adjustingValveOpening2,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustingValveOpening3 != null">
+        AdjustingValveOpening3 = #{adjustingValveOpening3,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_RAIN_R">
+    update ST_RAIN_R
+    set STCD = #{STCD,jdbcType=NVARCHAR},
+      TM = #{TM,jdbcType=TIMESTAMP},
+      EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      RainIntensity = #{rainIntensity,jdbcType=DECIMAL},
+      LightRainMode = #{lightRainMode,jdbcType=INTEGER},
+      ModerateRainMode = #{moderateRainMode,jdbcType=INTEGER},
+      HeavyRainMode = #{heavyRainMode,jdbcType=INTEGER},
+      RainstormMode = #{rainstormMode,jdbcType=INTEGER},
+      WaterPumpStatus1 = #{waterPumpStatus1,jdbcType=DECIMAL},
+      WaterPumpStatus2 = #{waterPumpStatus2,jdbcType=DECIMAL},
+      WaterPumpStatus3 = #{waterPumpStatus3,jdbcType=DECIMAL},
+      PipelineFlow1 = #{pipelineFlow1,jdbcType=DECIMAL},
+      PipelineFlow2 = #{pipelineFlow2,jdbcType=DECIMAL},
+      PipelineFlow3 = #{pipelineFlow3,jdbcType=DECIMAL},
+      PipelinePressure1 = #{pipelinePressure1,jdbcType=DECIMAL},
+      PipelinePressure2 = #{pipelinePressure2,jdbcType=DECIMAL},
+      PipelinePressure3 = #{pipelinePressure3,jdbcType=DECIMAL},
+      AdjustingValveOpening1 = #{adjustingValveOpening1,jdbcType=DECIMAL},
+      AdjustingValveOpening2 = #{adjustingValveOpening2,jdbcType=DECIMAL},
+      AdjustingValveOpening3 = #{adjustingValveOpening3,jdbcType=DECIMAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
 
-    </select>
-
+  <select id="getLatestBySTCDAndEQPNO" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from ST_RAIN_R
+      where STCD=#{stcd }
+      and EQPNO =#{eqpno}
+  </select>
 </mapper>

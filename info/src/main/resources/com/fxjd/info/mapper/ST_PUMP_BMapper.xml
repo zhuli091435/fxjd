@@ -1,82 +1,275 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_PUMP_BMapper">
-    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_B">
-        <id column="STCD" jdbcType="NVARCHAR" property="STCD"/>
-        <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
-        <result column="Name" jdbcType="NVARCHAR" property="name"/>
-        <result column="Type" jdbcType="NVARCHAR" property="type"/>
-        <result column="Direction" jdbcType="NVARCHAR" property="direction"/>
-        <result column="Power" jdbcType="DECIMAL" property="power"/>
-        <result column="Flow" jdbcType="DECIMAL" property="flow"/>
-        <result column="Memo" jdbcType="NVARCHAR" property="memo"/>
-        <result column="RunTime" jdbcType="NVARCHAR" property="runTime"/>
-    </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="map">
-        delete
-        from ST_PUMP_B
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </delete>
-    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
-        insert into ST_PUMP_B (STCD, EQPNO, Name,
-                               Type, Direction, Power,
-                               Flow, Memo, RunTime)
-        values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR},
-                #{type,jdbcType=NVARCHAR}, #{direction,jdbcType=NVARCHAR}, #{power,jdbcType=DECIMAL},
-                #{flow,jdbcType=DECIMAL}, #{memo,jdbcType=NVARCHAR}, #{runTime,jdbcType=NVARCHAR})
-    </insert>
-    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
-        update ST_PUMP_B
-        set Name      = #{name,jdbcType=NVARCHAR},
-            Type      = #{type,jdbcType=NVARCHAR},
-            Direction = #{direction,jdbcType=NVARCHAR},
-            Power     = #{power,jdbcType=DECIMAL},
-            Flow      = #{flow,jdbcType=DECIMAL},
-            Memo      = #{memo,jdbcType=NVARCHAR},
-            RunTime   = #{runTime,jdbcType=NVARCHAR}
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </update>
-    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-        select STCD,
-               EQPNO,
-               Name,
-               Type,
-               Direction,
-               Power,
-               Flow,
-               Memo,
-               RunTime
-        from ST_PUMP_B
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select STCD,
-               EQPNO,
-               Name,
-               Type,
-               Direction,
-               Power,
-               Flow,
-               Memo,
-               RunTime
-        from ST_PUMP_B
-    </select>
-
-    <select id="selectBySTCD" resultMap="BaseResultMap">
-        select STCD,
-               EQPNO,
-               Name,
-               Type,
-               Direction,
-               Power,
-               Flow,
-               Memo,
-               RunTime
-        from ST_PUMP_B
-        where STCD = #{stcd}
-    </select>
-
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_B">
+    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="Type" jdbcType="NVARCHAR" property="type" />
+    <result column="Direction" jdbcType="NVARCHAR" property="direction" />
+    <result column="Power" jdbcType="DECIMAL" property="power" />
+    <result column="Flow" jdbcType="DECIMAL" property="flow" />
+    <result column="Memo" jdbcType="NVARCHAR" property="memo" />
+    <result column="RunTime" jdbcType="NVARCHAR" property="runTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    STCD, EQPNO, Name, Type, Direction, Power, Flow, Memo, RunTime
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_BExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_PUMP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_BKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_PUMP_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_BKey">
+    delete from ST_PUMP_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_BExample">
+    delete from ST_PUMP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+    insert into ST_PUMP_B (STCD, EQPNO, Name, 
+      Type, Direction, Power, 
+      Flow, Memo, RunTime
+      )
+    values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{type,jdbcType=NVARCHAR}, #{direction,jdbcType=NVARCHAR}, #{power,jdbcType=DECIMAL}, 
+      #{flow,jdbcType=DECIMAL}, #{memo,jdbcType=NVARCHAR}, #{runTime,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+    insert into ST_PUMP_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="EQPNO != null">
+        EQPNO,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="type != null">
+        Type,
+      </if>
+      <if test="direction != null">
+        Direction,
+      </if>
+      <if test="power != null">
+        Power,
+      </if>
+      <if test="flow != null">
+        Flow,
+      </if>
+      <if test="memo != null">
+        Memo,
+      </if>
+      <if test="runTime != null">
+        RunTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="EQPNO != null">
+        #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=NVARCHAR},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="flow != null">
+        #{flow,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=NVARCHAR},
+      </if>
+      <if test="runTime != null">
+        #{runTime,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_BExample" resultType="java.lang.Long">
+    select count(*) from ST_PUMP_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_PUMP_B
+    <set>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.EQPNO != null">
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.name != null">
+        Name = #{row.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.type != null">
+        Type = #{row.type,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.direction != null">
+        Direction = #{row.direction,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.power != null">
+        Power = #{row.power,jdbcType=DECIMAL},
+      </if>
+      <if test="row.flow != null">
+        Flow = #{row.flow,jdbcType=DECIMAL},
+      </if>
+      <if test="row.memo != null">
+        Memo = #{row.memo,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.runTime != null">
+        RunTime = #{row.runTime,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_PUMP_B
+    set STCD = #{row.STCD,jdbcType=NVARCHAR},
+      EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      Name = #{row.name,jdbcType=NVARCHAR},
+      Type = #{row.type,jdbcType=NVARCHAR},
+      Direction = #{row.direction,jdbcType=NVARCHAR},
+      Power = #{row.power,jdbcType=DECIMAL},
+      Flow = #{row.flow,jdbcType=DECIMAL},
+      Memo = #{row.memo,jdbcType=NVARCHAR},
+      RunTime = #{row.runTime,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+    update ST_PUMP_B
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null">
+        Type = #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="direction != null">
+        Direction = #{direction,jdbcType=NVARCHAR},
+      </if>
+      <if test="power != null">
+        Power = #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="flow != null">
+        Flow = #{flow,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null">
+        Memo = #{memo,jdbcType=NVARCHAR},
+      </if>
+      <if test="runTime != null">
+        RunTime = #{runTime,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_B">
+    update ST_PUMP_B
+    set Name = #{name,jdbcType=NVARCHAR},
+      Type = #{type,jdbcType=NVARCHAR},
+      Direction = #{direction,jdbcType=NVARCHAR},
+      Power = #{power,jdbcType=DECIMAL},
+      Flow = #{flow,jdbcType=DECIMAL},
+      Memo = #{memo,jdbcType=NVARCHAR},
+      RunTime = #{runTime,jdbcType=NVARCHAR}
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </update>
 </mapper>

@@ -1,50 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_GATE_BMapper">
-    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_B">
-        <id column="STCD" jdbcType="NVARCHAR" property="STCD"/>
-        <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
-        <result column="Name" jdbcType="NVARCHAR" property="name"/>
-        <result column="GateType" jdbcType="NVARCHAR" property="gateType"/>
-        <result column="GateRemark" jdbcType="NVARCHAR" property="gateRemark"/>
-        <result column="CameraID" jdbcType="INTEGER" property="cameraID"/>
-    </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="map">
-        delete
-        from ST_GATE_B
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </delete>
-    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_B">
-        insert into ST_GATE_B (STCD, EQPNO, Name,
-                               GateType, GateRemark, CameraID)
-        values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR},
-                #{gateType,jdbcType=NVARCHAR}, #{gateRemark,jdbcType=NVARCHAR}, #{cameraID,jdbcType=INTEGER})
-    </insert>
-    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_B">
-        update ST_GATE_B
-        set Name       = #{name,jdbcType=NVARCHAR},
-            GateType   = #{gateType,jdbcType=NVARCHAR},
-            GateRemark = #{gateRemark,jdbcType=NVARCHAR},
-            CameraID   = #{cameraID,jdbcType=INTEGER}
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </update>
-    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
-        from ST_GATE_B
-        where STCD = #{STCD,jdbcType=NVARCHAR}
-          and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
-        from ST_GATE_B
-    </select>
-
-    <select id="selectBySTCD" resultMap="BaseResultMap">
-        select STCD, EQPNO, Name, GateType, GateRemark, CameraID
-        from ST_GATE_B
-        where STCD = #{STCD}
-    </select>
-
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_GATE_B">
+    <id column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <id column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="GateType" jdbcType="NVARCHAR" property="gateType" />
+    <result column="GateRemark" jdbcType="NVARCHAR" property="gateRemark" />
+    <result column="CameraID" jdbcType="INTEGER" property="cameraID" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    STCD, EQPNO, Name, GateType, GateRemark, CameraID
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_GATE_BExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_GATE_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_BKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_GATE_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_BKey">
+    delete from ST_GATE_B
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_GATE_BExample">
+    delete from ST_GATE_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+    insert into ST_GATE_B (STCD, EQPNO, Name, 
+      GateType, GateRemark, CameraID
+      )
+    values (#{STCD,jdbcType=NVARCHAR}, #{EQPNO,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{gateType,jdbcType=NVARCHAR}, #{gateRemark,jdbcType=NVARCHAR}, #{cameraID,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+    insert into ST_GATE_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="EQPNO != null">
+        EQPNO,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="gateType != null">
+        GateType,
+      </if>
+      <if test="gateRemark != null">
+        GateRemark,
+      </if>
+      <if test="cameraID != null">
+        CameraID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="EQPNO != null">
+        #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="gateType != null">
+        #{gateType,jdbcType=NVARCHAR},
+      </if>
+      <if test="gateRemark != null">
+        #{gateRemark,jdbcType=NVARCHAR},
+      </if>
+      <if test="cameraID != null">
+        #{cameraID,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_GATE_BExample" resultType="java.lang.Long">
+    select count(*) from ST_GATE_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_GATE_B
+    <set>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.EQPNO != null">
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.name != null">
+        Name = #{row.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.gateType != null">
+        GateType = #{row.gateType,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.gateRemark != null">
+        GateRemark = #{row.gateRemark,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.cameraID != null">
+        CameraID = #{row.cameraID,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_GATE_B
+    set STCD = #{row.STCD,jdbcType=NVARCHAR},
+      EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      Name = #{row.name,jdbcType=NVARCHAR},
+      GateType = #{row.gateType,jdbcType=NVARCHAR},
+      GateRemark = #{row.gateRemark,jdbcType=NVARCHAR},
+      CameraID = #{row.cameraID,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+    update ST_GATE_B
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="gateType != null">
+        GateType = #{gateType,jdbcType=NVARCHAR},
+      </if>
+      <if test="gateRemark != null">
+        GateRemark = #{gateRemark,jdbcType=NVARCHAR},
+      </if>
+      <if test="cameraID != null">
+        CameraID = #{cameraID,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_GATE_B">
+    update ST_GATE_B
+    set Name = #{name,jdbcType=NVARCHAR},
+      GateType = #{gateType,jdbcType=NVARCHAR},
+      GateRemark = #{gateRemark,jdbcType=NVARCHAR},
+      CameraID = #{cameraID,jdbcType=INTEGER}
+    where STCD = #{STCD,jdbcType=NVARCHAR}
+      and EQPNO = #{EQPNO,jdbcType=NVARCHAR}
+  </update>
 </mapper>

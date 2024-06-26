@@ -3,11 +3,7 @@ package com.fxjd.info.pojo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Alarm {
-    private String STCD;
-
-    private String itemID;
-
+public class Alarm extends AlarmKey {
     private Date time;
 
     private String name;
@@ -17,22 +13,6 @@ public class Alarm {
     private String type;
 
     private String memo;
-
-    public String getSTCD() {
-        return STCD;
-    }
-
-    public void setSTCD(String STCD) {
-        this.STCD = STCD == null ? null : STCD.trim();
-    }
-
-    public String getItemID() {
-        return itemID;
-    }
-
-    public void setItemID(String itemID) {
-        this.itemID = itemID == null ? null : itemID.trim();
-    }
 
     public Date getTime() {
         return time;

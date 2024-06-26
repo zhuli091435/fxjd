@@ -1,20 +1,30 @@
 package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.ST_RAIN_R;
-import org.apache.ibatis.annotations.Mapper;
+import com.fxjd.info.pojo.ST_RAIN_RExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
-@Mapper
 public interface ST_RAIN_RMapper {
+    long countByExample(ST_RAIN_RExample example);
+
+    int deleteByExample(ST_RAIN_RExample example);
+
     int deleteByPrimaryKey(Integer ID);
 
     int insert(ST_RAIN_R row);
 
+    int insertSelective(ST_RAIN_R row);
+
+    List<ST_RAIN_R> selectByExample(ST_RAIN_RExample example);
+
     ST_RAIN_R selectByPrimaryKey(Integer ID);
 
-    List<ST_RAIN_R> selectAll();
+    int updateByExampleSelective(@Param("row") ST_RAIN_R row, @Param("example") ST_RAIN_RExample example);
+
+    int updateByExample(@Param("row") ST_RAIN_R row, @Param("example") ST_RAIN_RExample example);
+
+    int updateByPrimaryKeySelective(ST_RAIN_R row);
 
     int updateByPrimaryKey(ST_RAIN_R row);
 

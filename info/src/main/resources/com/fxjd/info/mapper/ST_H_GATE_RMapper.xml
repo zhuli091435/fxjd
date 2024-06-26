@@ -1,58 +1,425 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_H_GATE_RMapper">
-  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_H_GATE_R">
-    <result column="ID" jdbcType="INTEGER" property="ID" />
-    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
-    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
-    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
-    <result column="Mode" jdbcType="INTEGER" property="mode" />
-    <result column="RemoteStatus" jdbcType="INTEGER" property="remoteStatus" />
-    <result column="MainPumpFault" jdbcType="INTEGER" property="mainPumpFault" />
-    <result column="BackupPumpFault" jdbcType="INTEGER" property="backupPumpFault" />
-    <result column="MainPumpRun" jdbcType="INTEGER" property="mainPumpRun" />
-    <result column="BackupPumpRun" jdbcType="INTEGER" property="backupPumpRun" />
-    <result column="Fault" jdbcType="INTEGER" property="fault" />
-    <result column="FullOpen" jdbcType="INTEGER" property="fullOpen" />
-    <result column="FullClose" jdbcType="INTEGER" property="fullClose" />
-    <result column="ChuanXiao" jdbcType="INTEGER" property="chuanXiao" />
-    <result column="TuoXiao" jdbcType="INTEGER" property="tuoXiao" />
-    <result column="LeftOpenValve" jdbcType="INTEGER" property="leftOpenValve" />
-    <result column="LeftCloseValve" jdbcType="INTEGER" property="leftCloseValve" />
-    <result column="RightOpenValve" jdbcType="INTEGER" property="rightOpenValve" />
-    <result column="RightCloseValve" jdbcType="INTEGER" property="rightCloseValve" />
-    <result column="LeftChuanXiaoValve" jdbcType="INTEGER" property="leftChuanXiaoValve" />
-    <result column="LeftTuoXiaoValve" jdbcType="INTEGER" property="leftTuoXiaoValve" />
-    <result column="RightChuanXiaoValve" jdbcType="INTEGER" property="rightChuanXiaoValve" />
-    <result column="RightTuoXiaoValve" jdbcType="INTEGER" property="rightTuoXiaoValve" />
-    <result column="LeftOpening" jdbcType="DECIMAL" property="leftOpening" />
-    <result column="RightOpening" jdbcType="DECIMAL" property="rightOpening" />
-  </resultMap>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_H_GATE_R">
-    insert into ST_H_GATE_R (ID, STCD, TM, 
-      EQPNO, Mode, RemoteStatus, 
-      MainPumpFault, BackupPumpFault, MainPumpRun, 
-      BackupPumpRun, Fault, FullOpen, 
-      FullClose, ChuanXiao, TuoXiao, 
-      LeftOpenValve, LeftCloseValve, RightOpenValve, 
-      RightCloseValve, LeftChuanXiaoValve, LeftTuoXiaoValve, 
-      RightChuanXiaoValve, RightTuoXiaoValve, 
-      LeftOpening, RightOpening)
-    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
-      #{EQPNO,jdbcType=NVARCHAR}, #{mode,jdbcType=INTEGER}, #{remoteStatus,jdbcType=INTEGER}, 
-      #{mainPumpFault,jdbcType=INTEGER}, #{backupPumpFault,jdbcType=INTEGER}, #{mainPumpRun,jdbcType=INTEGER}, 
-      #{backupPumpRun,jdbcType=INTEGER}, #{fault,jdbcType=INTEGER}, #{fullOpen,jdbcType=INTEGER}, 
-      #{fullClose,jdbcType=INTEGER}, #{chuanXiao,jdbcType=INTEGER}, #{tuoXiao,jdbcType=INTEGER}, 
-      #{leftOpenValve,jdbcType=INTEGER}, #{leftCloseValve,jdbcType=INTEGER}, #{rightOpenValve,jdbcType=INTEGER}, 
-      #{rightCloseValve,jdbcType=INTEGER}, #{leftChuanXiaoValve,jdbcType=INTEGER}, #{leftTuoXiaoValve,jdbcType=INTEGER}, 
-      #{rightChuanXiaoValve,jdbcType=INTEGER}, #{rightTuoXiaoValve,jdbcType=INTEGER}, 
-      #{leftOpening,jdbcType=DECIMAL}, #{rightOpening,jdbcType=DECIMAL})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select ID, STCD, TM, EQPNO, Mode, RemoteStatus, MainPumpFault, BackupPumpFault, MainPumpRun, 
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_H_GATE_R">
+        <result column="ID" jdbcType="INTEGER" property="ID"/>
+        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
+        <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
+        <result column="Mode" jdbcType="INTEGER" property="mode"/>
+        <result column="RemoteStatus" jdbcType="INTEGER" property="remoteStatus"/>
+        <result column="MainPumpFault" jdbcType="INTEGER" property="mainPumpFault"/>
+        <result column="BackupPumpFault" jdbcType="INTEGER" property="backupPumpFault"/>
+        <result column="MainPumpRun" jdbcType="INTEGER" property="mainPumpRun"/>
+        <result column="BackupPumpRun" jdbcType="INTEGER" property="backupPumpRun"/>
+        <result column="Fault" jdbcType="INTEGER" property="fault"/>
+        <result column="FullOpen" jdbcType="INTEGER" property="fullOpen"/>
+        <result column="FullClose" jdbcType="INTEGER" property="fullClose"/>
+        <result column="ChuanXiao" jdbcType="INTEGER" property="chuanXiao"/>
+        <result column="TuoXiao" jdbcType="INTEGER" property="tuoXiao"/>
+        <result column="LeftOpenValve" jdbcType="INTEGER" property="leftOpenValve"/>
+        <result column="LeftCloseValve" jdbcType="INTEGER" property="leftCloseValve"/>
+        <result column="RightOpenValve" jdbcType="INTEGER" property="rightOpenValve"/>
+        <result column="RightCloseValve" jdbcType="INTEGER" property="rightCloseValve"/>
+        <result column="LeftChuanXiaoValve" jdbcType="INTEGER" property="leftChuanXiaoValve"/>
+        <result column="LeftTuoXiaoValve" jdbcType="INTEGER" property="leftTuoXiaoValve"/>
+        <result column="RightChuanXiaoValve" jdbcType="INTEGER" property="rightChuanXiaoValve"/>
+        <result column="RightTuoXiaoValve" jdbcType="INTEGER" property="rightTuoXiaoValve"/>
+        <result column="LeftOpening" jdbcType="DECIMAL" property="leftOpening"/>
+        <result column="RightOpening" jdbcType="DECIMAL" property="rightOpening"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        ID
+        , STCD, TM, EQPNO, Mode, RemoteStatus, MainPumpFault, BackupPumpFault, MainPumpRun,
     BackupPumpRun, Fault, FullOpen, FullClose, ChuanXiao, TuoXiao, LeftOpenValve, LeftCloseValve, 
     RightOpenValve, RightCloseValve, LeftChuanXiaoValve, LeftTuoXiaoValve, RightChuanXiaoValve, 
     RightTuoXiaoValve, LeftOpening, RightOpening
-    from ST_H_GATE_R
-  </select>
+    </sql>
+    <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_H_GATE_RExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from ST_H_GATE_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_H_GATE_RExample">
+        delete from ST_H_GATE_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_H_GATE_R">
+        insert into ST_H_GATE_R (ID, STCD, TM,
+                                 EQPNO, Mode, RemoteStatus,
+                                 MainPumpFault, BackupPumpFault, MainPumpRun,
+                                 BackupPumpRun, Fault, FullOpen,
+                                 FullClose, ChuanXiao, TuoXiao,
+                                 LeftOpenValve, LeftCloseValve, RightOpenValve,
+                                 RightCloseValve, LeftChuanXiaoValve, LeftTuoXiaoValve,
+                                 RightChuanXiaoValve, RightTuoXiaoValve,
+                                 LeftOpening, RightOpening)
+        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
+                #{EQPNO,jdbcType=NVARCHAR}, #{mode,jdbcType=INTEGER}, #{remoteStatus,jdbcType=INTEGER},
+                #{mainPumpFault,jdbcType=INTEGER}, #{backupPumpFault,jdbcType=INTEGER}, #{mainPumpRun,jdbcType=INTEGER},
+                #{backupPumpRun,jdbcType=INTEGER}, #{fault,jdbcType=INTEGER}, #{fullOpen,jdbcType=INTEGER},
+                #{fullClose,jdbcType=INTEGER}, #{chuanXiao,jdbcType=INTEGER}, #{tuoXiao,jdbcType=INTEGER},
+                #{leftOpenValve,jdbcType=INTEGER}, #{leftCloseValve,jdbcType=INTEGER},
+                #{rightOpenValve,jdbcType=INTEGER},
+                #{rightCloseValve,jdbcType=INTEGER}, #{leftChuanXiaoValve,jdbcType=INTEGER},
+                #{leftTuoXiaoValve,jdbcType=INTEGER},
+                #{rightChuanXiaoValve,jdbcType=INTEGER}, #{rightTuoXiaoValve,jdbcType=INTEGER},
+                #{leftOpening,jdbcType=DECIMAL}, #{rightOpening,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_H_GATE_R">
+        insert into ST_H_GATE_R
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                ID,
+            </if>
+            <if test="STCD != null">
+                STCD,
+            </if>
+            <if test="TM != null">
+                TM,
+            </if>
+            <if test="EQPNO != null">
+                EQPNO,
+            </if>
+            <if test="mode != null">
+                Mode,
+            </if>
+            <if test="remoteStatus != null">
+                RemoteStatus,
+            </if>
+            <if test="mainPumpFault != null">
+                MainPumpFault,
+            </if>
+            <if test="backupPumpFault != null">
+                BackupPumpFault,
+            </if>
+            <if test="mainPumpRun != null">
+                MainPumpRun,
+            </if>
+            <if test="backupPumpRun != null">
+                BackupPumpRun,
+            </if>
+            <if test="fault != null">
+                Fault,
+            </if>
+            <if test="fullOpen != null">
+                FullOpen,
+            </if>
+            <if test="fullClose != null">
+                FullClose,
+            </if>
+            <if test="chuanXiao != null">
+                ChuanXiao,
+            </if>
+            <if test="tuoXiao != null">
+                TuoXiao,
+            </if>
+            <if test="leftOpenValve != null">
+                LeftOpenValve,
+            </if>
+            <if test="leftCloseValve != null">
+                LeftCloseValve,
+            </if>
+            <if test="rightOpenValve != null">
+                RightOpenValve,
+            </if>
+            <if test="rightCloseValve != null">
+                RightCloseValve,
+            </if>
+            <if test="leftChuanXiaoValve != null">
+                LeftChuanXiaoValve,
+            </if>
+            <if test="leftTuoXiaoValve != null">
+                LeftTuoXiaoValve,
+            </if>
+            <if test="rightChuanXiaoValve != null">
+                RightChuanXiaoValve,
+            </if>
+            <if test="rightTuoXiaoValve != null">
+                RightTuoXiaoValve,
+            </if>
+            <if test="leftOpening != null">
+                LeftOpening,
+            </if>
+            <if test="rightOpening != null">
+                RightOpening,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                #{ID,jdbcType=INTEGER},
+            </if>
+            <if test="STCD != null">
+                #{STCD,jdbcType=NVARCHAR},
+            </if>
+            <if test="TM != null">
+                #{TM,jdbcType=TIMESTAMP},
+            </if>
+            <if test="EQPNO != null">
+                #{EQPNO,jdbcType=NVARCHAR},
+            </if>
+            <if test="mode != null">
+                #{mode,jdbcType=INTEGER},
+            </if>
+            <if test="remoteStatus != null">
+                #{remoteStatus,jdbcType=INTEGER},
+            </if>
+            <if test="mainPumpFault != null">
+                #{mainPumpFault,jdbcType=INTEGER},
+            </if>
+            <if test="backupPumpFault != null">
+                #{backupPumpFault,jdbcType=INTEGER},
+            </if>
+            <if test="mainPumpRun != null">
+                #{mainPumpRun,jdbcType=INTEGER},
+            </if>
+            <if test="backupPumpRun != null">
+                #{backupPumpRun,jdbcType=INTEGER},
+            </if>
+            <if test="fault != null">
+                #{fault,jdbcType=INTEGER},
+            </if>
+            <if test="fullOpen != null">
+                #{fullOpen,jdbcType=INTEGER},
+            </if>
+            <if test="fullClose != null">
+                #{fullClose,jdbcType=INTEGER},
+            </if>
+            <if test="chuanXiao != null">
+                #{chuanXiao,jdbcType=INTEGER},
+            </if>
+            <if test="tuoXiao != null">
+                #{tuoXiao,jdbcType=INTEGER},
+            </if>
+            <if test="leftOpenValve != null">
+                #{leftOpenValve,jdbcType=INTEGER},
+            </if>
+            <if test="leftCloseValve != null">
+                #{leftCloseValve,jdbcType=INTEGER},
+            </if>
+            <if test="rightOpenValve != null">
+                #{rightOpenValve,jdbcType=INTEGER},
+            </if>
+            <if test="rightCloseValve != null">
+                #{rightCloseValve,jdbcType=INTEGER},
+            </if>
+            <if test="leftChuanXiaoValve != null">
+                #{leftChuanXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="leftTuoXiaoValve != null">
+                #{leftTuoXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="rightChuanXiaoValve != null">
+                #{rightChuanXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="rightTuoXiaoValve != null">
+                #{rightTuoXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="leftOpening != null">
+                #{leftOpening,jdbcType=DECIMAL},
+            </if>
+            <if test="rightOpening != null">
+                #{rightOpening,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_H_GATE_RExample" resultType="java.lang.Long">
+        select count(*) from ST_H_GATE_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update ST_H_GATE_R
+        <set>
+            <if test="row.ID != null">
+                ID = #{row.ID,jdbcType=INTEGER},
+            </if>
+            <if test="row.STCD != null">
+                STCD = #{row.STCD,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.TM != null">
+                TM = #{row.TM,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.EQPNO != null">
+                EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.mode != null">
+                Mode = #{row.mode,jdbcType=INTEGER},
+            </if>
+            <if test="row.remoteStatus != null">
+                RemoteStatus = #{row.remoteStatus,jdbcType=INTEGER},
+            </if>
+            <if test="row.mainPumpFault != null">
+                MainPumpFault = #{row.mainPumpFault,jdbcType=INTEGER},
+            </if>
+            <if test="row.backupPumpFault != null">
+                BackupPumpFault = #{row.backupPumpFault,jdbcType=INTEGER},
+            </if>
+            <if test="row.mainPumpRun != null">
+                MainPumpRun = #{row.mainPumpRun,jdbcType=INTEGER},
+            </if>
+            <if test="row.backupPumpRun != null">
+                BackupPumpRun = #{row.backupPumpRun,jdbcType=INTEGER},
+            </if>
+            <if test="row.fault != null">
+                Fault = #{row.fault,jdbcType=INTEGER},
+            </if>
+            <if test="row.fullOpen != null">
+                FullOpen = #{row.fullOpen,jdbcType=INTEGER},
+            </if>
+            <if test="row.fullClose != null">
+                FullClose = #{row.fullClose,jdbcType=INTEGER},
+            </if>
+            <if test="row.chuanXiao != null">
+                ChuanXiao = #{row.chuanXiao,jdbcType=INTEGER},
+            </if>
+            <if test="row.tuoXiao != null">
+                TuoXiao = #{row.tuoXiao,jdbcType=INTEGER},
+            </if>
+            <if test="row.leftOpenValve != null">
+                LeftOpenValve = #{row.leftOpenValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.leftCloseValve != null">
+                LeftCloseValve = #{row.leftCloseValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.rightOpenValve != null">
+                RightOpenValve = #{row.rightOpenValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.rightCloseValve != null">
+                RightCloseValve = #{row.rightCloseValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.leftChuanXiaoValve != null">
+                LeftChuanXiaoValve = #{row.leftChuanXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.leftTuoXiaoValve != null">
+                LeftTuoXiaoValve = #{row.leftTuoXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.rightChuanXiaoValve != null">
+                RightChuanXiaoValve = #{row.rightChuanXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.rightTuoXiaoValve != null">
+                RightTuoXiaoValve = #{row.rightTuoXiaoValve,jdbcType=INTEGER},
+            </if>
+            <if test="row.leftOpening != null">
+                LeftOpening = #{row.leftOpening,jdbcType=DECIMAL},
+            </if>
+            <if test="row.rightOpening != null">
+                RightOpening = #{row.rightOpening,jdbcType=DECIMAL},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update ST_H_GATE_R
+        set ID = #{row.ID,jdbcType=INTEGER},
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+        Mode = #{row.mode,jdbcType=INTEGER},
+        RemoteStatus = #{row.remoteStatus,jdbcType=INTEGER},
+        MainPumpFault = #{row.mainPumpFault,jdbcType=INTEGER},
+        BackupPumpFault = #{row.backupPumpFault,jdbcType=INTEGER},
+        MainPumpRun = #{row.mainPumpRun,jdbcType=INTEGER},
+        BackupPumpRun = #{row.backupPumpRun,jdbcType=INTEGER},
+        Fault = #{row.fault,jdbcType=INTEGER},
+        FullOpen = #{row.fullOpen,jdbcType=INTEGER},
+        FullClose = #{row.fullClose,jdbcType=INTEGER},
+        ChuanXiao = #{row.chuanXiao,jdbcType=INTEGER},
+        TuoXiao = #{row.tuoXiao,jdbcType=INTEGER},
+        LeftOpenValve = #{row.leftOpenValve,jdbcType=INTEGER},
+        LeftCloseValve = #{row.leftCloseValve,jdbcType=INTEGER},
+        RightOpenValve = #{row.rightOpenValve,jdbcType=INTEGER},
+        RightCloseValve = #{row.rightCloseValve,jdbcType=INTEGER},
+        LeftChuanXiaoValve = #{row.leftChuanXiaoValve,jdbcType=INTEGER},
+        LeftTuoXiaoValve = #{row.leftTuoXiaoValve,jdbcType=INTEGER},
+        RightChuanXiaoValve = #{row.rightChuanXiaoValve,jdbcType=INTEGER},
+        RightTuoXiaoValve = #{row.rightTuoXiaoValve,jdbcType=INTEGER},
+        LeftOpening = #{row.leftOpening,jdbcType=DECIMAL},
+        RightOpening = #{row.rightOpening,jdbcType=DECIMAL}
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+
+    <select id="getLatestBySTCD" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ST_H_GATE_R
+        where STCD=#{stcd }
+        and EQPNO =#{eqpno}
+    </select>
 </mapper>

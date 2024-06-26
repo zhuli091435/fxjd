@@ -1,159 +1,455 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fxjd.info.mapper.ST_PUMP_RMapper">
-    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_R">
-        <id column="ID" jdbcType="INTEGER" property="ID"/>
-        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
-        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
-        <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO"/>
-        <result column="FALUT" jdbcType="NVARCHAR" property="FALUT"/>
-        <result column="STATUS" jdbcType="INTEGER" property="STATUS"/>
-        <result column="AUTO" jdbcType="NVARCHAR" property="AUTO"/>
-        <result column="Ua" jdbcType="DECIMAL" property="ua"/>
-        <result column="Ub" jdbcType="DECIMAL" property="ub"/>
-        <result column="Uc" jdbcType="DECIMAL" property="uc"/>
-        <result column="Uab" jdbcType="DECIMAL" property="uab"/>
-        <result column="Ubc" jdbcType="DECIMAL" property="ubc"/>
-        <result column="Uca" jdbcType="DECIMAL" property="uca"/>
-        <result column="Ia" jdbcType="DECIMAL" property="ia"/>
-        <result column="Ib" jdbcType="DECIMAL" property="ib"/>
-        <result column="Ic" jdbcType="DECIMAL" property="ic"/>
-        <result column="ActivePower" jdbcType="DECIMAL" property="activePower"/>
-        <result column="ReactivePower" jdbcType="DECIMAL" property="reactivePower"/>
-        <result column="PowerFactor" jdbcType="DECIMAL" property="powerFactor"/>
-        <result column="IsRemote" jdbcType="NVARCHAR" property="isRemote"/>
-        <result column="IsControlEle" jdbcType="NVARCHAR" property="isControlEle"/>
-        <result column="OpUser" jdbcType="NVARCHAR" property="opUser"/>
-        <result column="Flow" jdbcType="DECIMAL" property="flow"/>
-    </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete
-        from ST_PUMP_R
-        where ID = #{ID,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
-        insert into ST_PUMP_R (ID, STCD, TM,
-                               EQPNO, FALUT, STATUS,
-                               AUTO, Ua, Ub, Uc,
-                               Uab, Ubc, Uca, Ia,
-                               Ib, Ic, ActivePower,
-                               ReactivePower, PowerFactor, IsRemote,
-                               IsControlEle, OpUser, Flow)
-        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
-                #{EQPNO,jdbcType=NVARCHAR}, #{FALUT,jdbcType=NVARCHAR}, #{STATUS,jdbcType=INTEGER},
-                #{AUTO,jdbcType=NVARCHAR}, #{ua,jdbcType=DECIMAL}, #{ub,jdbcType=DECIMAL}, #{uc,jdbcType=DECIMAL},
-                #{uab,jdbcType=DECIMAL}, #{ubc,jdbcType=DECIMAL}, #{uca,jdbcType=DECIMAL}, #{ia,jdbcType=DECIMAL},
-                #{ib,jdbcType=DECIMAL}, #{ic,jdbcType=DECIMAL}, #{activePower,jdbcType=DECIMAL},
-                #{reactivePower,jdbcType=DECIMAL}, #{powerFactor,jdbcType=DECIMAL}, #{isRemote,jdbcType=NVARCHAR},
-                #{isControlEle,jdbcType=NVARCHAR}, #{opUser,jdbcType=NVARCHAR}, #{flow,jdbcType=DECIMAL})
-    </insert>
-    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
-        update ST_PUMP_R
-        set STCD          = #{STCD,jdbcType=NVARCHAR},
-            TM            = #{TM,jdbcType=TIMESTAMP},
-            EQPNO         = #{EQPNO,jdbcType=NVARCHAR},
-            FALUT         = #{FALUT,jdbcType=NVARCHAR},
-            STATUS        = #{STATUS,jdbcType=INTEGER},
-            AUTO          = #{AUTO,jdbcType=NVARCHAR},
-            Ua            = #{ua,jdbcType=DECIMAL},
-            Ub            = #{ub,jdbcType=DECIMAL},
-            Uc            = #{uc,jdbcType=DECIMAL},
-            Uab           = #{uab,jdbcType=DECIMAL},
-            Ubc           = #{ubc,jdbcType=DECIMAL},
-            Uca           = #{uca,jdbcType=DECIMAL},
-            Ia            = #{ia,jdbcType=DECIMAL},
-            Ib            = #{ib,jdbcType=DECIMAL},
-            Ic            = #{ic,jdbcType=DECIMAL},
-            ActivePower   = #{activePower,jdbcType=DECIMAL},
-            ReactivePower = #{reactivePower,jdbcType=DECIMAL},
-            PowerFactor   = #{powerFactor,jdbcType=DECIMAL},
-            IsRemote      = #{isRemote,jdbcType=NVARCHAR},
-            IsControlEle  = #{isControlEle,jdbcType=NVARCHAR},
-            OpUser        = #{opUser,jdbcType=NVARCHAR},
-            Flow          = #{flow,jdbcType=DECIMAL}
-        where ID = #{ID,jdbcType=INTEGER}
-    </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select ID,
-               STCD,
-               TM,
-               EQPNO,
-               FALUT,
-               STATUS,
-               AUTO,
-               Ua,
-               Ub,
-               Uc,
-               Uab,
-               Ubc,
-               Uca,
-               Ia,
-               Ib,
-               Ic,
-               ActivePower,
-               ReactivePower,
-               PowerFactor,
-               IsRemote,
-               IsControlEle,
-               OpUser,
-               Flow
-        from ST_PUMP_R
-        where ID = #{ID,jdbcType=INTEGER}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select ID,
-               STCD,
-               TM,
-               EQPNO,
-               FALUT,
-               STATUS,
-               AUTO,
-               Ua,
-               Ub,
-               Uc,
-               Uab,
-               Ubc,
-               Uca,
-               Ia,
-               Ib,
-               Ic,
-               ActivePower,
-               ReactivePower,
-               PowerFactor,
-               IsRemote,
-               IsControlEle,
-               OpUser,
-               Flow
-        from ST_PUMP_R
-    </select>
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_PUMP_R">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
+    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="Fault" jdbcType="NVARCHAR" property="fault" />
+    <result column="STATUS" jdbcType="INTEGER" property="STATUS" />
+    <result column="AUTO" jdbcType="NVARCHAR" property="AUTO" />
+    <result column="Uab" jdbcType="DECIMAL" property="uab" />
+    <result column="Ubc" jdbcType="DECIMAL" property="ubc" />
+    <result column="Uca" jdbcType="DECIMAL" property="uca" />
+    <result column="Ia" jdbcType="DECIMAL" property="ia" />
+    <result column="Ib" jdbcType="DECIMAL" property="ib" />
+    <result column="Ic" jdbcType="DECIMAL" property="ic" />
+    <result column="ActivePower" jdbcType="DECIMAL" property="activePower" />
+    <result column="ReactivePower" jdbcType="DECIMAL" property="reactivePower" />
+    <result column="PowerFactor" jdbcType="DECIMAL" property="powerFactor" />
+    <result column="IsRemote" jdbcType="NVARCHAR" property="isRemote" />
+    <result column="IsControlEle" jdbcType="NVARCHAR" property="isControlEle" />
+    <result column="OpUser" jdbcType="NVARCHAR" property="opUser" />
+    <result column="Flow" jdbcType="DECIMAL" property="flow" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, STCD, TM, EQPNO, Fault, STATUS, AUTO, Uab, Ubc, Uca, Ia, Ib, Ic, ActivePower, 
+    ReactivePower, PowerFactor, IsRemote, IsControlEle, OpUser, Flow
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_RExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_PUMP_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_PUMP_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ST_PUMP_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_RExample">
+    delete from ST_PUMP_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    insert into ST_PUMP_R (ID, STCD, TM, 
+      EQPNO, Fault, STATUS, 
+      AUTO, Uab, Ubc, Uca, 
+      Ia, Ib, Ic, ActivePower, 
+      ReactivePower, PowerFactor, IsRemote, 
+      IsControlEle, OpUser, Flow
+      )
+    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
+      #{EQPNO,jdbcType=NVARCHAR}, #{fault,jdbcType=NVARCHAR}, #{STATUS,jdbcType=INTEGER}, 
+      #{AUTO,jdbcType=NVARCHAR}, #{uab,jdbcType=DECIMAL}, #{ubc,jdbcType=DECIMAL}, #{uca,jdbcType=DECIMAL}, 
+      #{ia,jdbcType=DECIMAL}, #{ib,jdbcType=DECIMAL}, #{ic,jdbcType=DECIMAL}, #{activePower,jdbcType=DECIMAL}, 
+      #{reactivePower,jdbcType=DECIMAL}, #{powerFactor,jdbcType=DECIMAL}, #{isRemote,jdbcType=NVARCHAR}, 
+      #{isControlEle,jdbcType=NVARCHAR}, #{opUser,jdbcType=NVARCHAR}, #{flow,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    insert into ST_PUMP_R
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="TM != null">
+        TM,
+      </if>
+      <if test="EQPNO != null">
+        EQPNO,
+      </if>
+      <if test="fault != null">
+        Fault,
+      </if>
+      <if test="STATUS != null">
+        STATUS,
+      </if>
+      <if test="AUTO != null">
+        AUTO,
+      </if>
+      <if test="uab != null">
+        Uab,
+      </if>
+      <if test="ubc != null">
+        Ubc,
+      </if>
+      <if test="uca != null">
+        Uca,
+      </if>
+      <if test="ia != null">
+        Ia,
+      </if>
+      <if test="ib != null">
+        Ib,
+      </if>
+      <if test="ic != null">
+        Ic,
+      </if>
+      <if test="activePower != null">
+        ActivePower,
+      </if>
+      <if test="reactivePower != null">
+        ReactivePower,
+      </if>
+      <if test="powerFactor != null">
+        PowerFactor,
+      </if>
+      <if test="isRemote != null">
+        IsRemote,
+      </if>
+      <if test="isControlEle != null">
+        IsControlEle,
+      </if>
+      <if test="opUser != null">
+        OpUser,
+      </if>
+      <if test="flow != null">
+        Flow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="fault != null">
+        #{fault,jdbcType=NVARCHAR},
+      </if>
+      <if test="STATUS != null">
+        #{STATUS,jdbcType=INTEGER},
+      </if>
+      <if test="AUTO != null">
+        #{AUTO,jdbcType=NVARCHAR},
+      </if>
+      <if test="uab != null">
+        #{uab,jdbcType=DECIMAL},
+      </if>
+      <if test="ubc != null">
+        #{ubc,jdbcType=DECIMAL},
+      </if>
+      <if test="uca != null">
+        #{uca,jdbcType=DECIMAL},
+      </if>
+      <if test="ia != null">
+        #{ia,jdbcType=DECIMAL},
+      </if>
+      <if test="ib != null">
+        #{ib,jdbcType=DECIMAL},
+      </if>
+      <if test="ic != null">
+        #{ic,jdbcType=DECIMAL},
+      </if>
+      <if test="activePower != null">
+        #{activePower,jdbcType=DECIMAL},
+      </if>
+      <if test="reactivePower != null">
+        #{reactivePower,jdbcType=DECIMAL},
+      </if>
+      <if test="powerFactor != null">
+        #{powerFactor,jdbcType=DECIMAL},
+      </if>
+      <if test="isRemote != null">
+        #{isRemote,jdbcType=NVARCHAR},
+      </if>
+      <if test="isControlEle != null">
+        #{isControlEle,jdbcType=NVARCHAR},
+      </if>
+      <if test="opUser != null">
+        #{opUser,jdbcType=NVARCHAR},
+      </if>
+      <if test="flow != null">
+        #{flow,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_PUMP_RExample" resultType="java.lang.Long">
+    select count(*) from ST_PUMP_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_PUMP_R
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.TM != null">
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.EQPNO != null">
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.fault != null">
+        Fault = #{row.fault,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.STATUS != null">
+        STATUS = #{row.STATUS,jdbcType=INTEGER},
+      </if>
+      <if test="row.AUTO != null">
+        AUTO = #{row.AUTO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.uab != null">
+        Uab = #{row.uab,jdbcType=DECIMAL},
+      </if>
+      <if test="row.ubc != null">
+        Ubc = #{row.ubc,jdbcType=DECIMAL},
+      </if>
+      <if test="row.uca != null">
+        Uca = #{row.uca,jdbcType=DECIMAL},
+      </if>
+      <if test="row.ia != null">
+        Ia = #{row.ia,jdbcType=DECIMAL},
+      </if>
+      <if test="row.ib != null">
+        Ib = #{row.ib,jdbcType=DECIMAL},
+      </if>
+      <if test="row.ic != null">
+        Ic = #{row.ic,jdbcType=DECIMAL},
+      </if>
+      <if test="row.activePower != null">
+        ActivePower = #{row.activePower,jdbcType=DECIMAL},
+      </if>
+      <if test="row.reactivePower != null">
+        ReactivePower = #{row.reactivePower,jdbcType=DECIMAL},
+      </if>
+      <if test="row.powerFactor != null">
+        PowerFactor = #{row.powerFactor,jdbcType=DECIMAL},
+      </if>
+      <if test="row.isRemote != null">
+        IsRemote = #{row.isRemote,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.isControlEle != null">
+        IsControlEle = #{row.isControlEle,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.opUser != null">
+        OpUser = #{row.opUser,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.flow != null">
+        Flow = #{row.flow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_PUMP_R
+    set ID = #{row.ID,jdbcType=INTEGER},
+      STCD = #{row.STCD,jdbcType=NVARCHAR},
+      TM = #{row.TM,jdbcType=TIMESTAMP},
+      EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      Fault = #{row.fault,jdbcType=NVARCHAR},
+      STATUS = #{row.STATUS,jdbcType=INTEGER},
+      AUTO = #{row.AUTO,jdbcType=NVARCHAR},
+      Uab = #{row.uab,jdbcType=DECIMAL},
+      Ubc = #{row.ubc,jdbcType=DECIMAL},
+      Uca = #{row.uca,jdbcType=DECIMAL},
+      Ia = #{row.ia,jdbcType=DECIMAL},
+      Ib = #{row.ib,jdbcType=DECIMAL},
+      Ic = #{row.ic,jdbcType=DECIMAL},
+      ActivePower = #{row.activePower,jdbcType=DECIMAL},
+      ReactivePower = #{row.reactivePower,jdbcType=DECIMAL},
+      PowerFactor = #{row.powerFactor,jdbcType=DECIMAL},
+      IsRemote = #{row.isRemote,jdbcType=NVARCHAR},
+      IsControlEle = #{row.isControlEle,jdbcType=NVARCHAR},
+      OpUser = #{row.opUser,jdbcType=NVARCHAR},
+      Flow = #{row.flow,jdbcType=DECIMAL}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    update ST_PUMP_R
+    <set>
+      <if test="STCD != null">
+        STCD = #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        TM = #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="fault != null">
+        Fault = #{fault,jdbcType=NVARCHAR},
+      </if>
+      <if test="STATUS != null">
+        STATUS = #{STATUS,jdbcType=INTEGER},
+      </if>
+      <if test="AUTO != null">
+        AUTO = #{AUTO,jdbcType=NVARCHAR},
+      </if>
+      <if test="uab != null">
+        Uab = #{uab,jdbcType=DECIMAL},
+      </if>
+      <if test="ubc != null">
+        Ubc = #{ubc,jdbcType=DECIMAL},
+      </if>
+      <if test="uca != null">
+        Uca = #{uca,jdbcType=DECIMAL},
+      </if>
+      <if test="ia != null">
+        Ia = #{ia,jdbcType=DECIMAL},
+      </if>
+      <if test="ib != null">
+        Ib = #{ib,jdbcType=DECIMAL},
+      </if>
+      <if test="ic != null">
+        Ic = #{ic,jdbcType=DECIMAL},
+      </if>
+      <if test="activePower != null">
+        ActivePower = #{activePower,jdbcType=DECIMAL},
+      </if>
+      <if test="reactivePower != null">
+        ReactivePower = #{reactivePower,jdbcType=DECIMAL},
+      </if>
+      <if test="powerFactor != null">
+        PowerFactor = #{powerFactor,jdbcType=DECIMAL},
+      </if>
+      <if test="isRemote != null">
+        IsRemote = #{isRemote,jdbcType=NVARCHAR},
+      </if>
+      <if test="isControlEle != null">
+        IsControlEle = #{isControlEle,jdbcType=NVARCHAR},
+      </if>
+      <if test="opUser != null">
+        OpUser = #{opUser,jdbcType=NVARCHAR},
+      </if>
+      <if test="flow != null">
+        Flow = #{flow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PUMP_R">
+    update ST_PUMP_R
+    set STCD = #{STCD,jdbcType=NVARCHAR},
+      TM = #{TM,jdbcType=TIMESTAMP},
+      EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      Fault = #{fault,jdbcType=NVARCHAR},
+      STATUS = #{STATUS,jdbcType=INTEGER},
+      AUTO = #{AUTO,jdbcType=NVARCHAR},
+      Uab = #{uab,jdbcType=DECIMAL},
+      Ubc = #{ubc,jdbcType=DECIMAL},
+      Uca = #{uca,jdbcType=DECIMAL},
+      Ia = #{ia,jdbcType=DECIMAL},
+      Ib = #{ib,jdbcType=DECIMAL},
+      Ic = #{ic,jdbcType=DECIMAL},
+      ActivePower = #{activePower,jdbcType=DECIMAL},
+      ReactivePower = #{reactivePower,jdbcType=DECIMAL},
+      PowerFactor = #{powerFactor,jdbcType=DECIMAL},
+      IsRemote = #{isRemote,jdbcType=NVARCHAR},
+      IsControlEle = #{isControlEle,jdbcType=NVARCHAR},
+      OpUser = #{opUser,jdbcType=NVARCHAR},
+      Flow = #{flow,jdbcType=DECIMAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
 
-    <!--  扩展-->
-    <select id="selectLatestBySTCD" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select top 1 ID, STCD,
-               TM,
-               EQPNO,
-               FALUT,
-               STATUS,
-               AUTO,
-               Ua,
-               Ub,
-               Uc,
-               Uab,
-               Ubc,
-               Uca,
-               Ia,
-               Ib,
-               Ic,
-               ActivePower,
-               ReactivePower,
-               PowerFactor,
-               IsRemote,
-               IsControlEle,
-               OpUser,
-               Flow
-        from ST_PUMP_R
-        where STCD =#{stcd}
-          and EQPNO=#{eqpno}
-        order by TM desc
-    </select>
+  <select id="getLatestBySTCD" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from ST_PUMP_R
+    where STCD=#{stcd }
+    and EQPNO =#{eqpno}
+  </select>
 </mapper>

@@ -12,17 +12,11 @@ public class ST_PUMP_R {
 
     private String EQPNO;
 
-    private String FALUT;
+    private String fault;
 
     private Integer STATUS;
 
     private String AUTO;
-
-    private BigDecimal ua;
-
-    private BigDecimal ub;
-
-    private BigDecimal uc;
 
     private BigDecimal uab;
 
@@ -82,12 +76,12 @@ public class ST_PUMP_R {
         this.EQPNO = EQPNO == null ? null : EQPNO.trim();
     }
 
-    public String getFALUT() {
-        return FALUT;
+    public String getFault() {
+        return fault;
     }
 
-    public void setFALUT(String FALUT) {
-        this.FALUT = FALUT == null ? null : FALUT.trim();
+    public void setFault(String fault) {
+        this.fault = fault == null ? null : fault.trim();
     }
 
     public Integer getSTATUS() {
@@ -104,30 +98,6 @@ public class ST_PUMP_R {
 
     public void setAUTO(String AUTO) {
         this.AUTO = AUTO == null ? null : AUTO.trim();
-    }
-
-    public BigDecimal getUa() {
-        return ua;
-    }
-
-    public void setUa(BigDecimal ua) {
-        this.ua = ua;
-    }
-
-    public BigDecimal getUb() {
-        return ub;
-    }
-
-    public void setUb(BigDecimal ub) {
-        this.ub = ub;
-    }
-
-    public BigDecimal getUc() {
-        return uc;
-    }
-
-    public void setUc(BigDecimal uc) {
-        this.uc = uc;
     }
 
     public BigDecimal getUab() {

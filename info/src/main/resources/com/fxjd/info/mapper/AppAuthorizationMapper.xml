@@ -11,9 +11,96 @@
     <result column="State" jdbcType="NVARCHAR" property="state" />
     <result column="Admin" jdbcType="NVARCHAR" property="admin" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, UserID, UserName, Time, Mac, Brand, State, Admin
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.AppAuthorizationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AppAuthorization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AppAuthorization
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from AppAuthorization
     where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.AppAuthorizationExample">
+    delete from AppAuthorization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.AppAuthorization">
     insert into AppAuthorization (ID, UserID, UserName, 
@@ -23,6 +110,140 @@
       #{time,jdbcType=TIMESTAMP}, #{mac,jdbcType=NVARCHAR}, #{brand,jdbcType=NVARCHAR}, 
       #{state,jdbcType=NVARCHAR}, #{admin,jdbcType=NVARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.AppAuthorization">
+    insert into AppAuthorization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="userID != null">
+        UserID,
+      </if>
+      <if test="userName != null">
+        UserName,
+      </if>
+      <if test="time != null">
+        Time,
+      </if>
+      <if test="mac != null">
+        Mac,
+      </if>
+      <if test="brand != null">
+        Brand,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="admin != null">
+        Admin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="userID != null">
+        #{userID,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mac != null">
+        #{mac,jdbcType=NVARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="admin != null">
+        #{admin,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.AppAuthorizationExample" resultType="java.lang.Long">
+    select count(*) from AppAuthorization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update AppAuthorization
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.userID != null">
+        UserID = #{row.userID,jdbcType=INTEGER},
+      </if>
+      <if test="row.userName != null">
+        UserName = #{row.userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.time != null">
+        Time = #{row.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.mac != null">
+        Mac = #{row.mac,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.brand != null">
+        Brand = #{row.brand,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.state != null">
+        State = #{row.state,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.admin != null">
+        Admin = #{row.admin,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update AppAuthorization
+    set ID = #{row.ID,jdbcType=INTEGER},
+      UserID = #{row.userID,jdbcType=INTEGER},
+      UserName = #{row.userName,jdbcType=NVARCHAR},
+      Time = #{row.time,jdbcType=TIMESTAMP},
+      Mac = #{row.mac,jdbcType=NVARCHAR},
+      Brand = #{row.brand,jdbcType=NVARCHAR},
+      State = #{row.state,jdbcType=NVARCHAR},
+      Admin = #{row.admin,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.AppAuthorization">
+    update AppAuthorization
+    <set>
+      <if test="userID != null">
+        UserID = #{userID,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        UserName = #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="time != null">
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mac != null">
+        Mac = #{mac,jdbcType=NVARCHAR},
+      </if>
+      <if test="brand != null">
+        Brand = #{brand,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null">
+        State = #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="admin != null">
+        Admin = #{admin,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.AppAuthorization">
     update AppAuthorization
     set UserID = #{userID,jdbcType=INTEGER},
@@ -34,13 +255,4 @@
       Admin = #{admin,jdbcType=NVARCHAR}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ID, UserID, UserName, Time, Mac, Brand, State, Admin
-    from AppAuthorization
-    where ID = #{ID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select ID, UserID, UserName, Time, Mac, Brand, State, Admin
-    from AppAuthorization
-  </select>
 </mapper>

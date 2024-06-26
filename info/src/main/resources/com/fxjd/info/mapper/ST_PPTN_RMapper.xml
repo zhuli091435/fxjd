@@ -11,9 +11,96 @@
     <result column="DYP" jdbcType="DECIMAL" property="DYP" />
     <result column="WTH" jdbcType="NVARCHAR" property="WTH" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, STCD, TM, DRP, INTV, PDR, DYP, WTH
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_PPTN_RExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_PPTN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_PPTN_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ST_PPTN_R
     where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_PPTN_RExample">
+    delete from ST_PPTN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.ST_PPTN_R">
     insert into ST_PPTN_R (ID, STCD, TM, 
@@ -23,6 +110,140 @@
       #{DRP,jdbcType=DECIMAL}, #{INTV,jdbcType=DECIMAL}, #{PDR,jdbcType=DECIMAL}, #{DYP,jdbcType=DECIMAL}, 
       #{WTH,jdbcType=NVARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_PPTN_R">
+    insert into ST_PPTN_R
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="TM != null">
+        TM,
+      </if>
+      <if test="DRP != null">
+        DRP,
+      </if>
+      <if test="INTV != null">
+        INTV,
+      </if>
+      <if test="PDR != null">
+        PDR,
+      </if>
+      <if test="DYP != null">
+        DYP,
+      </if>
+      <if test="WTH != null">
+        WTH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="DRP != null">
+        #{DRP,jdbcType=DECIMAL},
+      </if>
+      <if test="INTV != null">
+        #{INTV,jdbcType=DECIMAL},
+      </if>
+      <if test="PDR != null">
+        #{PDR,jdbcType=DECIMAL},
+      </if>
+      <if test="DYP != null">
+        #{DYP,jdbcType=DECIMAL},
+      </if>
+      <if test="WTH != null">
+        #{WTH,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_PPTN_RExample" resultType="java.lang.Long">
+    select count(*) from ST_PPTN_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_PPTN_R
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.TM != null">
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.DRP != null">
+        DRP = #{row.DRP,jdbcType=DECIMAL},
+      </if>
+      <if test="row.INTV != null">
+        INTV = #{row.INTV,jdbcType=DECIMAL},
+      </if>
+      <if test="row.PDR != null">
+        PDR = #{row.PDR,jdbcType=DECIMAL},
+      </if>
+      <if test="row.DYP != null">
+        DYP = #{row.DYP,jdbcType=DECIMAL},
+      </if>
+      <if test="row.WTH != null">
+        WTH = #{row.WTH,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_PPTN_R
+    set ID = #{row.ID,jdbcType=INTEGER},
+      STCD = #{row.STCD,jdbcType=NVARCHAR},
+      TM = #{row.TM,jdbcType=TIMESTAMP},
+      DRP = #{row.DRP,jdbcType=DECIMAL},
+      INTV = #{row.INTV,jdbcType=DECIMAL},
+      PDR = #{row.PDR,jdbcType=DECIMAL},
+      DYP = #{row.DYP,jdbcType=DECIMAL},
+      WTH = #{row.WTH,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_PPTN_R">
+    update ST_PPTN_R
+    <set>
+      <if test="STCD != null">
+        STCD = #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        TM = #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="DRP != null">
+        DRP = #{DRP,jdbcType=DECIMAL},
+      </if>
+      <if test="INTV != null">
+        INTV = #{INTV,jdbcType=DECIMAL},
+      </if>
+      <if test="PDR != null">
+        PDR = #{PDR,jdbcType=DECIMAL},
+      </if>
+      <if test="DYP != null">
+        DYP = #{DYP,jdbcType=DECIMAL},
+      </if>
+      <if test="WTH != null">
+        WTH = #{WTH,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_PPTN_R">
     update ST_PPTN_R
     set STCD = #{STCD,jdbcType=NVARCHAR},
@@ -34,13 +255,4 @@
       WTH = #{WTH,jdbcType=NVARCHAR}
     where ID = #{ID,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ID, STCD, TM, DRP, INTV, PDR, DYP, WTH
-    from ST_PPTN_R
-    where ID = #{ID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select ID, STCD, TM, DRP, INTV, PDR, DYP, WTH
-    from ST_PPTN_R
-  </select>
 </mapper>

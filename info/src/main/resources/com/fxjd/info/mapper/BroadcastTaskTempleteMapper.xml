@@ -14,9 +14,97 @@
     <result column="play_second" jdbcType="INTEGER" property="play_second" />
     <result column="Remark" jdbcType="NVARCHAR" property="remark" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    TempleteID, TaskName, Method, State, Text, BroadcastFileIDs, BroadcastEndpoints, 
+    play_mode, play_volume, play_second, Remark
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.BroadcastTaskTempleteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BroadcastTaskTemplete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BroadcastTaskTemplete
+    where TempleteID = #{templeteID,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from BroadcastTaskTemplete
     where TempleteID = #{templeteID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.BroadcastTaskTempleteExample">
+    delete from BroadcastTaskTemplete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.BroadcastTaskTemplete">
     insert into BroadcastTaskTemplete (TempleteID, TaskName, Method, 
@@ -28,6 +116,179 @@
       #{broadcastEndpoints,jdbcType=NVARCHAR}, #{play_mode,jdbcType=INTEGER}, #{play_volume,jdbcType=INTEGER}, 
       #{play_second,jdbcType=INTEGER}, #{remark,jdbcType=NVARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.BroadcastTaskTemplete">
+    insert into BroadcastTaskTemplete
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="templeteID != null">
+        TempleteID,
+      </if>
+      <if test="taskName != null">
+        TaskName,
+      </if>
+      <if test="method != null">
+        Method,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="text != null">
+        Text,
+      </if>
+      <if test="broadcastFileIDs != null">
+        BroadcastFileIDs,
+      </if>
+      <if test="broadcastEndpoints != null">
+        BroadcastEndpoints,
+      </if>
+      <if test="play_mode != null">
+        play_mode,
+      </if>
+      <if test="play_volume != null">
+        play_volume,
+      </if>
+      <if test="play_second != null">
+        play_second,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="templeteID != null">
+        #{templeteID,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=NVARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=NVARCHAR},
+      </if>
+      <if test="broadcastFileIDs != null">
+        #{broadcastFileIDs,jdbcType=NVARCHAR},
+      </if>
+      <if test="broadcastEndpoints != null">
+        #{broadcastEndpoints,jdbcType=NVARCHAR},
+      </if>
+      <if test="play_mode != null">
+        #{play_mode,jdbcType=INTEGER},
+      </if>
+      <if test="play_volume != null">
+        #{play_volume,jdbcType=INTEGER},
+      </if>
+      <if test="play_second != null">
+        #{play_second,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.BroadcastTaskTempleteExample" resultType="java.lang.Long">
+    select count(*) from BroadcastTaskTemplete
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update BroadcastTaskTemplete
+    <set>
+      <if test="row.templeteID != null">
+        TempleteID = #{row.templeteID,jdbcType=INTEGER},
+      </if>
+      <if test="row.taskName != null">
+        TaskName = #{row.taskName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.method != null">
+        Method = #{row.method,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.state != null">
+        State = #{row.state,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.text != null">
+        Text = #{row.text,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.broadcastFileIDs != null">
+        BroadcastFileIDs = #{row.broadcastFileIDs,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.broadcastEndpoints != null">
+        BroadcastEndpoints = #{row.broadcastEndpoints,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.play_mode != null">
+        play_mode = #{row.play_mode,jdbcType=INTEGER},
+      </if>
+      <if test="row.play_volume != null">
+        play_volume = #{row.play_volume,jdbcType=INTEGER},
+      </if>
+      <if test="row.play_second != null">
+        play_second = #{row.play_second,jdbcType=INTEGER},
+      </if>
+      <if test="row.remark != null">
+        Remark = #{row.remark,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update BroadcastTaskTemplete
+    set TempleteID = #{row.templeteID,jdbcType=INTEGER},
+      TaskName = #{row.taskName,jdbcType=NVARCHAR},
+      Method = #{row.method,jdbcType=NVARCHAR},
+      State = #{row.state,jdbcType=NVARCHAR},
+      Text = #{row.text,jdbcType=NVARCHAR},
+      BroadcastFileIDs = #{row.broadcastFileIDs,jdbcType=NVARCHAR},
+      BroadcastEndpoints = #{row.broadcastEndpoints,jdbcType=NVARCHAR},
+      play_mode = #{row.play_mode,jdbcType=INTEGER},
+      play_volume = #{row.play_volume,jdbcType=INTEGER},
+      play_second = #{row.play_second,jdbcType=INTEGER},
+      Remark = #{row.remark,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.BroadcastTaskTemplete">
+    update BroadcastTaskTemplete
+    <set>
+      <if test="taskName != null">
+        TaskName = #{taskName,jdbcType=NVARCHAR},
+      </if>
+      <if test="method != null">
+        Method = #{method,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null">
+        State = #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="text != null">
+        Text = #{text,jdbcType=NVARCHAR},
+      </if>
+      <if test="broadcastFileIDs != null">
+        BroadcastFileIDs = #{broadcastFileIDs,jdbcType=NVARCHAR},
+      </if>
+      <if test="broadcastEndpoints != null">
+        BroadcastEndpoints = #{broadcastEndpoints,jdbcType=NVARCHAR},
+      </if>
+      <if test="play_mode != null">
+        play_mode = #{play_mode,jdbcType=INTEGER},
+      </if>
+      <if test="play_volume != null">
+        play_volume = #{play_volume,jdbcType=INTEGER},
+      </if>
+      <if test="play_second != null">
+        play_second = #{play_second,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where TempleteID = #{templeteID,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.BroadcastTaskTemplete">
     update BroadcastTaskTemplete
     set TaskName = #{taskName,jdbcType=NVARCHAR},
@@ -42,15 +303,4 @@
       Remark = #{remark,jdbcType=NVARCHAR}
     where TempleteID = #{templeteID,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select TempleteID, TaskName, Method, State, Text, BroadcastFileIDs, BroadcastEndpoints, 
-    play_mode, play_volume, play_second, Remark
-    from BroadcastTaskTemplete
-    where TempleteID = #{templeteID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select TempleteID, TaskName, Method, State, Text, BroadcastFileIDs, BroadcastEndpoints, 
-    play_mode, play_volume, play_second, Remark
-    from BroadcastTaskTemplete
-  </select>
 </mapper>

@@ -16,9 +16,97 @@
     <result column="IsOnline" jdbcType="NVARCHAR" property="isOnline" />
     <result column="HomeControl" jdbcType="NVARCHAR" property="homeControl" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UserID, UserName, Gender, PassWord, DepartmentID, Job, Phone, Telephone, Role, IsShow, 
+    LeaderID, IsOnline, HomeControl
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.User_BExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from User_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from User_B
+    where UserID = #{userID,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from User_B
     where UserID = #{userID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.User_BExample">
+    delete from User_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.User_B">
     insert into User_B (UserID, UserName, Gender, 
@@ -32,6 +120,205 @@
       #{isShow,jdbcType=NVARCHAR}, #{leaderID,jdbcType=NVARCHAR}, #{isOnline,jdbcType=NVARCHAR}, 
       #{homeControl,jdbcType=NVARCHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.User_B">
+    insert into User_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        UserID,
+      </if>
+      <if test="userName != null">
+        UserName,
+      </if>
+      <if test="gender != null">
+        Gender,
+      </if>
+      <if test="passWord != null">
+        PassWord,
+      </if>
+      <if test="departmentID != null">
+        DepartmentID,
+      </if>
+      <if test="job != null">
+        Job,
+      </if>
+      <if test="phone != null">
+        Phone,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="role != null">
+        Role,
+      </if>
+      <if test="isShow != null">
+        IsShow,
+      </if>
+      <if test="leaderID != null">
+        LeaderID,
+      </if>
+      <if test="isOnline != null">
+        IsOnline,
+      </if>
+      <if test="homeControl != null">
+        HomeControl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        #{userID,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=NVARCHAR},
+      </if>
+      <if test="passWord != null">
+        #{passWord,jdbcType=NVARCHAR},
+      </if>
+      <if test="departmentID != null">
+        #{departmentID,jdbcType=NVARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=NVARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=NVARCHAR},
+      </if>
+      <if test="leaderID != null">
+        #{leaderID,jdbcType=NVARCHAR},
+      </if>
+      <if test="isOnline != null">
+        #{isOnline,jdbcType=NVARCHAR},
+      </if>
+      <if test="homeControl != null">
+        #{homeControl,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.User_BExample" resultType="java.lang.Long">
+    select count(*) from User_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update User_B
+    <set>
+      <if test="row.userID != null">
+        UserID = #{row.userID,jdbcType=INTEGER},
+      </if>
+      <if test="row.userName != null">
+        UserName = #{row.userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.gender != null">
+        Gender = #{row.gender,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.passWord != null">
+        PassWord = #{row.passWord,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.departmentID != null">
+        DepartmentID = #{row.departmentID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.job != null">
+        Job = #{row.job,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.phone != null">
+        Phone = #{row.phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.telephone != null">
+        Telephone = #{row.telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.role != null">
+        Role = #{row.role,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.isShow != null">
+        IsShow = #{row.isShow,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.leaderID != null">
+        LeaderID = #{row.leaderID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.isOnline != null">
+        IsOnline = #{row.isOnline,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.homeControl != null">
+        HomeControl = #{row.homeControl,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update User_B
+    set UserID = #{row.userID,jdbcType=INTEGER},
+      UserName = #{row.userName,jdbcType=NVARCHAR},
+      Gender = #{row.gender,jdbcType=NVARCHAR},
+      PassWord = #{row.passWord,jdbcType=NVARCHAR},
+      DepartmentID = #{row.departmentID,jdbcType=NVARCHAR},
+      Job = #{row.job,jdbcType=NVARCHAR},
+      Phone = #{row.phone,jdbcType=NVARCHAR},
+      Telephone = #{row.telephone,jdbcType=NVARCHAR},
+      Role = #{row.role,jdbcType=NVARCHAR},
+      IsShow = #{row.isShow,jdbcType=NVARCHAR},
+      LeaderID = #{row.leaderID,jdbcType=NVARCHAR},
+      IsOnline = #{row.isOnline,jdbcType=NVARCHAR},
+      HomeControl = #{row.homeControl,jdbcType=NVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.User_B">
+    update User_B
+    <set>
+      <if test="userName != null">
+        UserName = #{userName,jdbcType=NVARCHAR},
+      </if>
+      <if test="gender != null">
+        Gender = #{gender,jdbcType=NVARCHAR},
+      </if>
+      <if test="passWord != null">
+        PassWord = #{passWord,jdbcType=NVARCHAR},
+      </if>
+      <if test="departmentID != null">
+        DepartmentID = #{departmentID,jdbcType=NVARCHAR},
+      </if>
+      <if test="job != null">
+        Job = #{job,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        Phone = #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephone != null">
+        Telephone = #{telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="role != null">
+        Role = #{role,jdbcType=NVARCHAR},
+      </if>
+      <if test="isShow != null">
+        IsShow = #{isShow,jdbcType=NVARCHAR},
+      </if>
+      <if test="leaderID != null">
+        LeaderID = #{leaderID,jdbcType=NVARCHAR},
+      </if>
+      <if test="isOnline != null">
+        IsOnline = #{isOnline,jdbcType=NVARCHAR},
+      </if>
+      <if test="homeControl != null">
+        HomeControl = #{homeControl,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where UserID = #{userID,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.User_B">
     update User_B
     set UserName = #{userName,jdbcType=NVARCHAR},
@@ -48,15 +335,4 @@
       HomeControl = #{homeControl,jdbcType=NVARCHAR}
     where UserID = #{userID,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select UserID, UserName, Gender, PassWord, DepartmentID, Job, Phone, Telephone, Role, 
-    IsShow, LeaderID, IsOnline, HomeControl
-    from User_B
-    where UserID = #{userID,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select UserID, UserName, Gender, PassWord, DepartmentID, Job, Phone, Telephone, Role, 
-    IsShow, LeaderID, IsOnline, HomeControl
-    from User_B
-  </select>
 </mapper>
