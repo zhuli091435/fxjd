@@ -76,9 +76,9 @@
         <!--        <table tableName="CtrlDetails" domainObjectName="CtrlDetails">-->
         <!--            <property name="useActualColumnNames" value="true"/>-->
         <!--        </table>-->
-        <!--        <table tableName="CtrlOrder" domainObjectName="CtrlOrder">-->
-        <!--            <property name="useActualColumnNames" value="true"/>-->
-        <!--        </table>-->
+<!--                <table tableName="CtrlOrder" domainObjectName="CtrlOrder">-->
+<!--                    <property name="useActualColumnNames" value="true"/>-->
+<!--                </table>-->
         <!--        <table tableName="CtrlRecord" domainObjectName="CtrlRecord">-->
         <!--            <property name="useActualColumnNames" value="true"/>-->
         <!--        </table>-->
@@ -156,19 +156,19 @@
 <!--                <table tableName="ST_WaveMaker_R" domainObjectName="ST_WaveMaker_R">-->
 <!--                    <property name="useActualColumnNames" value="true"/>-->
 <!--                </table>-->
-        <table tableName="ST_Valve_B" domainObjectName="ST_Valve_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="ST_Valve_R" domainObjectName="ST_Valve_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+<!--        <table tableName="ST_Valve_B" domainObjectName="ST_Valve_B">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--        </table>-->
+<!--        <table tableName="ST_Valve_R" domainObjectName="ST_Valve_R">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--        </table>-->
 
-        <table tableName="ST_Flow_B" domainObjectName="ST_Flow_B">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+<!--        <table tableName="ST_Flow_B" domainObjectName="ST_Flow_B">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--        </table>-->
 
-        <table tableName="ST_Flow_R" domainObjectName="ST_Flow_R">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+<!--        <table tableName="ST_Flow_R" domainObjectName="ST_Flow_R">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

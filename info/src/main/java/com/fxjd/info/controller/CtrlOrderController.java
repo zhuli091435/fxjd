@@ -12,7 +12,6 @@ import com.fxjd.info.service.CtrlRecordService;
 import com.fxjd.info.service.ST_STBPRP_BService;
 import com.fxjd.info.utils.HttpHelper;
 import com.fxjd.info.vo.ReqResult;
-import com.fxjd.info.vo.SendOrder;
 import jakarta.annotation.Resource;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -84,20 +83,9 @@ public class CtrlOrderController extends ParentController {
             ST_STBPRP_B stStbprpB = stStbprpBService.getBySTCD(ctrlOrder.getStationID());
             if (stStbprpB != null) {
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                SendOrder sendOrder = new SendOrder();
-                sendOrder.setStationID(stStbprpB.getRelationSTCD());
-                sendOrder.setDeviceID(ctrlOrder.getDeviceID());
-                sendOrder.setTime(simpleDateFormat.format(new Date()));
-                sendOrder.setUserID(ctrlOrder.getUserID());
-                sendOrder.setOrderCode(ctrlOrder.getOrderCode());
-                sendOrder.setOrderParam(ctrlOrder.getOrderParam());
-                sendOrder.setCtrlRecordID(ctrlOrder.getCtrlRecordID());
-                sendOrder.setIsExecute(0);
 
                 ObjectMapper objectMapper = new ObjectMapper();
-                String newString = objectMapper.writeValueAsString(sendOrder);
+                String newString = objectMapper.writeValueAsString(ctrlOrder);
 
                 String url = "http://localhost:8060/";
 

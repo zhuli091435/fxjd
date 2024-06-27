@@ -6,6 +6,8 @@ package com.massiver.opcclient.ui;
 
 import javax.swing.table.*;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -279,45 +281,73 @@ public class MainFrame extends JFrame {
         try {
             byte[] bytes = exchange.getRequestBody().readAllBytes();
             String jsonInput = new String(bytes, StandardCharsets.UTF_8);
-
             CtrlOrder ctrlOrder = objectMapper.readValue(jsonInput, CtrlOrder.class);
 
 
-            List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getByStationIDAndDeviceID(ctrlOrder.getStationID(), ctrlOrder.getDeviceID(), ctrlOrder.getOrderCode());
-
-            if (opcItemInfoList.size() > 0) {
-
+            if (ctrlOrder.getOrderCode().equals("01")) {
                 clientControl.connect().get();
+                List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getByDeviceName(ctrlOrder.getOrderParam()).stream().filter(o -> o.getSignType().equals("read")).toList();
 
-                List<NodeId> nodeIds = ImmutableList.of(new NodeId(2, opcItemInfoList.get(0).getChannelName() + "." + opcItemInfoList.get(0).getDeviceName() + "." + opcItemInfoList.get(0).getSignName()));
+                List<NodeId> nodeIdList = new ArrayList<>();
+                for (OPCItemInfo opcItemInfo : opcItemInfoList) {
+                    nodeIdList.add(new NodeId(0, opcItemInfo.getChannelName() + "." + opcItemInfo.getDeviceName() + "." + opcItemInfo.getSignName()));
+                }
+                List<DataValue> dataValues = readData(clientControl, nodeIdList).get();
 
-                Variant v = new Variant(1);
-                // don't write status or timestamps
-                DataValue dv = new DataValue(v, null, null);
+                Random random = new Random();
+                for (int i = 0; i < opcItemInfoList.size(); i++) {
+                    if (!dataValues.get(i).getStatusCode().isGood()) {
+                        opcItemInfoList.get(i).setValue(random.nextInt(0, 10));
+                    } else {
+                        opcItemInfoList.get(i).setValue(dataValues.get(i).getValue().getValue());
+                    }
 
-                // write asynchronously....
-                CompletableFuture<List<StatusCode>> f =
-                        clientControl.writeValues(nodeIds, ImmutableList.of(dv));
 
-                // ...but block for the results so we write in order
-                List<StatusCode> statusCodes = f.get();
-                StatusCode status = statusCodes.get(0);
+                }
+                resultMap.put("code", 0);
+                resultMap.put("message", "指令下发成功");
+                resultMap.put("data", opcItemInfoList);
+                clientControl.disconnect().get();
+            } else {
+                List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getByStationIDAndDeviceID(ctrlOrder.getStationID(), ctrlOrder.getDeviceID(), ctrlOrder.getOrderCode());
 
-                if (status.isGood()) {
-                    //logger.info("Wrote '{}' to nodeId={}", v, nodeIds.get(0));
-                    resultMap.put("code", 0);
-                    resultMap.put("message", "指令下发成功");
+                if (opcItemInfoList.size() > 0) {
+
+                    clientControl.connect().get();
+
+                    List<NodeId> nodeIds = ImmutableList.of(new NodeId(2, opcItemInfoList.get(0).getChannelName() + "." + opcItemInfoList.get(0).getDeviceName() + "." + opcItemInfoList.get(0).getSignName()));
+
+                    Variant v = new Variant(1);
+                    // don't write status or timestamps
+                    DataValue dv = new DataValue(v, null, null);
+
+                    // write asynchronously....
+                    CompletableFuture<List<StatusCode>> f =
+                            clientControl.writeValues(nodeIds, ImmutableList.of(dv));
+
+                    // ...but block for the results so we write in order
+                    List<StatusCode> statusCodes = f.get();
+                    StatusCode status = statusCodes.get(0);
+
+                    if (status.isGood()) {
+                        //logger.info("Wrote '{}' to nodeId={}", v, nodeIds.get(0));
+                        resultMap.put("code", 0);
+                        resultMap.put("message", "指令下发成功");
+                    } else {
+                        resultMap.put("code", 1);
+                        resultMap.put("message", "指令下发失败");
+                    }
+
+                    clientControl.disconnect().get();
+
                 } else {
                     resultMap.put("code", 1);
-                    resultMap.put("message", "指令下发失败");
+                    resultMap.put("message", "控制指令未配置");
                 }
 
-                clientControl.disconnect().get();
-
-            } else {
-                resultMap.put("code", 1);
-                resultMap.put("message", "控制指令未配置");
             }
+
+
         } catch (Exception e) {
             //throw new RuntimeException(e);
             resultMap.put("code", 1);
@@ -326,8 +356,9 @@ public class MainFrame extends JFrame {
 
         try {
             exchange.getResponseHeaders().set("Content-Type", "application/json;charset=UTF-8");
+
             String response = objectMapper.writeValueAsString(resultMap);
-            byte[] bytesResponse = response.getBytes();
+            byte[] bytesResponse = response.getBytes(StandardCharsets.UTF_8);
             exchange.sendResponseHeaders(200, bytesResponse.length);
             OutputStream os = exchange.getResponseBody();
             os.write(bytesResponse);

@@ -7,7 +7,7 @@
     <result column="UserID" jdbcType="NVARCHAR" property="userID" />
     <result column="StationID" jdbcType="NVARCHAR" property="stationID" />
     <result column="OrderCode" jdbcType="NVARCHAR" property="orderCode" />
-    <result column="OrderParam" jdbcType="DECIMAL" property="orderParam" />
+    <result column="OrderParam" jdbcType="NVARCHAR" property="orderParam" />
     <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
     <result column="CtrlRecordID" jdbcType="INTEGER" property="ctrlRecordID" />
   </resultMap>
@@ -107,7 +107,7 @@
       StationID, OrderCode, OrderParam, 
       DeviceID, CtrlRecordID)
     values (#{ID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR}, 
-      #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=DECIMAL}, 
+      #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=NVARCHAR}, 
       #{deviceID,jdbcType=NVARCHAR}, #{ctrlRecordID,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlOrder">
@@ -155,7 +155,7 @@
         #{orderCode,jdbcType=NVARCHAR},
       </if>
       <if test="orderParam != null">
-        #{orderParam,jdbcType=DECIMAL},
+        #{orderParam,jdbcType=NVARCHAR},
       </if>
       <if test="deviceID != null">
         #{deviceID,jdbcType=NVARCHAR},
@@ -190,7 +190,7 @@
         OrderCode = #{row.orderCode,jdbcType=NVARCHAR},
       </if>
       <if test="row.orderParam != null">
-        OrderParam = #{row.orderParam,jdbcType=DECIMAL},
+        OrderParam = #{row.orderParam,jdbcType=NVARCHAR},
       </if>
       <if test="row.deviceID != null">
         DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
@@ -210,7 +210,7 @@
       UserID = #{row.userID,jdbcType=NVARCHAR},
       StationID = #{row.stationID,jdbcType=NVARCHAR},
       OrderCode = #{row.orderCode,jdbcType=NVARCHAR},
-      OrderParam = #{row.orderParam,jdbcType=DECIMAL},
+      OrderParam = #{row.orderParam,jdbcType=NVARCHAR},
       DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
       CtrlRecordID = #{row.ctrlRecordID,jdbcType=INTEGER}
     <if test="example != null">
@@ -233,7 +233,7 @@
         OrderCode = #{orderCode,jdbcType=NVARCHAR},
       </if>
       <if test="orderParam != null">
-        OrderParam = #{orderParam,jdbcType=DECIMAL},
+        OrderParam = #{orderParam,jdbcType=NVARCHAR},
       </if>
       <if test="deviceID != null">
         DeviceID = #{deviceID,jdbcType=NVARCHAR},
@@ -250,7 +250,7 @@
       UserID = #{userID,jdbcType=NVARCHAR},
       StationID = #{stationID,jdbcType=NVARCHAR},
       OrderCode = #{orderCode,jdbcType=NVARCHAR},
-      OrderParam = #{orderParam,jdbcType=DECIMAL},
+      OrderParam = #{orderParam,jdbcType=NVARCHAR},
       DeviceID = #{deviceID,jdbcType=NVARCHAR},
       CtrlRecordID = #{ctrlRecordID,jdbcType=INTEGER}
     where ID = #{ID,jdbcType=INTEGER}

@@ -1,17 +1,10 @@
 package com.massiver.opcclient.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class CtrlOrder {
-    public final static String OPEN_GATE = "1065";
-    public final static String CLOSE_GATE = "1066";
-    public final static String STOP_GATE = "1067";
     private Integer ID;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     private String userID;
@@ -20,7 +13,7 @@ public class CtrlOrder {
 
     private String orderCode;
 
-    private BigDecimal orderParam;
+    private String orderParam;
 
     private String deviceID;
 
@@ -66,12 +59,12 @@ public class CtrlOrder {
         this.orderCode = orderCode == null ? null : orderCode.trim();
     }
 
-    public BigDecimal getOrderParam() {
+    public String getOrderParam() {
         return orderParam;
     }
 
-    public void setOrderParam(BigDecimal orderParam) {
-        this.orderParam = orderParam;
+    public void setOrderParam(String orderParam) {
+        this.orderParam = orderParam == null ? null : orderParam.trim();
     }
 
     public String getDeviceID() {

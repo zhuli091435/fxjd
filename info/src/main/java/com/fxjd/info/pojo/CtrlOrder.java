@@ -1,6 +1,5 @@
 package com.fxjd.info.pojo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class CtrlOrder {
@@ -14,7 +13,7 @@ public class CtrlOrder {
 
     private String orderCode;
 
-    private BigDecimal orderParam;
+    private String orderParam;
 
     private String deviceID;
 
@@ -60,12 +59,12 @@ public class CtrlOrder {
         this.orderCode = orderCode == null ? null : orderCode.trim();
     }
 
-    public BigDecimal getOrderParam() {
+    public String getOrderParam() {
         return orderParam;
     }
 
-    public void setOrderParam(BigDecimal orderParam) {
-        this.orderParam = orderParam;
+    public void setOrderParam(String orderParam) {
+        this.orderParam = orderParam == null ? null : orderParam.trim();
     }
 
     public String getDeviceID() {

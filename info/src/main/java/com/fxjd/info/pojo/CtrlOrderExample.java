@@ -1,6 +1,5 @@
 package com.fxjd.info.pojo;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -446,52 +445,62 @@ public class CtrlOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamEqualTo(BigDecimal value) {
+        public Criteria andOrderParamEqualTo(String value) {
             addCriterion("OrderParam =", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamNotEqualTo(BigDecimal value) {
+        public Criteria andOrderParamNotEqualTo(String value) {
             addCriterion("OrderParam <>", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamGreaterThan(BigDecimal value) {
+        public Criteria andOrderParamGreaterThan(String value) {
             addCriterion("OrderParam >", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andOrderParamGreaterThanOrEqualTo(String value) {
             addCriterion("OrderParam >=", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamLessThan(BigDecimal value) {
+        public Criteria andOrderParamLessThan(String value) {
             addCriterion("OrderParam <", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andOrderParamLessThanOrEqualTo(String value) {
             addCriterion("OrderParam <=", value, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamIn(List<BigDecimal> values) {
+        public Criteria andOrderParamLike(String value) {
+            addCriterion("OrderParam like", value, "orderParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderParamNotLike(String value) {
+            addCriterion("OrderParam not like", value, "orderParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderParamIn(List<String> values) {
             addCriterion("OrderParam in", values, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamNotIn(List<BigDecimal> values) {
+        public Criteria andOrderParamNotIn(List<String> values) {
             addCriterion("OrderParam not in", values, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andOrderParamBetween(String value1, String value2) {
             addCriterion("OrderParam between", value1, value2, "orderParam");
             return (Criteria) this;
         }
 
-        public Criteria andOrderParamNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andOrderParamNotBetween(String value1, String value2) {
             addCriterion("OrderParam not between", value1, value2, "orderParam");
             return (Criteria) this;
         }

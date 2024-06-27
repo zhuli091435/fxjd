@@ -1,16 +1,19 @@
 package com.fxjd.info.controller;
 
-import com.fxjd.info.pojo.ST_GATE_B;
-import com.fxjd.info.pojo.ST_GATE_R;
-import com.fxjd.info.pojo.ST_PUMP_B;
-import com.fxjd.info.pojo.ST_PUMP_R;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fxjd.info.pojo.*;
 import com.fxjd.info.service.*;
+import com.fxjd.info.utils.HttpHelper;
 import com.fxjd.info.vo.PumpVO;
+import com.fxjd.info.vo.ReqResult;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -52,5 +55,24 @@ public class ST_PUMP_RController {
         pumpVO.setPumps(st_pump_rList);
 
         return pumpVO;
+    }
+
+    @RequestMapping("/real/data")
+    public void getWaterPumpRealDataNew(String deviceName, HttpServletResponse response) throws JsonProcessingException {
+
+        PumpVO pumpVO = new PumpVO();
+        String url = "http://localhost:8060/control";
+
+        CtrlOrder ctrlOrder = new CtrlOrder();
+        ctrlOrder.setOrderCode("01");
+        ctrlOrder.setOrderParam(deviceName);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String newString = objectMapper.writeValueAsString(ctrlOrder);
+        try {
+            response.addHeader("Content-Type", "application/json;charset=UTF-8");
+            response.getWriter().write(HttpHelper.doPostJson(url, newString, null));
+        } catch (Exception ex) {
+
+        }
     }
 }
