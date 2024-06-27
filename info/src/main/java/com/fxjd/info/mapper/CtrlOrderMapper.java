@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.CtrlOrder;
 import com.fxjd.info.pojo.CtrlOrderExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CtrlOrderMapper {
     long countByExample(CtrlOrderExample example);
 

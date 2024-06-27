@@ -4,8 +4,10 @@ import com.fxjd.info.pojo.Alarm;
 import com.fxjd.info.pojo.AlarmExample;
 import com.fxjd.info.pojo.AlarmKey;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface AlarmMapper {
     long countByExample(AlarmExample example);
 

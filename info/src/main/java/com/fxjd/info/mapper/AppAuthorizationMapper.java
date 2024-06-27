@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.AppAuthorization;
 import com.fxjd.info.pojo.AppAuthorizationExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface AppAuthorizationMapper {
     long countByExample(AppAuthorizationExample example);
 

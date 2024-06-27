@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.WarnLog;
 import com.fxjd.info.pojo.WarnLogExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface WarnLogMapper {
     long countByExample(WarnLogExample example);
 

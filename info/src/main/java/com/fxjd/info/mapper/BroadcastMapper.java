@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.Broadcast;
 import com.fxjd.info.pojo.BroadcastExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface BroadcastMapper {
     long countByExample(BroadcastExample example);
 

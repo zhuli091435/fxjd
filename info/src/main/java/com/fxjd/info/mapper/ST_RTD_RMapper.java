@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.ST_RTD_R;
 import com.fxjd.info.pojo.ST_RTD_RExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ST_RTD_RMapper {
     long countByExample(ST_RTD_RExample example);
 

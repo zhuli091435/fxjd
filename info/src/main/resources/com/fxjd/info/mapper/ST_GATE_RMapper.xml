@@ -670,10 +670,11 @@
 
 
     <select id="getLatestBySTCD" resultMap="BaseResultMap">
-        select
+        select top 1
         <include refid="Base_Column_List"/>
         from ST_GATE_R
         where STCD=#{stcd }
         and EQPNO =#{eqpno}
+        order by TM desc
     </select>
 </mapper>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_Valve_RMapper">
+  <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_Valve_R">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="STCD" jdbcType="NVARCHAR" property="STCD" />
+    <result column="TM" jdbcType="TIMESTAMP" property="TM" />
+    <result column="EQPNO" jdbcType="NVARCHAR" property="EQPNO" />
+    <result column="ValveOpening" jdbcType="DECIMAL" property="valveOpening" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, STCD, TM, EQPNO, ValveOpening
+  </sql>
+  <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_Valve_RExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ST_Valve_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ST_Valve_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ST_Valve_R
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_Valve_RExample">
+    delete from ST_Valve_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxjd.info.pojo.ST_Valve_R">
+    insert into ST_Valve_R (ID, STCD, TM, 
+      EQPNO, ValveOpening)
+    values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP}, 
+      #{EQPNO,jdbcType=NVARCHAR}, #{valveOpening,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_Valve_R">
+    insert into ST_Valve_R
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="STCD != null">
+        STCD,
+      </if>
+      <if test="TM != null">
+        TM,
+      </if>
+      <if test="EQPNO != null">
+        EQPNO,
+      </if>
+      <if test="valveOpening != null">
+        ValveOpening,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="STCD != null">
+        #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="valveOpening != null">
+        #{valveOpening,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_Valve_RExample" resultType="java.lang.Long">
+    select count(*) from ST_Valve_R
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ST_Valve_R
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.STCD != null">
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.TM != null">
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.EQPNO != null">
+        EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.valveOpening != null">
+        ValveOpening = #{row.valveOpening,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ST_Valve_R
+    set ID = #{row.ID,jdbcType=INTEGER},
+      STCD = #{row.STCD,jdbcType=NVARCHAR},
+      TM = #{row.TM,jdbcType=TIMESTAMP},
+      EQPNO = #{row.EQPNO,jdbcType=NVARCHAR},
+      ValveOpening = #{row.valveOpening,jdbcType=DECIMAL}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_Valve_R">
+    update ST_Valve_R
+    <set>
+      <if test="STCD != null">
+        STCD = #{STCD,jdbcType=NVARCHAR},
+      </if>
+      <if test="TM != null">
+        TM = #{TM,jdbcType=TIMESTAMP},
+      </if>
+      <if test="EQPNO != null">
+        EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      </if>
+      <if test="valveOpening != null">
+        ValveOpening = #{valveOpening,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_Valve_R">
+    update ST_Valve_R
+    set STCD = #{STCD,jdbcType=NVARCHAR},
+      TM = #{TM,jdbcType=TIMESTAMP},
+      EQPNO = #{EQPNO,jdbcType=NVARCHAR},
+      ValveOpening = #{valveOpening,jdbcType=DECIMAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectLatestBySTCD" resultMap="BaseResultMap">
+    select top 1
+    <include refid="Base_Column_List"/>
+    from ST_Valve_R
+    where STCD=#{stcd }
+    and EQPNO =#{eqpno}
+    order by TM desc
+  </select>
+</mapper>

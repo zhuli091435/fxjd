@@ -4,8 +4,10 @@ import com.fxjd.info.pojo.ST_PUMP_B;
 import com.fxjd.info.pojo.ST_PUMP_BExample;
 import com.fxjd.info.pojo.ST_PUMP_BKey;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ST_PUMP_BMapper {
     long countByExample(ST_PUMP_BExample example);
 

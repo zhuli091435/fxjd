@@ -4,8 +4,10 @@ import com.fxjd.info.pojo.ST_GATE_B;
 import com.fxjd.info.pojo.ST_GATE_BExample;
 import com.fxjd.info.pojo.ST_GATE_BKey;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ST_GATE_BMapper {
     long countByExample(ST_GATE_BExample example);
 

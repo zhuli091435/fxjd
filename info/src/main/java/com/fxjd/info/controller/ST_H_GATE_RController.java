@@ -41,7 +41,7 @@ public class ST_H_GATE_RController {
         return st_h_gate_rList;
     }
 
-    @RequestMapping("/real/crack/gate/")
+    @RequestMapping("/real/crack/gate")
     public CrackVO getAllCrackGateRealData(String stcd) {
         CrackVO crackVO = new CrackVO();
         List<ST_H_GATE_R> st_h_gate_rList = new ArrayList<>();

@@ -5,8 +5,9 @@ import com.fxjd.info.pojo.ST_H_GATE_RExample;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
+@Mapper
 public interface ST_H_GATE_RMapper {
     long countByExample(ST_H_GATE_RExample example);
 

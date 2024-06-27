@@ -1,5 +1,7 @@
 package com.fxjd.info.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 

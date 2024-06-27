@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxjd.info.mapper.ST_WaveMaker_RMapper">
+    <resultMap id="BaseResultMap" type="com.fxjd.info.pojo.ST_WaveMaker_R">
+        <id column="ID" jdbcType="INTEGER" property="ID"/>
+        <result column="STCD" jdbcType="NVARCHAR" property="STCD"/>
+        <result column="TM" jdbcType="TIMESTAMP" property="TM"/>
+        <result column="Workmanship" jdbcType="NVARCHAR" property="workmanship"/>
+        <result column="CycleCount" jdbcType="INTEGER" property="cycleCount"/>
+        <result column="EquipStatus" jdbcType="NVARCHAR" property="equipStatus"/>
+        <result column="PositioningCompleted1" jdbcType="NVARCHAR" property="positioningCompleted1"/>
+        <result column="DriverFault1" jdbcType="NVARCHAR" property="driverFault1"/>
+        <result column="DriverEnable1" jdbcType="NVARCHAR" property="driverEnable1"/>
+        <result column="ReachLimit1" jdbcType="NVARCHAR" property="reachLimit1"/>
+        <result column="RetractLimit1" jdbcType="NVARCHAR" property="retractLimit1"/>
+        <result column="Fault1" jdbcType="NVARCHAR" property="fault1"/>
+        <result column="StopFault1" jdbcType="NVARCHAR" property="stopFault1"/>
+        <result column="OverTorque1" jdbcType="NVARCHAR" property="overTorque1"/>
+        <result column="Position1" jdbcType="DECIMAL" property="position1"/>
+        <result column="Torque1" jdbcType="DECIMAL" property="torque1"/>
+        <result column="Speed1" jdbcType="DECIMAL" property="speed1"/>
+        <result column="PositioningCompleted2" jdbcType="NVARCHAR" property="positioningCompleted2"/>
+        <result column="DriverFault2" jdbcType="NVARCHAR" property="driverFault2"/>
+        <result column="DriverEnable2" jdbcType="NVARCHAR" property="driverEnable2"/>
+        <result column="ReachLimit2" jdbcType="NVARCHAR" property="reachLimit2"/>
+        <result column="RetractLimit2" jdbcType="NVARCHAR" property="retractLimit2"/>
+        <result column="Fault2" jdbcType="NVARCHAR" property="fault2"/>
+        <result column="StopFault2" jdbcType="NVARCHAR" property="stopFault2"/>
+        <result column="OverTorque2" jdbcType="NVARCHAR" property="overTorque2"/>
+        <result column="Position2" jdbcType="DECIMAL" property="position2"/>
+        <result column="Torque2" jdbcType="DECIMAL" property="torque2"/>
+        <result column="Speed2" jdbcType="DECIMAL" property="speed2"/>
+        <result column="PositioningCompleted3" jdbcType="NVARCHAR" property="positioningCompleted3"/>
+        <result column="DriverFault3" jdbcType="NVARCHAR" property="driverFault3"/>
+        <result column="DriverEnable3" jdbcType="NVARCHAR" property="driverEnable3"/>
+        <result column="ReachLimit3" jdbcType="NVARCHAR" property="reachLimit3"/>
+        <result column="RetractLimit3" jdbcType="NVARCHAR" property="retractLimit3"/>
+        <result column="Fault3" jdbcType="NVARCHAR" property="fault3"/>
+        <result column="StopFault3" jdbcType="NVARCHAR" property="stopFault3"/>
+        <result column="OverTorque3" jdbcType="NVARCHAR" property="overTorque3"/>
+        <result column="Position3" jdbcType="DECIMAL" property="position3"/>
+        <result column="Torque3" jdbcType="DECIMAL" property="torque3"/>
+        <result column="Speed3" jdbcType="DECIMAL" property="speed3"/>
+        <result column="PositioningCompleted4" jdbcType="NVARCHAR" property="positioningCompleted4"/>
+        <result column="DriverFault4" jdbcType="NVARCHAR" property="driverFault4"/>
+        <result column="DriverEnable4" jdbcType="NVARCHAR" property="driverEnable4"/>
+        <result column="ReachLimit4" jdbcType="NVARCHAR" property="reachLimit4"/>
+        <result column="RetractLimit4" jdbcType="NVARCHAR" property="retractLimit4"/>
+        <result column="Fault4" jdbcType="NVARCHAR" property="fault4"/>
+        <result column="StopFault4" jdbcType="NVARCHAR" property="stopFault4"/>
+        <result column="OverTorque4" jdbcType="NVARCHAR" property="overTorque4"/>
+        <result column="Position4" jdbcType="DECIMAL" property="position4"/>
+        <result column="Torque4" jdbcType="DECIMAL" property="torque4"/>
+        <result column="Speed4" jdbcType="DECIMAL" property="speed4"/>
+        <result column="PositioningCompleted5" jdbcType="NVARCHAR" property="positioningCompleted5"/>
+        <result column="DriverFault5" jdbcType="NVARCHAR" property="driverFault5"/>
+        <result column="DriverEnable5" jdbcType="NVARCHAR" property="driverEnable5"/>
+        <result column="ReachLimit5" jdbcType="NVARCHAR" property="reachLimit5"/>
+        <result column="RetractLimit5" jdbcType="NVARCHAR" property="retractLimit5"/>
+        <result column="Fault5" jdbcType="NVARCHAR" property="fault5"/>
+        <result column="StopFault5" jdbcType="NVARCHAR" property="stopFault5"/>
+        <result column="OverTorque5" jdbcType="NVARCHAR" property="overTorque5"/>
+        <result column="Position5" jdbcType="DECIMAL" property="position5"/>
+        <result column="Torque5" jdbcType="DECIMAL" property="torque5"/>
+        <result column="Speed5" jdbcType="DECIMAL" property="speed5"/>
+        <result column="PositioningCompleted6" jdbcType="NVARCHAR" property="positioningCompleted6"/>
+        <result column="DriverFault6" jdbcType="NVARCHAR" property="driverFault6"/>
+        <result column="DriverEnable6" jdbcType="NVARCHAR" property="driverEnable6"/>
+        <result column="ReachLimit6" jdbcType="NVARCHAR" property="reachLimit6"/>
+        <result column="RetractLimit6" jdbcType="NVARCHAR" property="retractLimit6"/>
+        <result column="Fault6" jdbcType="NVARCHAR" property="fault6"/>
+        <result column="StopFault6" jdbcType="NVARCHAR" property="stopFault6"/>
+        <result column="OverTorque6" jdbcType="NVARCHAR" property="overTorque6"/>
+        <result column="Position6" jdbcType="DECIMAL" property="position6"/>
+        <result column="Torque6" jdbcType="DECIMAL" property="torque6"/>
+        <result column="Speed6" jdbcType="DECIMAL" property="speed6"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        ID
+        , STCD, TM, Workmanship, CycleCount, EquipStatus, PositioningCompleted1, DriverFault1,
+    DriverEnable1, ReachLimit1, RetractLimit1, Fault1, StopFault1, OverTorque1, Position1, 
+    Torque1, Speed1, PositioningCompleted2, DriverFault2, DriverEnable2, ReachLimit2, 
+    RetractLimit2, Fault2, StopFault2, OverTorque2, Position2, Torque2, Speed2, PositioningCompleted3, 
+    DriverFault3, DriverEnable3, ReachLimit3, RetractLimit3, Fault3, StopFault3, OverTorque3, 
+    Position3, Torque3, Speed3, PositioningCompleted4, DriverFault4, DriverEnable4, ReachLimit4, 
+    RetractLimit4, Fault4, StopFault4, OverTorque4, Position4, Torque4, Speed4, PositioningCompleted5, 
+    DriverFault5, DriverEnable5, ReachLimit5, RetractLimit5, Fault5, StopFault5, OverTorque5, 
+    Position5, Torque5, Speed5, PositioningCompleted6, DriverFault6, DriverEnable6, ReachLimit6, 
+    RetractLimit6, Fault6, StopFault6, OverTorque6, Position6, Torque6, Speed6
+    </sql>
+    <select id="selectByExample" parameterType="com.fxjd.info.pojo.ST_WaveMaker_RExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from ST_WaveMaker_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ST_WaveMaker_R
+        where ID = #{ID,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from ST_WaveMaker_R
+        where ID = #{ID,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.fxjd.info.pojo.ST_WaveMaker_RExample">
+        delete from ST_WaveMaker_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.fxjd.info.pojo.ST_WaveMaker_R">
+        insert into ST_WaveMaker_R (ID, STCD, TM,
+                                    Workmanship, CycleCount, EquipStatus,
+                                    PositioningCompleted1, DriverFault1,
+                                    DriverEnable1, ReachLimit1, RetractLimit1,
+                                    Fault1, StopFault1, OverTorque1,
+                                    Position1, Torque1, Speed1,
+                                    PositioningCompleted2, DriverFault2,
+                                    DriverEnable2, ReachLimit2, RetractLimit2,
+                                    Fault2, StopFault2, OverTorque2,
+                                    Position2, Torque2, Speed2,
+                                    PositioningCompleted3, DriverFault3,
+                                    DriverEnable3, ReachLimit3, RetractLimit3,
+                                    Fault3, StopFault3, OverTorque3,
+                                    Position3, Torque3, Speed3,
+                                    PositioningCompleted4, DriverFault4,
+                                    DriverEnable4, ReachLimit4, RetractLimit4,
+                                    Fault4, StopFault4, OverTorque4,
+                                    Position4, Torque4, Speed4,
+                                    PositioningCompleted5, DriverFault5,
+                                    DriverEnable5, ReachLimit5, RetractLimit5,
+                                    Fault5, StopFault5, OverTorque5,
+                                    Position5, Torque5, Speed5,
+                                    PositioningCompleted6, DriverFault6,
+                                    DriverEnable6, ReachLimit6, RetractLimit6,
+                                    Fault6, StopFault6, OverTorque6,
+                                    Position6, Torque6, Speed6)
+        values (#{ID,jdbcType=INTEGER}, #{STCD,jdbcType=NVARCHAR}, #{TM,jdbcType=TIMESTAMP},
+                #{workmanship,jdbcType=NVARCHAR}, #{cycleCount,jdbcType=INTEGER}, #{equipStatus,jdbcType=NVARCHAR},
+                #{positioningCompleted1,jdbcType=NVARCHAR}, #{driverFault1,jdbcType=NVARCHAR},
+                #{driverEnable1,jdbcType=NVARCHAR}, #{reachLimit1,jdbcType=NVARCHAR},
+                #{retractLimit1,jdbcType=NVARCHAR},
+                #{fault1,jdbcType=NVARCHAR}, #{stopFault1,jdbcType=NVARCHAR}, #{overTorque1,jdbcType=NVARCHAR},
+                #{position1,jdbcType=DECIMAL}, #{torque1,jdbcType=DECIMAL}, #{speed1,jdbcType=DECIMAL},
+                #{positioningCompleted2,jdbcType=NVARCHAR}, #{driverFault2,jdbcType=NVARCHAR},
+                #{driverEnable2,jdbcType=NVARCHAR}, #{reachLimit2,jdbcType=NVARCHAR},
+                #{retractLimit2,jdbcType=NVARCHAR},
+                #{fault2,jdbcType=NVARCHAR}, #{stopFault2,jdbcType=NVARCHAR}, #{overTorque2,jdbcType=NVARCHAR},
+                #{position2,jdbcType=DECIMAL}, #{torque2,jdbcType=DECIMAL}, #{speed2,jdbcType=DECIMAL},
+                #{positioningCompleted3,jdbcType=NVARCHAR}, #{driverFault3,jdbcType=NVARCHAR},
+                #{driverEnable3,jdbcType=NVARCHAR}, #{reachLimit3,jdbcType=NVARCHAR},
+                #{retractLimit3,jdbcType=NVARCHAR},
+                #{fault3,jdbcType=NVARCHAR}, #{stopFault3,jdbcType=NVARCHAR}, #{overTorque3,jdbcType=NVARCHAR},
+                #{position3,jdbcType=DECIMAL}, #{torque3,jdbcType=DECIMAL}, #{speed3,jdbcType=DECIMAL},
+                #{positioningCompleted4,jdbcType=NVARCHAR}, #{driverFault4,jdbcType=NVARCHAR},
+                #{driverEnable4,jdbcType=NVARCHAR}, #{reachLimit4,jdbcType=NVARCHAR},
+                #{retractLimit4,jdbcType=NVARCHAR},
+                #{fault4,jdbcType=NVARCHAR}, #{stopFault4,jdbcType=NVARCHAR}, #{overTorque4,jdbcType=NVARCHAR},
+                #{position4,jdbcType=DECIMAL}, #{torque4,jdbcType=DECIMAL}, #{speed4,jdbcType=DECIMAL},
+                #{positioningCompleted5,jdbcType=NVARCHAR}, #{driverFault5,jdbcType=NVARCHAR},
+                #{driverEnable5,jdbcType=NVARCHAR}, #{reachLimit5,jdbcType=NVARCHAR},
+                #{retractLimit5,jdbcType=NVARCHAR},
+                #{fault5,jdbcType=NVARCHAR}, #{stopFault5,jdbcType=NVARCHAR}, #{overTorque5,jdbcType=NVARCHAR},
+                #{position5,jdbcType=DECIMAL}, #{torque5,jdbcType=DECIMAL}, #{speed5,jdbcType=DECIMAL},
+                #{positioningCompleted6,jdbcType=NVARCHAR}, #{driverFault6,jdbcType=NVARCHAR},
+                #{driverEnable6,jdbcType=NVARCHAR}, #{reachLimit6,jdbcType=NVARCHAR},
+                #{retractLimit6,jdbcType=NVARCHAR},
+                #{fault6,jdbcType=NVARCHAR}, #{stopFault6,jdbcType=NVARCHAR}, #{overTorque6,jdbcType=NVARCHAR},
+                #{position6,jdbcType=DECIMAL}, #{torque6,jdbcType=DECIMAL}, #{speed6,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="com.fxjd.info.pojo.ST_WaveMaker_R">
+        insert into ST_WaveMaker_R
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                ID,
+            </if>
+            <if test="STCD != null">
+                STCD,
+            </if>
+            <if test="TM != null">
+                TM,
+            </if>
+            <if test="workmanship != null">
+                Workmanship,
+            </if>
+            <if test="cycleCount != null">
+                CycleCount,
+            </if>
+            <if test="equipStatus != null">
+                EquipStatus,
+            </if>
+            <if test="positioningCompleted1 != null">
+                PositioningCompleted1,
+            </if>
+            <if test="driverFault1 != null">
+                DriverFault1,
+            </if>
+            <if test="driverEnable1 != null">
+                DriverEnable1,
+            </if>
+            <if test="reachLimit1 != null">
+                ReachLimit1,
+            </if>
+            <if test="retractLimit1 != null">
+                RetractLimit1,
+            </if>
+            <if test="fault1 != null">
+                Fault1,
+            </if>
+            <if test="stopFault1 != null">
+                StopFault1,
+            </if>
+            <if test="overTorque1 != null">
+                OverTorque1,
+            </if>
+            <if test="position1 != null">
+                Position1,
+            </if>
+            <if test="torque1 != null">
+                Torque1,
+            </if>
+            <if test="speed1 != null">
+                Speed1,
+            </if>
+            <if test="positioningCompleted2 != null">
+                PositioningCompleted2,
+            </if>
+            <if test="driverFault2 != null">
+                DriverFault2,
+            </if>
+            <if test="driverEnable2 != null">
+                DriverEnable2,
+            </if>
+            <if test="reachLimit2 != null">
+                ReachLimit2,
+            </if>
+            <if test="retractLimit2 != null">
+                RetractLimit2,
+            </if>
+            <if test="fault2 != null">
+                Fault2,
+            </if>
+            <if test="stopFault2 != null">
+                StopFault2,
+            </if>
+            <if test="overTorque2 != null">
+                OverTorque2,
+            </if>
+            <if test="position2 != null">
+                Position2,
+            </if>
+            <if test="torque2 != null">
+                Torque2,
+            </if>
+            <if test="speed2 != null">
+                Speed2,
+            </if>
+            <if test="positioningCompleted3 != null">
+                PositioningCompleted3,
+            </if>
+            <if test="driverFault3 != null">
+                DriverFault3,
+            </if>
+            <if test="driverEnable3 != null">
+                DriverEnable3,
+            </if>
+            <if test="reachLimit3 != null">
+                ReachLimit3,
+            </if>
+            <if test="retractLimit3 != null">
+                RetractLimit3,
+            </if>
+            <if test="fault3 != null">
+                Fault3,
+            </if>
+            <if test="stopFault3 != null">
+                StopFault3,
+            </if>
+            <if test="overTorque3 != null">
+                OverTorque3,
+            </if>
+            <if test="position3 != null">
+                Position3,
+            </if>
+            <if test="torque3 != null">
+                Torque3,
+            </if>
+            <if test="speed3 != null">
+                Speed3,
+            </if>
+            <if test="positioningCompleted4 != null">
+                PositioningCompleted4,
+            </if>
+            <if test="driverFault4 != null">
+                DriverFault4,
+            </if>
+            <if test="driverEnable4 != null">
+                DriverEnable4,
+            </if>
+            <if test="reachLimit4 != null">
+                ReachLimit4,
+            </if>
+            <if test="retractLimit4 != null">
+                RetractLimit4,
+            </if>
+            <if test="fault4 != null">
+                Fault4,
+            </if>
+            <if test="stopFault4 != null">
+                StopFault4,
+            </if>
+            <if test="overTorque4 != null">
+                OverTorque4,
+            </if>
+            <if test="position4 != null">
+                Position4,
+            </if>
+            <if test="torque4 != null">
+                Torque4,
+            </if>
+            <if test="speed4 != null">
+                Speed4,
+            </if>
+            <if test="positioningCompleted5 != null">
+                PositioningCompleted5,
+            </if>
+            <if test="driverFault5 != null">
+                DriverFault5,
+            </if>
+            <if test="driverEnable5 != null">
+                DriverEnable5,
+            </if>
+            <if test="reachLimit5 != null">
+                ReachLimit5,
+            </if>
+            <if test="retractLimit5 != null">
+                RetractLimit5,
+            </if>
+            <if test="fault5 != null">
+                Fault5,
+            </if>
+            <if test="stopFault5 != null">
+                StopFault5,
+            </if>
+            <if test="overTorque5 != null">
+                OverTorque5,
+            </if>
+            <if test="position5 != null">
+                Position5,
+            </if>
+            <if test="torque5 != null">
+                Torque5,
+            </if>
+            <if test="speed5 != null">
+                Speed5,
+            </if>
+            <if test="positioningCompleted6 != null">
+                PositioningCompleted6,
+            </if>
+            <if test="driverFault6 != null">
+                DriverFault6,
+            </if>
+            <if test="driverEnable6 != null">
+                DriverEnable6,
+            </if>
+            <if test="reachLimit6 != null">
+                ReachLimit6,
+            </if>
+            <if test="retractLimit6 != null">
+                RetractLimit6,
+            </if>
+            <if test="fault6 != null">
+                Fault6,
+            </if>
+            <if test="stopFault6 != null">
+                StopFault6,
+            </if>
+            <if test="overTorque6 != null">
+                OverTorque6,
+            </if>
+            <if test="position6 != null">
+                Position6,
+            </if>
+            <if test="torque6 != null">
+                Torque6,
+            </if>
+            <if test="speed6 != null">
+                Speed6,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">
+                #{ID,jdbcType=INTEGER},
+            </if>
+            <if test="STCD != null">
+                #{STCD,jdbcType=NVARCHAR},
+            </if>
+            <if test="TM != null">
+                #{TM,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workmanship != null">
+                #{workmanship,jdbcType=NVARCHAR},
+            </if>
+            <if test="cycleCount != null">
+                #{cycleCount,jdbcType=INTEGER},
+            </if>
+            <if test="equipStatus != null">
+                #{equipStatus,jdbcType=NVARCHAR},
+            </if>
+            <if test="positioningCompleted1 != null">
+                #{positioningCompleted1,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault1 != null">
+                #{driverFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable1 != null">
+                #{driverEnable1,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit1 != null">
+                #{reachLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit1 != null">
+                #{retractLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault1 != null">
+                #{fault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault1 != null">
+                #{stopFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque1 != null">
+                #{overTorque1,jdbcType=NVARCHAR},
+            </if>
+            <if test="position1 != null">
+                #{position1,jdbcType=DECIMAL},
+            </if>
+            <if test="torque1 != null">
+                #{torque1,jdbcType=DECIMAL},
+            </if>
+            <if test="speed1 != null">
+                #{speed1,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted2 != null">
+                #{positioningCompleted2,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault2 != null">
+                #{driverFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable2 != null">
+                #{driverEnable2,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit2 != null">
+                #{reachLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit2 != null">
+                #{retractLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault2 != null">
+                #{fault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault2 != null">
+                #{stopFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque2 != null">
+                #{overTorque2,jdbcType=NVARCHAR},
+            </if>
+            <if test="position2 != null">
+                #{position2,jdbcType=DECIMAL},
+            </if>
+            <if test="torque2 != null">
+                #{torque2,jdbcType=DECIMAL},
+            </if>
+            <if test="speed2 != null">
+                #{speed2,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted3 != null">
+                #{positioningCompleted3,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault3 != null">
+                #{driverFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable3 != null">
+                #{driverEnable3,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit3 != null">
+                #{reachLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit3 != null">
+                #{retractLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault3 != null">
+                #{fault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault3 != null">
+                #{stopFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque3 != null">
+                #{overTorque3,jdbcType=NVARCHAR},
+            </if>
+            <if test="position3 != null">
+                #{position3,jdbcType=DECIMAL},
+            </if>
+            <if test="torque3 != null">
+                #{torque3,jdbcType=DECIMAL},
+            </if>
+            <if test="speed3 != null">
+                #{speed3,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted4 != null">
+                #{positioningCompleted4,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault4 != null">
+                #{driverFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable4 != null">
+                #{driverEnable4,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit4 != null">
+                #{reachLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit4 != null">
+                #{retractLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault4 != null">
+                #{fault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault4 != null">
+                #{stopFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque4 != null">
+                #{overTorque4,jdbcType=NVARCHAR},
+            </if>
+            <if test="position4 != null">
+                #{position4,jdbcType=DECIMAL},
+            </if>
+            <if test="torque4 != null">
+                #{torque4,jdbcType=DECIMAL},
+            </if>
+            <if test="speed4 != null">
+                #{speed4,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted5 != null">
+                #{positioningCompleted5,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault5 != null">
+                #{driverFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable5 != null">
+                #{driverEnable5,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit5 != null">
+                #{reachLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit5 != null">
+                #{retractLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault5 != null">
+                #{fault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault5 != null">
+                #{stopFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque5 != null">
+                #{overTorque5,jdbcType=NVARCHAR},
+            </if>
+            <if test="position5 != null">
+                #{position5,jdbcType=DECIMAL},
+            </if>
+            <if test="torque5 != null">
+                #{torque5,jdbcType=DECIMAL},
+            </if>
+            <if test="speed5 != null">
+                #{speed5,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted6 != null">
+                #{positioningCompleted6,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault6 != null">
+                #{driverFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable6 != null">
+                #{driverEnable6,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit6 != null">
+                #{reachLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit6 != null">
+                #{retractLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault6 != null">
+                #{fault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault6 != null">
+                #{stopFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque6 != null">
+                #{overTorque6,jdbcType=NVARCHAR},
+            </if>
+            <if test="position6 != null">
+                #{position6,jdbcType=DECIMAL},
+            </if>
+            <if test="torque6 != null">
+                #{torque6,jdbcType=DECIMAL},
+            </if>
+            <if test="speed6 != null">
+                #{speed6,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.fxjd.info.pojo.ST_WaveMaker_RExample" resultType="java.lang.Long">
+        select count(*) from ST_WaveMaker_R
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update ST_WaveMaker_R
+        <set>
+            <if test="row.ID != null">
+                ID = #{row.ID,jdbcType=INTEGER},
+            </if>
+            <if test="row.STCD != null">
+                STCD = #{row.STCD,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.TM != null">
+                TM = #{row.TM,jdbcType=TIMESTAMP},
+            </if>
+            <if test="row.workmanship != null">
+                Workmanship = #{row.workmanship,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.cycleCount != null">
+                CycleCount = #{row.cycleCount,jdbcType=INTEGER},
+            </if>
+            <if test="row.equipStatus != null">
+                EquipStatus = #{row.equipStatus,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.positioningCompleted1 != null">
+                PositioningCompleted1 = #{row.positioningCompleted1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault1 != null">
+                DriverFault1 = #{row.driverFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable1 != null">
+                DriverEnable1 = #{row.driverEnable1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit1 != null">
+                ReachLimit1 = #{row.reachLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit1 != null">
+                RetractLimit1 = #{row.retractLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault1 != null">
+                Fault1 = #{row.fault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault1 != null">
+                StopFault1 = #{row.stopFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque1 != null">
+                OverTorque1 = #{row.overTorque1,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position1 != null">
+                Position1 = #{row.position1,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque1 != null">
+                Torque1 = #{row.torque1,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed1 != null">
+                Speed1 = #{row.speed1,jdbcType=DECIMAL},
+            </if>
+            <if test="row.positioningCompleted2 != null">
+                PositioningCompleted2 = #{row.positioningCompleted2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault2 != null">
+                DriverFault2 = #{row.driverFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable2 != null">
+                DriverEnable2 = #{row.driverEnable2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit2 != null">
+                ReachLimit2 = #{row.reachLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit2 != null">
+                RetractLimit2 = #{row.retractLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault2 != null">
+                Fault2 = #{row.fault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault2 != null">
+                StopFault2 = #{row.stopFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque2 != null">
+                OverTorque2 = #{row.overTorque2,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position2 != null">
+                Position2 = #{row.position2,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque2 != null">
+                Torque2 = #{row.torque2,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed2 != null">
+                Speed2 = #{row.speed2,jdbcType=DECIMAL},
+            </if>
+            <if test="row.positioningCompleted3 != null">
+                PositioningCompleted3 = #{row.positioningCompleted3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault3 != null">
+                DriverFault3 = #{row.driverFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable3 != null">
+                DriverEnable3 = #{row.driverEnable3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit3 != null">
+                ReachLimit3 = #{row.reachLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit3 != null">
+                RetractLimit3 = #{row.retractLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault3 != null">
+                Fault3 = #{row.fault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault3 != null">
+                StopFault3 = #{row.stopFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque3 != null">
+                OverTorque3 = #{row.overTorque3,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position3 != null">
+                Position3 = #{row.position3,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque3 != null">
+                Torque3 = #{row.torque3,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed3 != null">
+                Speed3 = #{row.speed3,jdbcType=DECIMAL},
+            </if>
+            <if test="row.positioningCompleted4 != null">
+                PositioningCompleted4 = #{row.positioningCompleted4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault4 != null">
+                DriverFault4 = #{row.driverFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable4 != null">
+                DriverEnable4 = #{row.driverEnable4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit4 != null">
+                ReachLimit4 = #{row.reachLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit4 != null">
+                RetractLimit4 = #{row.retractLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault4 != null">
+                Fault4 = #{row.fault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault4 != null">
+                StopFault4 = #{row.stopFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque4 != null">
+                OverTorque4 = #{row.overTorque4,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position4 != null">
+                Position4 = #{row.position4,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque4 != null">
+                Torque4 = #{row.torque4,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed4 != null">
+                Speed4 = #{row.speed4,jdbcType=DECIMAL},
+            </if>
+            <if test="row.positioningCompleted5 != null">
+                PositioningCompleted5 = #{row.positioningCompleted5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault5 != null">
+                DriverFault5 = #{row.driverFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable5 != null">
+                DriverEnable5 = #{row.driverEnable5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit5 != null">
+                ReachLimit5 = #{row.reachLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit5 != null">
+                RetractLimit5 = #{row.retractLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault5 != null">
+                Fault5 = #{row.fault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault5 != null">
+                StopFault5 = #{row.stopFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque5 != null">
+                OverTorque5 = #{row.overTorque5,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position5 != null">
+                Position5 = #{row.position5,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque5 != null">
+                Torque5 = #{row.torque5,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed5 != null">
+                Speed5 = #{row.speed5,jdbcType=DECIMAL},
+            </if>
+            <if test="row.positioningCompleted6 != null">
+                PositioningCompleted6 = #{row.positioningCompleted6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverFault6 != null">
+                DriverFault6 = #{row.driverFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.driverEnable6 != null">
+                DriverEnable6 = #{row.driverEnable6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.reachLimit6 != null">
+                ReachLimit6 = #{row.reachLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.retractLimit6 != null">
+                RetractLimit6 = #{row.retractLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.fault6 != null">
+                Fault6 = #{row.fault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.stopFault6 != null">
+                StopFault6 = #{row.stopFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.overTorque6 != null">
+                OverTorque6 = #{row.overTorque6,jdbcType=NVARCHAR},
+            </if>
+            <if test="row.position6 != null">
+                Position6 = #{row.position6,jdbcType=DECIMAL},
+            </if>
+            <if test="row.torque6 != null">
+                Torque6 = #{row.torque6,jdbcType=DECIMAL},
+            </if>
+            <if test="row.speed6 != null">
+                Speed6 = #{row.speed6,jdbcType=DECIMAL},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update ST_WaveMaker_R
+        set ID = #{row.ID,jdbcType=INTEGER},
+        STCD = #{row.STCD,jdbcType=NVARCHAR},
+        TM = #{row.TM,jdbcType=TIMESTAMP},
+        Workmanship = #{row.workmanship,jdbcType=NVARCHAR},
+        CycleCount = #{row.cycleCount,jdbcType=INTEGER},
+        EquipStatus = #{row.equipStatus,jdbcType=NVARCHAR},
+        PositioningCompleted1 = #{row.positioningCompleted1,jdbcType=NVARCHAR},
+        DriverFault1 = #{row.driverFault1,jdbcType=NVARCHAR},
+        DriverEnable1 = #{row.driverEnable1,jdbcType=NVARCHAR},
+        ReachLimit1 = #{row.reachLimit1,jdbcType=NVARCHAR},
+        RetractLimit1 = #{row.retractLimit1,jdbcType=NVARCHAR},
+        Fault1 = #{row.fault1,jdbcType=NVARCHAR},
+        StopFault1 = #{row.stopFault1,jdbcType=NVARCHAR},
+        OverTorque1 = #{row.overTorque1,jdbcType=NVARCHAR},
+        Position1 = #{row.position1,jdbcType=DECIMAL},
+        Torque1 = #{row.torque1,jdbcType=DECIMAL},
+        Speed1 = #{row.speed1,jdbcType=DECIMAL},
+        PositioningCompleted2 = #{row.positioningCompleted2,jdbcType=NVARCHAR},
+        DriverFault2 = #{row.driverFault2,jdbcType=NVARCHAR},
+        DriverEnable2 = #{row.driverEnable2,jdbcType=NVARCHAR},
+        ReachLimit2 = #{row.reachLimit2,jdbcType=NVARCHAR},
+        RetractLimit2 = #{row.retractLimit2,jdbcType=NVARCHAR},
+        Fault2 = #{row.fault2,jdbcType=NVARCHAR},
+        StopFault2 = #{row.stopFault2,jdbcType=NVARCHAR},
+        OverTorque2 = #{row.overTorque2,jdbcType=NVARCHAR},
+        Position2 = #{row.position2,jdbcType=DECIMAL},
+        Torque2 = #{row.torque2,jdbcType=DECIMAL},
+        Speed2 = #{row.speed2,jdbcType=DECIMAL},
+        PositioningCompleted3 = #{row.positioningCompleted3,jdbcType=NVARCHAR},
+        DriverFault3 = #{row.driverFault3,jdbcType=NVARCHAR},
+        DriverEnable3 = #{row.driverEnable3,jdbcType=NVARCHAR},
+        ReachLimit3 = #{row.reachLimit3,jdbcType=NVARCHAR},
+        RetractLimit3 = #{row.retractLimit3,jdbcType=NVARCHAR},
+        Fault3 = #{row.fault3,jdbcType=NVARCHAR},
+        StopFault3 = #{row.stopFault3,jdbcType=NVARCHAR},
+        OverTorque3 = #{row.overTorque3,jdbcType=NVARCHAR},
+        Position3 = #{row.position3,jdbcType=DECIMAL},
+        Torque3 = #{row.torque3,jdbcType=DECIMAL},
+        Speed3 = #{row.speed3,jdbcType=DECIMAL},
+        PositioningCompleted4 = #{row.positioningCompleted4,jdbcType=NVARCHAR},
+        DriverFault4 = #{row.driverFault4,jdbcType=NVARCHAR},
+        DriverEnable4 = #{row.driverEnable4,jdbcType=NVARCHAR},
+        ReachLimit4 = #{row.reachLimit4,jdbcType=NVARCHAR},
+        RetractLimit4 = #{row.retractLimit4,jdbcType=NVARCHAR},
+        Fault4 = #{row.fault4,jdbcType=NVARCHAR},
+        StopFault4 = #{row.stopFault4,jdbcType=NVARCHAR},
+        OverTorque4 = #{row.overTorque4,jdbcType=NVARCHAR},
+        Position4 = #{row.position4,jdbcType=DECIMAL},
+        Torque4 = #{row.torque4,jdbcType=DECIMAL},
+        Speed4 = #{row.speed4,jdbcType=DECIMAL},
+        PositioningCompleted5 = #{row.positioningCompleted5,jdbcType=NVARCHAR},
+        DriverFault5 = #{row.driverFault5,jdbcType=NVARCHAR},
+        DriverEnable5 = #{row.driverEnable5,jdbcType=NVARCHAR},
+        ReachLimit5 = #{row.reachLimit5,jdbcType=NVARCHAR},
+        RetractLimit5 = #{row.retractLimit5,jdbcType=NVARCHAR},
+        Fault5 = #{row.fault5,jdbcType=NVARCHAR},
+        StopFault5 = #{row.stopFault5,jdbcType=NVARCHAR},
+        OverTorque5 = #{row.overTorque5,jdbcType=NVARCHAR},
+        Position5 = #{row.position5,jdbcType=DECIMAL},
+        Torque5 = #{row.torque5,jdbcType=DECIMAL},
+        Speed5 = #{row.speed5,jdbcType=DECIMAL},
+        PositioningCompleted6 = #{row.positioningCompleted6,jdbcType=NVARCHAR},
+        DriverFault6 = #{row.driverFault6,jdbcType=NVARCHAR},
+        DriverEnable6 = #{row.driverEnable6,jdbcType=NVARCHAR},
+        ReachLimit6 = #{row.reachLimit6,jdbcType=NVARCHAR},
+        RetractLimit6 = #{row.retractLimit6,jdbcType=NVARCHAR},
+        Fault6 = #{row.fault6,jdbcType=NVARCHAR},
+        StopFault6 = #{row.stopFault6,jdbcType=NVARCHAR},
+        OverTorque6 = #{row.overTorque6,jdbcType=NVARCHAR},
+        Position6 = #{row.position6,jdbcType=DECIMAL},
+        Torque6 = #{row.torque6,jdbcType=DECIMAL},
+        Speed6 = #{row.speed6,jdbcType=DECIMAL}
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fxjd.info.pojo.ST_WaveMaker_R">
+        update ST_WaveMaker_R
+        <set>
+            <if test="STCD != null">
+                STCD = #{STCD,jdbcType=NVARCHAR},
+            </if>
+            <if test="TM != null">
+                TM = #{TM,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workmanship != null">
+                Workmanship = #{workmanship,jdbcType=NVARCHAR},
+            </if>
+            <if test="cycleCount != null">
+                CycleCount = #{cycleCount,jdbcType=INTEGER},
+            </if>
+            <if test="equipStatus != null">
+                EquipStatus = #{equipStatus,jdbcType=NVARCHAR},
+            </if>
+            <if test="positioningCompleted1 != null">
+                PositioningCompleted1 = #{positioningCompleted1,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault1 != null">
+                DriverFault1 = #{driverFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable1 != null">
+                DriverEnable1 = #{driverEnable1,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit1 != null">
+                ReachLimit1 = #{reachLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit1 != null">
+                RetractLimit1 = #{retractLimit1,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault1 != null">
+                Fault1 = #{fault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault1 != null">
+                StopFault1 = #{stopFault1,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque1 != null">
+                OverTorque1 = #{overTorque1,jdbcType=NVARCHAR},
+            </if>
+            <if test="position1 != null">
+                Position1 = #{position1,jdbcType=DECIMAL},
+            </if>
+            <if test="torque1 != null">
+                Torque1 = #{torque1,jdbcType=DECIMAL},
+            </if>
+            <if test="speed1 != null">
+                Speed1 = #{speed1,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted2 != null">
+                PositioningCompleted2 = #{positioningCompleted2,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault2 != null">
+                DriverFault2 = #{driverFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable2 != null">
+                DriverEnable2 = #{driverEnable2,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit2 != null">
+                ReachLimit2 = #{reachLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit2 != null">
+                RetractLimit2 = #{retractLimit2,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault2 != null">
+                Fault2 = #{fault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault2 != null">
+                StopFault2 = #{stopFault2,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque2 != null">
+                OverTorque2 = #{overTorque2,jdbcType=NVARCHAR},
+            </if>
+            <if test="position2 != null">
+                Position2 = #{position2,jdbcType=DECIMAL},
+            </if>
+            <if test="torque2 != null">
+                Torque2 = #{torque2,jdbcType=DECIMAL},
+            </if>
+            <if test="speed2 != null">
+                Speed2 = #{speed2,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted3 != null">
+                PositioningCompleted3 = #{positioningCompleted3,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault3 != null">
+                DriverFault3 = #{driverFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable3 != null">
+                DriverEnable3 = #{driverEnable3,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit3 != null">
+                ReachLimit3 = #{reachLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit3 != null">
+                RetractLimit3 = #{retractLimit3,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault3 != null">
+                Fault3 = #{fault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault3 != null">
+                StopFault3 = #{stopFault3,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque3 != null">
+                OverTorque3 = #{overTorque3,jdbcType=NVARCHAR},
+            </if>
+            <if test="position3 != null">
+                Position3 = #{position3,jdbcType=DECIMAL},
+            </if>
+            <if test="torque3 != null">
+                Torque3 = #{torque3,jdbcType=DECIMAL},
+            </if>
+            <if test="speed3 != null">
+                Speed3 = #{speed3,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted4 != null">
+                PositioningCompleted4 = #{positioningCompleted4,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault4 != null">
+                DriverFault4 = #{driverFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable4 != null">
+                DriverEnable4 = #{driverEnable4,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit4 != null">
+                ReachLimit4 = #{reachLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit4 != null">
+                RetractLimit4 = #{retractLimit4,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault4 != null">
+                Fault4 = #{fault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault4 != null">
+                StopFault4 = #{stopFault4,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque4 != null">
+                OverTorque4 = #{overTorque4,jdbcType=NVARCHAR},
+            </if>
+            <if test="position4 != null">
+                Position4 = #{position4,jdbcType=DECIMAL},
+            </if>
+            <if test="torque4 != null">
+                Torque4 = #{torque4,jdbcType=DECIMAL},
+            </if>
+            <if test="speed4 != null">
+                Speed4 = #{speed4,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted5 != null">
+                PositioningCompleted5 = #{positioningCompleted5,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault5 != null">
+                DriverFault5 = #{driverFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable5 != null">
+                DriverEnable5 = #{driverEnable5,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit5 != null">
+                ReachLimit5 = #{reachLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit5 != null">
+                RetractLimit5 = #{retractLimit5,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault5 != null">
+                Fault5 = #{fault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault5 != null">
+                StopFault5 = #{stopFault5,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque5 != null">
+                OverTorque5 = #{overTorque5,jdbcType=NVARCHAR},
+            </if>
+            <if test="position5 != null">
+                Position5 = #{position5,jdbcType=DECIMAL},
+            </if>
+            <if test="torque5 != null">
+                Torque5 = #{torque5,jdbcType=DECIMAL},
+            </if>
+            <if test="speed5 != null">
+                Speed5 = #{speed5,jdbcType=DECIMAL},
+            </if>
+            <if test="positioningCompleted6 != null">
+                PositioningCompleted6 = #{positioningCompleted6,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverFault6 != null">
+                DriverFault6 = #{driverFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="driverEnable6 != null">
+                DriverEnable6 = #{driverEnable6,jdbcType=NVARCHAR},
+            </if>
+            <if test="reachLimit6 != null">
+                ReachLimit6 = #{reachLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="retractLimit6 != null">
+                RetractLimit6 = #{retractLimit6,jdbcType=NVARCHAR},
+            </if>
+            <if test="fault6 != null">
+                Fault6 = #{fault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="stopFault6 != null">
+                StopFault6 = #{stopFault6,jdbcType=NVARCHAR},
+            </if>
+            <if test="overTorque6 != null">
+                OverTorque6 = #{overTorque6,jdbcType=NVARCHAR},
+            </if>
+            <if test="position6 != null">
+                Position6 = #{position6,jdbcType=DECIMAL},
+            </if>
+            <if test="torque6 != null">
+                Torque6 = #{torque6,jdbcType=DECIMAL},
+            </if>
+            <if test="speed6 != null">
+                Speed6 = #{speed6,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fxjd.info.pojo.ST_WaveMaker_R">
+        update ST_WaveMaker_R
+        set STCD                  = #{STCD,jdbcType=NVARCHAR},
+            TM                    = #{TM,jdbcType=TIMESTAMP},
+            Workmanship           = #{workmanship,jdbcType=NVARCHAR},
+            CycleCount            = #{cycleCount,jdbcType=INTEGER},
+            EquipStatus           = #{equipStatus,jdbcType=NVARCHAR},
+            PositioningCompleted1 = #{positioningCompleted1,jdbcType=NVARCHAR},
+            DriverFault1          = #{driverFault1,jdbcType=NVARCHAR},
+            DriverEnable1         = #{driverEnable1,jdbcType=NVARCHAR},
+            ReachLimit1           = #{reachLimit1,jdbcType=NVARCHAR},
+            RetractLimit1         = #{retractLimit1,jdbcType=NVARCHAR},
+            Fault1                = #{fault1,jdbcType=NVARCHAR},
+            StopFault1            = #{stopFault1,jdbcType=NVARCHAR},
+            OverTorque1           = #{overTorque1,jdbcType=NVARCHAR},
+            Position1             = #{position1,jdbcType=DECIMAL},
+            Torque1               = #{torque1,jdbcType=DECIMAL},
+            Speed1                = #{speed1,jdbcType=DECIMAL},
+            PositioningCompleted2 = #{positioningCompleted2,jdbcType=NVARCHAR},
+            DriverFault2          = #{driverFault2,jdbcType=NVARCHAR},
+            DriverEnable2         = #{driverEnable2,jdbcType=NVARCHAR},
+            ReachLimit2           = #{reachLimit2,jdbcType=NVARCHAR},
+            RetractLimit2         = #{retractLimit2,jdbcType=NVARCHAR},
+            Fault2                = #{fault2,jdbcType=NVARCHAR},
+            StopFault2            = #{stopFault2,jdbcType=NVARCHAR},
+            OverTorque2           = #{overTorque2,jdbcType=NVARCHAR},
+            Position2             = #{position2,jdbcType=DECIMAL},
+            Torque2               = #{torque2,jdbcType=DECIMAL},
+            Speed2                = #{speed2,jdbcType=DECIMAL},
+            PositioningCompleted3 = #{positioningCompleted3,jdbcType=NVARCHAR},
+            DriverFault3          = #{driverFault3,jdbcType=NVARCHAR},
+            DriverEnable3         = #{driverEnable3,jdbcType=NVARCHAR},
+            ReachLimit3           = #{reachLimit3,jdbcType=NVARCHAR},
+            RetractLimit3         = #{retractLimit3,jdbcType=NVARCHAR},
+            Fault3                = #{fault3,jdbcType=NVARCHAR},
+            StopFault3            = #{stopFault3,jdbcType=NVARCHAR},
+            OverTorque3           = #{overTorque3,jdbcType=NVARCHAR},
+            Position3             = #{position3,jdbcType=DECIMAL},
+            Torque3               = #{torque3,jdbcType=DECIMAL},
+            Speed3                = #{speed3,jdbcType=DECIMAL},
+            PositioningCompleted4 = #{positioningCompleted4,jdbcType=NVARCHAR},
+            DriverFault4          = #{driverFault4,jdbcType=NVARCHAR},
+            DriverEnable4         = #{driverEnable4,jdbcType=NVARCHAR},
+            ReachLimit4           = #{reachLimit4,jdbcType=NVARCHAR},
+            RetractLimit4         = #{retractLimit4,jdbcType=NVARCHAR},
+            Fault4                = #{fault4,jdbcType=NVARCHAR},
+            StopFault4            = #{stopFault4,jdbcType=NVARCHAR},
+            OverTorque4           = #{overTorque4,jdbcType=NVARCHAR},
+            Position4             = #{position4,jdbcType=DECIMAL},
+            Torque4               = #{torque4,jdbcType=DECIMAL},
+            Speed4                = #{speed4,jdbcType=DECIMAL},
+            PositioningCompleted5 = #{positioningCompleted5,jdbcType=NVARCHAR},
+            DriverFault5          = #{driverFault5,jdbcType=NVARCHAR},
+            DriverEnable5         = #{driverEnable5,jdbcType=NVARCHAR},
+            ReachLimit5           = #{reachLimit5,jdbcType=NVARCHAR},
+            RetractLimit5         = #{retractLimit5,jdbcType=NVARCHAR},
+            Fault5                = #{fault5,jdbcType=NVARCHAR},
+            StopFault5            = #{stopFault5,jdbcType=NVARCHAR},
+            OverTorque5           = #{overTorque5,jdbcType=NVARCHAR},
+            Position5             = #{position5,jdbcType=DECIMAL},
+            Torque5               = #{torque5,jdbcType=DECIMAL},
+            Speed5                = #{speed5,jdbcType=DECIMAL},
+            PositioningCompleted6 = #{positioningCompleted6,jdbcType=NVARCHAR},
+            DriverFault6          = #{driverFault6,jdbcType=NVARCHAR},
+            DriverEnable6         = #{driverEnable6,jdbcType=NVARCHAR},
+            ReachLimit6           = #{reachLimit6,jdbcType=NVARCHAR},
+            RetractLimit6         = #{retractLimit6,jdbcType=NVARCHAR},
+            Fault6                = #{fault6,jdbcType=NVARCHAR},
+            StopFault6            = #{stopFault6,jdbcType=NVARCHAR},
+            OverTorque6           = #{overTorque6,jdbcType=NVARCHAR},
+            Position6             = #{position6,jdbcType=DECIMAL},
+            Torque6               = #{torque6,jdbcType=DECIMAL},
+            Speed6                = #{speed6,jdbcType=DECIMAL}
+        where ID = #{ID,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectLatestBySTCD" resultMap="BaseResultMap">
+        select top 1
+        <include refid="Base_Column_List"/>
+        from ST_WaveMaker_R
+        where STCD=#{stcd }
+        order by TM desc
+    </select>
+</mapper>

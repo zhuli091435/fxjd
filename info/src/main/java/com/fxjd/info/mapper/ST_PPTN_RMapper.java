@@ -3,8 +3,10 @@ package com.fxjd.info.mapper;
 import com.fxjd.info.pojo.ST_PPTN_R;
 import com.fxjd.info.pojo.ST_PPTN_RExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ST_PPTN_RMapper {
     long countByExample(ST_PPTN_RExample example);
 
