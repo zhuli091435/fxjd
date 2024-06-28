@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,7 +59,7 @@ public class ST_PUMP_RController {
     }
 
     @RequestMapping("/real/data")
-    public void getWaterPumpRealDataNew(String deviceName, HttpServletResponse response) throws JsonProcessingException {
+    public void getWaterPumpRealDataNew(String deviceName, HttpServletResponse response) throws IOException {
 
         PumpVO pumpVO = new PumpVO();
         String url = "http://localhost:8060/control";
@@ -68,11 +69,9 @@ public class ST_PUMP_RController {
         ctrlOrder.setOrderParam(deviceName);
         ObjectMapper objectMapper = new ObjectMapper();
         String newString = objectMapper.writeValueAsString(ctrlOrder);
-        try {
-            response.addHeader("Content-Type", "application/json;charset=UTF-8");
-            response.getWriter().write(HttpHelper.doPostJson(url, newString, null));
-        } catch (Exception ex) {
 
-        }
+        response.addHeader("Content-Type", "application/json;charset=UTF-8");
+        response.getWriter().write(HttpHelper.doPostJson(url, newString, null));
+
     }
 }

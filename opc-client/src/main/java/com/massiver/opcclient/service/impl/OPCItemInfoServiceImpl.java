@@ -29,7 +29,7 @@ public class OPCItemInfoServiceImpl implements OPCItemInfoService {
     public List<OPCItemInfo> getByDeviceName(String deviceName) {
         OPCItemInfoMapper opcItemInfoMapper = SqlSessionUtil.openSession().getMapper(OPCItemInfoMapper.class);
         OPCItemInfoExample opcItemInfoExample = new OPCItemInfoExample();
-        opcItemInfoExample.createCriteria().andDeviceNameLike(deviceName);
+        opcItemInfoExample.createCriteria().andDeviceNameLike("%" + deviceName + "%");
         return opcItemInfoMapper.selectByExample(opcItemInfoExample);
     }
 }

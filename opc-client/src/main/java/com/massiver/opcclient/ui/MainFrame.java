@@ -140,14 +140,18 @@ public class MainFrame extends JFrame {
                     String dateFormat = simpleDateFormat.format(date);
                     if (true || date.getMinutes() % 5 == 0) {
                         //获取所有标记
-                        List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read")).toList();
-                        //按照设备进行分组，分组读取数据
+                        List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read") && o.getEnable() == 1).toList();
+
+                        //为避免部分PLC离线影响其他正常PLC数据的读取速度,故按照PLC进行分组，分组读取数据
                         Map<String, List<OPCItemInfo>> opcItemInfoMap = opcItemInfoList.stream().collect(Collectors.groupingBy(OPCItemInfo::getDeviceName));
 
                         //连接OPC服务器
                         logger.info("开始连接OPC服务器");
                         UaClient uaClient = client.connect().get();
                         logger.info("完成连接OPC服务器");
+
+                        //由于三个水位不在一个PLC上，故水位特殊处理
+                        List<OPCItemInfo> opcItemInfoWater = new ArrayList<>();
 
                         for (String device : opcItemInfoMap.keySet()) {
 
@@ -163,17 +167,30 @@ public class MainFrame extends JFrame {
                             logger.info("结束读取数据");
 
                             for (int i = 0; i < opcItemInfos.size(); i++) {
-                                opcItemInfos.get(i).setValue(dataValues.get(i).getValue().getValue());
+                                if (dataValues.get(i).getStatusCode().isGood()) {
+                                    opcItemInfos.get(i).setValue(dataValues.get(i).getValue().getValue());
+                                } else {
+                                    opcItemInfos.get(i).setValue(0);
+                                }
 
                             }
                             Map<String, List<OPCItemInfo>> opcItemInfoValueMap = opcItemInfos.stream().collect(Collectors.groupingBy(OPCItemInfo::getDeviceID));
                             for (String deviceID : opcItemInfoValueMap.keySet()) {
-                                if (!deviceID.equals("")) {
+                                if (deviceID.equals("Water")) {
+                                    //暂时缓存读取到的水位数据，待全部水位读取完成再入库
+                                    opcItemInfoWater.addAll(opcItemInfoValueMap.get(deviceID));
+                                } else {
                                     savaData(opcItemInfoValueMap.get(deviceID), dateFormat);
                                 }
                             }
                             logger.info("完成获取" + device + "数据");
                         }
+
+                        //将缓存的水位数据保存入库
+                        if (opcItemInfoWater.size() > 0) {
+                            savaData(opcItemInfoWater, dateFormat);
+                        }
+
                     }
 
                 } catch (Exception e) {
@@ -206,22 +223,27 @@ public class MainFrame extends JFrame {
             case "ST_PUMP_R":
             case "ST_GATE_R":
             case "ST_H_GATE_R":
+            case "ST_Valve_R":
+            case "ST_Flow_R":
                 savaDataWithEQPNO(opcItemInfoValues, dateFormat);
+                break;
+            case "ST_WAS_R":
+            case "ST_WaveMaker_R":
+                savaDataWithNoEQPNO(opcItemInfoValues, dateFormat);
                 break;
         }
     }
 
     private void savaDataWithEQPNO(List<OPCItemInfo> opcItemInfoValues, String dateFormat) {
-        String columnStr = "";
-        String valueStr = "";
+        StringBuilder columnStr = new StringBuilder();
+        StringBuilder valueStr = new StringBuilder();
         for (OPCItemInfo opcItemInfoValue : opcItemInfoValues) {
-            columnStr += opcItemInfoValue.getColumnName() + ", ";
+            columnStr.append(opcItemInfoValue.getColumnName()).append(", ");
             if (opcItemInfoValue.getValue() == null) {
-                valueStr += "null, ";
+                valueStr.append("null, ");
             } else {
-                valueStr += "'" + opcItemInfoValue.getValue() + "', ";
+                valueStr.append("'").append(opcItemInfoValue.getValue()).append("', ");
             }
-
             reFreshTable(opcItemInfoValue, dateFormat);
         }
         String[] paramsArr = new String[6];
@@ -232,6 +254,29 @@ public class MainFrame extends JFrame {
         paramsArr[4] = "'" + opcItemInfoValues.get(0).getDeviceID() + "'";
         paramsArr[5] = valueStr.substring(0, valueStr.lastIndexOf(","));
         String sql = MessageFormat.format("insert into {0} (STCD, TM, EQPNO, {1}) values ({2}, {3}, {4}, {5})", paramsArr);
+        logger.info(sql);
+        int res = dynamicService.executeSQL(sql);
+    }
+
+    private void savaDataWithNoEQPNO(List<OPCItemInfo> opcItemInfoValues, String dateFormat) {
+        String columnStr = "";
+        String valueStr = "";
+        for (OPCItemInfo opcItemInfoValue : opcItemInfoValues) {
+            columnStr += opcItemInfoValue.getColumnName() + ", ";
+            if (opcItemInfoValue.getValue() == null) {
+                valueStr += "null, ";
+            } else {
+                valueStr += "'" + opcItemInfoValue.getValue() + "', ";
+            }
+            reFreshTable(opcItemInfoValue, dateFormat);
+        }
+        String[] paramsArr = new String[5];
+        paramsArr[0] = opcItemInfoValues.get(0).getTableName();
+        paramsArr[1] = columnStr.substring(0, columnStr.lastIndexOf(","));
+        paramsArr[2] = "'" + opcItemInfoValues.get(0).getStationID() + "'";
+        paramsArr[3] = "'" + dateFormat + "'";
+        paramsArr[4] = valueStr.substring(0, valueStr.lastIndexOf(","));
+        String sql = MessageFormat.format("insert into {0} (STCD, TM, {1}) values ({2}, {3}, {4})", paramsArr);
         logger.info(sql);
         int res = dynamicService.executeSQL(sql);
 
@@ -301,7 +346,6 @@ public class MainFrame extends JFrame {
                     } else {
                         opcItemInfoList.get(i).setValue(dataValues.get(i).getValue().getValue());
                     }
-
 
                 }
                 resultMap.put("code", 0);
