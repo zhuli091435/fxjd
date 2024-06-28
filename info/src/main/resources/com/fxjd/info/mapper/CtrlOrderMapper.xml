@@ -102,13 +102,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder">
-    insert into CtrlOrder (ID, Time, UserID, 
-      StationID, OrderCode, OrderParam, 
-      DeviceID, CtrlRecordID)
-    values (#{ID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR}, 
-      #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=NVARCHAR}, 
-      #{deviceID,jdbcType=NVARCHAR}, #{ctrlRecordID,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlOrder" useGeneratedKeys="true" keyProperty="ID">
+      insert into CtrlOrder (Time, UserID,
+                             StationID, OrderCode, OrderParam,
+                             DeviceID, CtrlRecordID)
+      values (#{time,jdbcType=TIMESTAMP}, #{userID,jdbcType=NVARCHAR},
+              #{stationID,jdbcType=NVARCHAR}, #{orderCode,jdbcType=NVARCHAR}, #{orderParam,jdbcType=NVARCHAR},
+              #{deviceID,jdbcType=NVARCHAR}, #{ctrlRecordID,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlOrder">
     insert into CtrlOrder

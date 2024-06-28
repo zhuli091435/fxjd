@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @RestController
 public class CtrlRecordController {
@@ -25,7 +22,7 @@ public class CtrlRecordController {
     @RequestMapping("/addCtrlRecord")
     public HashMap<String, Object> addCtrlRecord(CtrlRecord ctrlRecord) {
         HashMap<String, Object> stringObjectHashMap = new HashMap<>();
-
+        ctrlRecord.setTime(new Date());
         int res = ctrlRecordService.add(ctrlRecord);
         if (res > 0) {
             stringObjectHashMap.put("code", 0);
@@ -38,4 +35,24 @@ public class CtrlRecordController {
         }
         return stringObjectHashMap;
     }
+
+    @RequestMapping("/getCtrlRecord")
+    public HashMap<String, Object> getCtrlRecord(String stationID, String deviceID, Integer operator) {
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.MINUTE, -10);
+        List<CtrlRecord> ctrlRecordList = ctrlRecordService.getByStationIDAndDeviceID(stationID, deviceID, operator, instance.getTime());
+        if (ctrlRecordList.size() > 0) {
+            stringObjectHashMap.put("code", 0);
+            stringObjectHashMap.put("message", "");
+            stringObjectHashMap.put("ctrlRecordID", ctrlRecordList.get(ctrlRecordList.size() - 1).getID());
+        } else {
+
+            stringObjectHashMap.put("code", 0);
+            stringObjectHashMap.put("message", "");
+            stringObjectHashMap.put("ctrlRecordID", 0);
+        }
+        return stringObjectHashMap;
+    }
+
 }

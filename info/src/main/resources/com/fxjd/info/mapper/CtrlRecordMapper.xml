@@ -101,15 +101,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord">
-    insert into CtrlRecord (ID, StationID, DeviceID, 
-      Time, StartState, EndState, 
-      Operator)
-    values (#{ID,jdbcType=INTEGER}, #{stationID,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR}, 
-      #{time,jdbcType=TIMESTAMP}, #{startState,jdbcType=NVARCHAR}, #{endState,jdbcType=NVARCHAR}, 
-      #{operator,jdbcType=NVARCHAR})
+  <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlRecord" useGeneratedKeys="true" keyProperty="ID">
+      insert into CtrlRecord (StationID, DeviceID,
+                              Time, StartState, EndState,
+                              Operator)
+      values (#{stationID,jdbcType=NVARCHAR}, #{deviceID,jdbcType=NVARCHAR},
+              #{time,jdbcType=TIMESTAMP}, #{startState,jdbcType=NVARCHAR}, #{endState,jdbcType=NVARCHAR},
+              #{operator,jdbcType=NVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlRecord">
+  <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlRecord" >
     insert into CtrlRecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="ID != null">

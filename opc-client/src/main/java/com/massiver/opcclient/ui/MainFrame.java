@@ -138,7 +138,7 @@ public class MainFrame extends JFrame {
                     //记录读取数据时间
                     Date date = new Date();
                     String dateFormat = simpleDateFormat.format(date);
-                    if (true || date.getMinutes() % 5 == 0) {
+                    if (date.getMinutes() % 5 == 0) {
                         //获取所有标记
                         List<OPCItemInfo> opcItemInfoList = opcItemInfoService.getAll().stream().filter(o -> o.getSignType().equals("read") && o.getEnable() == 1).toList();
 
@@ -259,14 +259,14 @@ public class MainFrame extends JFrame {
     }
 
     private void savaDataWithNoEQPNO(List<OPCItemInfo> opcItemInfoValues, String dateFormat) {
-        String columnStr = "";
-        String valueStr = "";
+        StringBuilder columnStr = new StringBuilder();
+        StringBuilder valueStr = new StringBuilder();
         for (OPCItemInfo opcItemInfoValue : opcItemInfoValues) {
-            columnStr += opcItemInfoValue.getColumnName() + ", ";
+            columnStr.append(opcItemInfoValue.getColumnName()).append(", ");
             if (opcItemInfoValue.getValue() == null) {
-                valueStr += "null, ";
+                valueStr.append("null, ");
             } else {
-                valueStr += "'" + opcItemInfoValue.getValue() + "', ";
+                valueStr.append("'").append(opcItemInfoValue.getValue()).append("', ");
             }
             reFreshTable(opcItemInfoValue, dateFormat);
         }
@@ -428,13 +428,13 @@ public class MainFrame extends JFrame {
 
             //---- tableData ----
             tableData.setModel(new DefaultTableModel(
-                    new Object[][]{
-                            {null, null, null, "", "", null, "", ""},
-                            {null, null, null, null, null, null, null, null},
-                    },
-                    new String[]{
-                            "\u5e8f\u53f7", "\u901a\u9053\u540d\u79f0", "\u8bbe\u5907\u540d\u79f0", "\u6807\u8bb0\u540d\u79f0", "\u8bfb\u53d6\u65f6\u95f4", "\u6570\u503c", "\u8868\u540d\u79f0", "\u5217\u540d\u79f0"
-                    }
+                new Object[][] {
+                    {null, null, null, "", "", null, "", ""},
+                    {null, null, null, null, null, null, null, null},
+                },
+                new String[] {
+                    "\u5e8f\u53f7", "\u901a\u9053\u540d\u79f0", "\u8bbe\u5907\u540d\u79f0", "\u6807\u8bb0\u540d\u79f0", "\u8bfb\u53d6\u65f6\u95f4", "\u6570\u503c", "\u8868\u540d\u79f0", "\u5217\u540d\u79f0"
+                }
             ));
             scrollPaneData.setViewportView(tableData);
         }

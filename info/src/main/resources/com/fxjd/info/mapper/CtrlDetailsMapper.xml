@@ -99,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fxjd.info.pojo.CtrlDetails">
-    insert into CtrlDetails (ID, CtrlRecordID, Time, 
-      Record)
-    values (#{ID,jdbcType=INTEGER}, #{ctrlRecordID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
-      #{record,jdbcType=NVARCHAR})
+      insert into CtrlDetails (CtrlRecordID, Time,
+                               Record)
+      values (#{ctrlRecordID,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP},
+              #{record,jdbcType=NVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fxjd.info.pojo.CtrlDetails">
     insert into CtrlDetails

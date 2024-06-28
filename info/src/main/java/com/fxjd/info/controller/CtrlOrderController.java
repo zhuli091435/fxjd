@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.fxjd.info.pojo.CtrlOrder.*;
+
 @RestController
 public class CtrlOrderController extends ParentController {
     @Resource
@@ -39,88 +41,114 @@ public class CtrlOrderController extends ParentController {
     @RequestMapping("/addCtrlOrder")
     public HashMap<String, Object> addCtrlOrder(CtrlOrder ctrlOrder) throws JsonProcessingException {
         HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        ctrlOrder.setTime(new Date());
         int res = ctrlOrderService.add(ctrlOrder);
         if (res > 0) {
 
+            String content = getContentByCode(ctrlOrder.getOrderCode());
             CtrlDetails ctrlDetails = new CtrlDetails();
-            String content = "";
-            switch (ctrlOrder.getOrderCode()) {
-                case "1064":
-                    content = "上升指令";
-                    break;
-                case "1065":
-                    content = "停止指令";
-                    break;
-                case "1066":
-                    content = "下降指令";
-                    break;
-                case "1067":
-                    content = "预设闸位指令";
-                    break;
-                case "1068":
-                    content = "断路器合闸";
-                    break;
-                case "1069":
-                    content = "断路器分闸";
-                    break;
-                case "1070":
-                    content = "闸门消除报警";
-                    break;
-                case "1":
-                    content = "启动";
-                    break;
-                case "0":
-                    content = "停止";
-                    break;
-                default:
-                    break;
-            }
             ctrlDetails.setCtrlRecordID(ctrlOrder.getCtrlRecordID());
-            ctrlDetails.setTime(new Date());
-            ctrlDetails.setRecord(content + "已写入，请等待...");
+            ObjectMapper objectMapper = new ObjectMapper();
+            String newString = objectMapper.writeValueAsString(ctrlOrder);
 
-            ctrlDetailsService.add(ctrlDetails);
-            ST_STBPRP_B stStbprpB = stStbprpBService.getBySTCD(ctrlOrder.getStationID());
-            if (stStbprpB != null) {
+            String url = "http://localhost:8060/control";
 
+            try {
+                String result = HttpHelper.doPostJson(url, newString, null);
+                ReqResult reqResult = objectMapper.readValue(result, ReqResult.class);
+                if (reqResult.getCode() == 0) {
 
-                ObjectMapper objectMapper = new ObjectMapper();
-                String newString = objectMapper.writeValueAsString(ctrlOrder);
-
-                String url = "http://localhost:8060/";
-
-                try {
-                    String result = HttpHelper.doPostJson(url, newString, null);
-                    ReqResult reqResult = objectMapper.readValue(result, ReqResult.class);
-                    if (reqResult.getCode() == 0) {
-                        stringObjectHashMap.put("code", 0);
-                        stringObjectHashMap.put("message", "");
-                    } else {
-                        ctrlDetails.setRecord(content + "指令写入失败！");
-                        ctrlDetails.setTime(new Date());
-                        ctrlDetailsService.add(ctrlDetails);
-                        stringObjectHashMap.put("code", 1);
-                        stringObjectHashMap.put("message", reqResult.getData());
-                    }
-                } catch (Exception ex) {
-                    ctrlDetails.setRecord(content + "指令写入失败！");
+                    ctrlDetails.setRecord(content + "指令执行成功！");
                     ctrlDetails.setTime(new Date());
                     ctrlDetailsService.add(ctrlDetails);
+
+                    stringObjectHashMap.put("code", 0);
+                    stringObjectHashMap.put("message", "");
+                } else {
+                    ctrlDetails.setRecord(content + "指令执行失败，" + reqResult.getMessage());
+                    ctrlDetails.setTime(new Date());
+                    ctrlDetailsService.add(ctrlDetails);
+
                     stringObjectHashMap.put("code", 1);
-                    stringObjectHashMap.put("message", content + "指令写入失败！," + ex.getMessage());
+                    stringObjectHashMap.put("message", reqResult.getMessage());
                 }
-            } else {
-                ctrlDetails.setRecord(content + "指令写入失败！");
+            } catch (Exception ex) {
+                ctrlDetails.setRecord(content + "指令执行失败，" + ex.getMessage());
                 ctrlDetails.setTime(new Date());
                 ctrlDetailsService.add(ctrlDetails);
+
                 stringObjectHashMap.put("code", 1);
-                stringObjectHashMap.put("message", "无关联设备");
+                stringObjectHashMap.put("message", content + "指令写入失败！，" + ex.getMessage());
             }
+
         } else {
             stringObjectHashMap.put("code", 1);
             stringObjectHashMap.put("message", "添加失败");
         }
         return stringObjectHashMap;
+    }
+
+    private String getContentByCode(String orderCode) {
+        String content = "";
+        switch (orderCode) {
+            case GATE_OPEN:
+                content = "开闸";
+                break;
+            case GATE_CLOSE:
+                content = "关闸";
+                break;
+            case GATE_STOP:
+                content = "停闸";
+                break;
+            case GATE_POSITION:
+                content = "预设闸位";
+                break;
+            case GATE_MODE:
+                content = "闸门操作模式";
+                break;
+            case PUMP_OPEN:
+                content = "开泵";
+                break;
+            case PUMP_CLOSE:
+                content = "关泵";
+                break;
+            case VALVE_OPEN:
+                content = "开阀";
+                break;
+            case VALVE_CLOSE:
+                content = "关阀";
+                break;
+            case WAVE_WORKMANSHIP:
+                content = "造浪机工艺";
+                break;
+            case WAVE_COUNT:
+                content = "造浪机设定循环次数";
+                break;
+            case WAVE_MANUAL:
+                content = "造浪机手动模式";
+                break;
+            case WAVE_AUTO:
+                content = "造浪机自动模式";
+                break;
+            case WAVE_OPEN:
+                content = "造浪机启动";
+                break;
+            case WAVE_CLOSE:
+                content = "造浪机停止";
+                break;
+            case WAVE_CRASH_CLOSE:
+                content = "造浪机急停";
+                break;
+            case WAVE_RESET:
+                content = "造浪机故障复位";
+                break;
+            case RAIN_CTRL:
+                content = "人工降雨";
+                break;
+            default:
+                break;
+        }
+        return content;
     }
 
 }

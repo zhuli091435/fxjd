@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.massiver.opcclient.mapper.OPCItemInfoMapper">
+  <resultMap id="BaseResultMap" type="com.massiver.opcclient.pojo.OPCItemInfo">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="ChannelName" jdbcType="NVARCHAR" property="channelName" />
+    <result column="DeviceName" jdbcType="NVARCHAR" property="deviceName" />
+    <result column="SignName" jdbcType="NVARCHAR" property="signName" />
+    <result column="SignType" jdbcType="NVARCHAR" property="signType" />
+    <result column="StationID" jdbcType="NVARCHAR" property="stationID" />
+    <result column="DeviceID" jdbcType="NVARCHAR" property="deviceID" />
+    <result column="Factor" jdbcType="DECIMAL" property="factor" />
+    <result column="TableName" jdbcType="NVARCHAR" property="tableName" />
+    <result column="ColumnName" jdbcType="NVARCHAR" property="columnName" />
+    <result column="Enable" jdbcType="INTEGER" property="enable" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, ChannelName, DeviceName, SignName, SignType, StationID, DeviceID, Factor, TableName, 
+    ColumnName, Enable
+  </sql>
+  <select id="selectByExample" parameterType="com.massiver.opcclient.pojo.OPCItemInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from OPCItemInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OPCItemInfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from OPCItemInfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.massiver.opcclient.pojo.OPCItemInfoExample">
+    delete from OPCItemInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.massiver.opcclient.pojo.OPCItemInfo">
+    insert into OPCItemInfo (ID, ChannelName, DeviceName, 
+      SignName, SignType, StationID, 
+      DeviceID, Factor, TableName, 
+      ColumnName, Enable)
+    values (#{ID,jdbcType=INTEGER}, #{channelName,jdbcType=NVARCHAR}, #{deviceName,jdbcType=NVARCHAR}, 
+      #{signName,jdbcType=NVARCHAR}, #{signType,jdbcType=NVARCHAR}, #{stationID,jdbcType=NVARCHAR}, 
+      #{deviceID,jdbcType=NVARCHAR}, #{factor,jdbcType=DECIMAL}, #{tableName,jdbcType=NVARCHAR}, 
+      #{columnName,jdbcType=NVARCHAR}, #{enable,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.massiver.opcclient.pojo.OPCItemInfo">
+    insert into OPCItemInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="channelName != null">
+        ChannelName,
+      </if>
+      <if test="deviceName != null">
+        DeviceName,
+      </if>
+      <if test="signName != null">
+        SignName,
+      </if>
+      <if test="signType != null">
+        SignType,
+      </if>
+      <if test="stationID != null">
+        StationID,
+      </if>
+      <if test="deviceID != null">
+        DeviceID,
+      </if>
+      <if test="factor != null">
+        Factor,
+      </if>
+      <if test="tableName != null">
+        TableName,
+      </if>
+      <if test="columnName != null">
+        ColumnName,
+      </if>
+      <if test="enable != null">
+        Enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=NVARCHAR},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="signName != null">
+        #{signName,jdbcType=NVARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=NVARCHAR},
+      </if>
+      <if test="stationID != null">
+        #{stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="deviceID != null">
+        #{deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="factor != null">
+        #{factor,jdbcType=DECIMAL},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=NVARCHAR},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.massiver.opcclient.pojo.OPCItemInfoExample" resultType="java.lang.Long">
+    select count(*) from OPCItemInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update OPCItemInfo
+    <set>
+      <if test="row.ID != null">
+        ID = #{row.ID,jdbcType=INTEGER},
+      </if>
+      <if test="row.channelName != null">
+        ChannelName = #{row.channelName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.deviceName != null">
+        DeviceName = #{row.deviceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.signName != null">
+        SignName = #{row.signName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.signType != null">
+        SignType = #{row.signType,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.stationID != null">
+        StationID = #{row.stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.deviceID != null">
+        DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.factor != null">
+        Factor = #{row.factor,jdbcType=DECIMAL},
+      </if>
+      <if test="row.tableName != null">
+        TableName = #{row.tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.columnName != null">
+        ColumnName = #{row.columnName,jdbcType=NVARCHAR},
+      </if>
+      <if test="row.enable != null">
+        Enable = #{row.enable,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update OPCItemInfo
+    set ID = #{row.ID,jdbcType=INTEGER},
+      ChannelName = #{row.channelName,jdbcType=NVARCHAR},
+      DeviceName = #{row.deviceName,jdbcType=NVARCHAR},
+      SignName = #{row.signName,jdbcType=NVARCHAR},
+      SignType = #{row.signType,jdbcType=NVARCHAR},
+      StationID = #{row.stationID,jdbcType=NVARCHAR},
+      DeviceID = #{row.deviceID,jdbcType=NVARCHAR},
+      Factor = #{row.factor,jdbcType=DECIMAL},
+      TableName = #{row.tableName,jdbcType=NVARCHAR},
+      ColumnName = #{row.columnName,jdbcType=NVARCHAR},
+      Enable = #{row.enable,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.massiver.opcclient.pojo.OPCItemInfo">
+    update OPCItemInfo
+    <set>
+      <if test="channelName != null">
+        ChannelName = #{channelName,jdbcType=NVARCHAR},
+      </if>
+      <if test="deviceName != null">
+        DeviceName = #{deviceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="signName != null">
+        SignName = #{signName,jdbcType=NVARCHAR},
+      </if>
+      <if test="signType != null">
+        SignType = #{signType,jdbcType=NVARCHAR},
+      </if>
+      <if test="stationID != null">
+        StationID = #{stationID,jdbcType=NVARCHAR},
+      </if>
+      <if test="deviceID != null">
+        DeviceID = #{deviceID,jdbcType=NVARCHAR},
+      </if>
+      <if test="factor != null">
+        Factor = #{factor,jdbcType=DECIMAL},
+      </if>
+      <if test="tableName != null">
+        TableName = #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="columnName != null">
+        ColumnName = #{columnName,jdbcType=NVARCHAR},
+      </if>
+      <if test="enable != null">
+        Enable = #{enable,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.massiver.opcclient.pojo.OPCItemInfo">
+    update OPCItemInfo
+    set ChannelName = #{channelName,jdbcType=NVARCHAR},
+      DeviceName = #{deviceName,jdbcType=NVARCHAR},
+      SignName = #{signName,jdbcType=NVARCHAR},
+      SignType = #{signType,jdbcType=NVARCHAR},
+      StationID = #{stationID,jdbcType=NVARCHAR},
+      DeviceID = #{deviceID,jdbcType=NVARCHAR},
+      Factor = #{factor,jdbcType=DECIMAL},
+      TableName = #{tableName,jdbcType=NVARCHAR},
+      ColumnName = #{columnName,jdbcType=NVARCHAR},
+      Enable = #{enable,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>
