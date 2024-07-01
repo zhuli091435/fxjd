@@ -295,4 +295,11 @@
     where STCD=#{stcd }
     order by TM desc
   </select>
+  <select id="selectByLimit" resultMap="BaseResultMap">
+      select top ${count}
+      <include refid="Base_Column_List"/>
+      from ST_WAS_R
+      where STCD=#{stcd}
+      order by TM desc
+  </select>
 </mapper>

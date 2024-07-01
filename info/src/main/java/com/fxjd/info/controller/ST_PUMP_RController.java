@@ -7,6 +7,7 @@ import com.fxjd.info.service.*;
 import com.fxjd.info.utils.HttpHelper;
 import com.fxjd.info.vo.PumpVO;
 import com.fxjd.info.vo.ReqResult;
+import com.fxjd.info.vo.StatVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -73,5 +75,22 @@ public class ST_PUMP_RController {
         response.addHeader("Content-Type", "application/json;charset=UTF-8");
         response.getWriter().write(HttpHelper.doPostJson(url, newString, null));
 
+    }
+
+    @RequestMapping("/pump/stat")
+    public StatVO getGateStatData(String stcd) {
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.HOUR, -2);
+        StatVO statVO = new StatVO(0, 0);
+        List<ST_PUMP_B> st_pump_bList = st_pump_bService.getBySTCD(stcd).stream().filter(o -> o.getType().equals("提水泵站")).toList();
+        for (ST_PUMP_B st_pump_b : st_pump_bList) {
+            ST_PUMP_R pump = st_pump_rService.getLatestBySTCD(stcd, st_pump_b.getEQPNO());
+            if (pump == null || pump.getTM().before(instance.getTime())) {
+                statVO.setOffline(statVO.getOffline() + 1);
+            } else {
+                statVO.setOnline(statVO.getOnline() + 1);
+            }
+        }
+        return statVO;
     }
 }

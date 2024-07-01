@@ -2,10 +2,12 @@ package com.fxjd.info.mapper;
 
 import com.fxjd.info.pojo.ST_WAS_R;
 import com.fxjd.info.pojo.ST_WAS_RExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface ST_WAS_RMapper {
     long countByExample(ST_WAS_RExample example);
@@ -31,4 +33,6 @@ public interface ST_WAS_RMapper {
     int updateByPrimaryKey(ST_WAS_R row);
 
     ST_WAS_R selectLatestBySTCD(String stcd);
+
+    List<ST_WAS_R> selectByLimit(@Param("count") int count, @Param("stcd") String stcd);
 }

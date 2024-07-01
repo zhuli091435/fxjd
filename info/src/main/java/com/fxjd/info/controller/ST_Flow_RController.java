@@ -3,12 +3,14 @@ package com.fxjd.info.controller;
 import com.fxjd.info.pojo.*;
 import com.fxjd.info.service.*;
 import com.fxjd.info.vo.PumpVO;
+import com.fxjd.info.vo.StatVO;
 import com.fxjd.info.vo.ValveFlowVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -100,6 +102,24 @@ public class ST_Flow_RController {
         }
 
         return new ValveFlowVO(st_flow_rList, st_valve_rList);
+    }
+
+    @RequestMapping("/valve/stat")
+    public StatVO getGateStatData(String stcd) {
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.HOUR, -2);
+        StatVO statVO = new StatVO(0, 0);
+
+        List<ST_Valve_B> st_valve_bList = st_valve_bService.getBySTCD(stcd);
+        for (ST_Valve_B st_valve_b : st_valve_bList) {
+            ST_Valve_R valveR = st_valve_rService.getLatestBySTCD(stcd, st_valve_b.getEQPNO());
+            if (valveR == null || valveR.getTM().before(instance.getTime())) {
+                statVO.setOffline(statVO.getOffline() + 1);
+            } else {
+                statVO.setOnline(statVO.getOnline() + 1);
+            }
+        }
+        return statVO;
     }
 }
 
